@@ -33,7 +33,7 @@ public class ChristmasDiscountTest {
 
     @DisplayName("크리스마스 이벤트 할인 금액을 계산한다")
     @ParameterizedTest
-    @CsvSource({"1, 1000", "1, 1100", "25, 3400"})
+    @CsvSource({"1, 1000", "2, 1100", "25, 3400"})
     public void 크리스마스_이벤트_할인금액_계산(Integer reserveDate, Integer actualDiscountAmount) {
         //when
         Integer discountAmount = ChristmasDiscount.calculate(reserveDate);
