@@ -16,6 +16,11 @@ public enum DayOfWeek {
     }
 
     public static boolean isHoliday(Integer day) {
-        return day.equals(FRIDAY.value) || day.equals(SATURDAY.value);
+        Integer dayOfWeek = calculateDayOfWeek(day);
+        return dayOfWeek.equals(FRIDAY.value) || dayOfWeek.equals(SATURDAY.value);
+    }
+
+    private static Integer calculateDayOfWeek(Integer reserveDate) {
+        return reserveDate % DayOfWeek.DAYS_IN_WEEK;
     }
 }
