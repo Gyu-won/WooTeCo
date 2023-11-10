@@ -6,4 +6,8 @@ public class ChristmasDiscount {
     public static boolean isWithinPeriod(Integer reserveDate) {
         return reserveDate <= EVENT_END_DATE;
     }
+
+    public static Integer calculate(Integer reserveDate) {
+        return 0;
+    }
 }
