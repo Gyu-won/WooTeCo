@@ -23,4 +23,8 @@ public enum Menu {
         this.category = category;
         this.price = price;
     }
+
+    public boolean isDessert() {
+        return this.category.equals("디저트");
+    }
 }
