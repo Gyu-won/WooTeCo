@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import java.util.Map;
+
 public class WeekDayDiscount {
 
     public static boolean isWithinPeriod(Integer reserveDate) {
@@ -10,4 +12,7 @@ public class WeekDayDiscount {
         return reserveDate % DayOfWeek.DAYS_IN_WEEK;
     }
 
+    public static Integer calculate(Map<Menu, Integer> orderItems) {
+        return 0;
+    }
 }

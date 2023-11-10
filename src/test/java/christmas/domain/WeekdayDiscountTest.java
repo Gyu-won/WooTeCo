@@ -2,8 +2,14 @@ package christmas.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class WeekdayDiscountTest {
@@ -29,4 +35,30 @@ public class WeekdayDiscountTest {
         //then
         assertThat(isWithinPeriod).isFalse();
     }
+
+    @DisplayName("평일 이벤트 할인금액을 계산한다.")
+    @ParameterizedTest
+    @MethodSource("MenuAndDiscountAmountProvider")
+    public void 평일_이벤트_할인금액을_계산한다(List<Menu> menus, Integer expectedDiscountAmount, Integer orderAmount) {
+        //given
+        Map<Menu, Integer> orderItems = new HashMap<>();
+        menus.forEach(menu -> orderItems.put(menu, orderAmount));
+
+        //when
+        Integer discountAmount = WeekDayDiscount.calculate(orderItems);
+
+        //then
+        assertThat(discountAmount).isEqualTo(expectedDiscountAmount);
+    }
+
+    static Stream<Arguments> MenuAndDiscountAmountProvider() {
+        return Stream.of(
+                Arguments.arguments(List.of(Menu.MushroomSoup, Menu.Tapas), 0, 1),
+                Arguments.arguments(List.of(Menu.TBoneSteak, Menu.ChocolateCake), 2023, 1),
+                Arguments.arguments(List.of(Menu.ChocolateCake, Menu.IceCream), 4046, 1),
+                Arguments.arguments(List.of(Menu.ChocolateCake), 4046, 2)
+        );
+    }
+
+
 }
