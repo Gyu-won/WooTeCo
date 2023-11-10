@@ -2,7 +2,9 @@ package christmas.domain;
 
 public enum DayOfWeek {
     FRIDAY(1),
-    SATURDAY(2);
+    SATURDAY(2),
+    SUNDAY(3);
+
 
     public static final Integer DAYS_IN_WEEK = 7;
     private final Integer value;
@@ -18,6 +20,11 @@ public enum DayOfWeek {
     public static boolean isHoliday(Integer day) {
         Integer dayOfWeek = calculateDayOfWeek(day);
         return dayOfWeek.equals(FRIDAY.value) || dayOfWeek.equals(SATURDAY.value);
+    }
+
+    public static boolean isSunday(Integer day) {
+        Integer dayOfWeek = calculateDayOfWeek(day);
+        return dayOfWeek.equals(SUNDAY.value);
     }
 
     private static Integer calculateDayOfWeek(Integer reserveDate) {
