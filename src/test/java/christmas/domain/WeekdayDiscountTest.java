@@ -19,7 +19,7 @@ public class WeekdayDiscountTest {
     @ValueSource(ints = {3, 4, 10, 12, 14, 19, 20, 21, 25, 31})
     public void 평일_할인이_적용_되는_날짜_테스트(Integer reserveDate) {
         //when
-        boolean isWithinPeriod = WeekDayDiscount.isWithinPeriod(reserveDate);
+        boolean isWithinPeriod = WeekdayDiscount.isWithinPeriod(reserveDate);
 
         //then
         assertThat(isWithinPeriod).isTrue();
@@ -30,7 +30,7 @@ public class WeekdayDiscountTest {
     @ValueSource(ints = {1, 2, 8, 9, 15, 16, 22, 23, 29, 30})
     public void 평일_할인이_적용_되지_않는_날짜_테스트(Integer reserveDate) {
         //when
-        boolean isWithinPeriod = WeekDayDiscount.isWithinPeriod(reserveDate);
+        boolean isWithinPeriod = WeekdayDiscount.isWithinPeriod(reserveDate);
 
         //then
         assertThat(isWithinPeriod).isFalse();
@@ -45,7 +45,7 @@ public class WeekdayDiscountTest {
         menus.forEach(menu -> orderItems.put(menu, orderAmount));
 
         //when
-        Integer discountAmount = WeekDayDiscount.calculate(orderItems);
+        Integer discountAmount = WeekdayDiscount.calculate(orderItems);
 
         //then
         assertThat(discountAmount).isEqualTo(expectedDiscountAmount);
