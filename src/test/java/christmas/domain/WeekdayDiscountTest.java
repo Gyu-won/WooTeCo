@@ -59,6 +59,4 @@ public class WeekdayDiscountTest {
                 Arguments.arguments(List.of(Menu.ChocolateCake), 4046, 2)
         );
     }
-
-
 }

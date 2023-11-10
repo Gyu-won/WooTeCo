@@ -27,4 +27,8 @@ public enum Menu {
     public boolean isDessert() {
         return this.category.equals("디저트");
     }
+
+    public boolean isMain() {
+        return this.category.equals("메인");
+    }
 }
