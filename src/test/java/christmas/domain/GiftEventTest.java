@@ -11,9 +11,9 @@ public class GiftEventTest {
     @DisplayName("증정 이벤트에 해당하면 증정이벤트를 적용한다..")
     @ParameterizedTest
     @ValueSource(ints = {120000, 150000})
-    public void 총_주문금액이_12만원_이상인_경우(Integer totalPurchaseAmount) {
+    public void 총_주문금액이_12만원_이상인_경우(Integer totalOrderAmount) {
         //when
-        boolean isWithinPeriod = GiftEvent.isWithinPeriod(totalPurchaseAmount);
+        boolean isWithinPeriod = GiftEvent.isWithinPeriod(totalOrderAmount);
 
         //then
         assertThat(isWithinPeriod).isTrue();
@@ -22,9 +22,9 @@ public class GiftEventTest {
     @DisplayName("증정 이벤트에 해당하지 않으면 증정이벤트를 적용하지 않는다.")
     @ParameterizedTest
     @ValueSource(ints = {10000, 119999})
-    public void 총_주문금액이_12만원_이하인_경우(Integer totalPurchaseAmount) {
+    public void 총_주문금액이_12만원_이하인_경우(Integer totalOrderAmount) {
         //when
-        boolean isWithinPeriod = GiftEvent.isWithinPeriod(totalPurchaseAmount);
+        boolean isWithinPeriod = GiftEvent.isWithinPeriod(totalOrderAmount);
 
         //then
         assertThat(isWithinPeriod).isFalse();
