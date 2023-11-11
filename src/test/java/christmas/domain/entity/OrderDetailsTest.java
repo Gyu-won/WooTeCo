@@ -3,10 +3,15 @@ package christmas.domain.entity;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class OrderDetailsTest {
 
@@ -47,5 +52,26 @@ public class OrderDetailsTest {
 
         //then
         assertThat(eventReward.sumEventRewards()).isEqualTo(0);
+    }
+
+    @DisplayName("주문 메뉴의 금액 합계를 계산한다.")
+    @ParameterizedTest
+    @MethodSource("MenuAndPriceProvider")
+    public void 주문한_메뉴의_금액합계를_계산(List<Menu> menus, Integer count, Integer expectedPrice) {
+        //given
+        menus.forEach(menu -> orderMenus.put(menu, count));
+
+        //when
+        OrderDetails orderDetails = new OrderDetails(25, orderMenus);
+
+        //then
+        assertThat(orderDetails.getTotalPrice()).isEqualTo(expectedPrice);
+    }
+
+    static Stream<Arguments> MenuAndPriceProvider() {
+        return Stream.of(
+                Arguments.arguments(List.of(Menu.TBoneSteak, Menu.BarbecueRibs, Menu.ZeroCoke), 1, 112000),
+                Arguments.arguments(List.of(Menu.Tapas, Menu.RedWine), 2, 131000)
+        );
     }
 }

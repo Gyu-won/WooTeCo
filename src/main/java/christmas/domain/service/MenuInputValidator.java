@@ -3,25 +3,22 @@ package christmas.domain.service;
 import christmas.domain.entity.Menu;
 import christmas.view.Error;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Order {
+public class MenuInputValidator {
 
-    public static void validate(String menusInput) {
-        List<String> menuInputs = splitMenusInput(menusInput);
-        for (String menuInput : menuInputs) {
+    public static Map<Menu, Integer> validate(String menusInput) {
+        Map<Menu, Integer> orderMenus = new HashMap<>();
+        for (String menuInput : splitMenusInput(menusInput)) {
             List<String> menuAndCount = splitMenuAndCount(menuInput);
             checkInputTypeValidation(menuAndCount);
             Menu menu = findMenu(menuAndCount.get(0));
             Integer count = findCount(menuAndCount.get(1));
+            orderMenus.put(menu, count);
         }
-    }
-
-    public static Integer calculateTotalPrice(Map<Menu, Integer> orderMenus) {
-        return orderMenus.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
-                .sum();
+        return orderMenus;
     }
 
     private static List<String> splitMenusInput(String menusInput) {
