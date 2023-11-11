@@ -6,17 +6,17 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class TotalEventRewardTest {
+public class EventRewardTest {
 
     @DisplayName("총 할인 금액의 합을 계산한다.")
     @Test
     public void 총_할인금액을_계산() {
         //given
         List<Integer> totalEventRewards = List.of(1200, 4046, 0, 1000, 25000);
-        TotalEventReward totalEventReward = TotalEventReward.create(totalEventRewards);
+        EventReward eventReward = EventReward.create(totalEventRewards);
 
         //when
-        Integer totalEventDiscounts = totalEventReward.sumEventDiscounts();
+        Integer totalEventDiscounts = eventReward.sumEventDiscounts();
 
         //then
         assertThat(totalEventDiscounts).isEqualTo(31246);
