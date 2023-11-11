@@ -1,6 +1,6 @@
 package christmas.domain.entity;
 
-import christmas.domain.service.Event;
+import christmas.domain.service.event.Event;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

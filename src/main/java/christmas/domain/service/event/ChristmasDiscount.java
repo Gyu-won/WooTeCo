@@ -1,4 +1,4 @@
-package christmas.domain.service;
+package christmas.domain.service.event;
 
 public class ChristmasDiscount {
     private static final Integer EVENT_START_DATE = 1;

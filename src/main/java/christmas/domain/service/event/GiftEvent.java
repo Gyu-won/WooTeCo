@@ -1,4 +1,4 @@
-package christmas.domain.service;
+package christmas.domain.service.event;
 
 public class GiftEvent {
     private static final Integer MINIMUM_ORDER_AMOUNT = 120000;

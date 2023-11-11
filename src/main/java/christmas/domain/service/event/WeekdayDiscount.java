@@ -1,4 +1,4 @@
-package christmas.domain.service;
+package christmas.domain.service.event;
 
 import christmas.domain.entity.DayOfWeek;
 import christmas.domain.entity.Menu;

@@ -1,4 +1,4 @@
-package christmas.domain.service;
+package christmas.domain.service.event;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
