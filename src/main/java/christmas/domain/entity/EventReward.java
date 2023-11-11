@@ -3,21 +3,21 @@ package christmas.domain.entity;
 import java.util.List;
 
 public class EventReward {
-    private final List<Integer> totalEventReward;
+    private final List<Integer> eventRewards;
 
-    private EventReward(List<Integer> totalEventReward) {
-        this.totalEventReward = totalEventReward;
+    private EventReward(List<Integer> eventRewards) {
+        this.eventRewards = eventRewards;
     }
 
-    public static EventReward create(List<Integer> totalEventReward) {
-        return new EventReward(totalEventReward);
+    public static EventReward create(List<Integer> eventRewards) {
+        return new EventReward(eventRewards);
     }
 
-    public Integer sumEventDiscounts() {
-        return totalEventReward.stream().mapToInt(Integer::intValue).sum();
+    public Integer sumEventRewards() {
+        return eventRewards.stream().mapToInt(Integer::intValue).sum();
     }
 
-    public List<Integer> getTotalEventReward() {
-        return totalEventReward;
+    public List<Integer> getEventRewards() {
+        return eventRewards;
     }
 }

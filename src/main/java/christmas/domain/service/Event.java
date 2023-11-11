@@ -20,14 +20,14 @@ public class Event {
         return NO_DISCOUNT;
     }
 
-    public static Integer applyWeekdayDiscount(Map<Menu, Integer> orderItems, Integer reserveDate) {
+    public static Integer applyWeekdayDiscount(Integer reserveDate, Map<Menu, Integer> orderItems) {
         if (WeekdayDiscount.isWithinPeriod(reserveDate)) {
             return WeekdayDiscount.calculate(orderItems);
         }
         return NO_DISCOUNT;
     }
 
-    public static Integer applyHolidayDiscount(Map<Menu, Integer> orderItems, Integer reserveDate) {
+    public static Integer applyHolidayDiscount(Integer reserveDate, Map<Menu, Integer> orderItems) {
         if (HolidayDiscount.isWithinPeriod(reserveDate)) {
             return HolidayDiscount.calculate(orderItems);
         }

@@ -16,7 +16,7 @@ public class EventRewardTest {
         EventReward eventReward = EventReward.create(totalEventRewards);
 
         //when
-        Integer totalEventDiscounts = eventReward.sumEventDiscounts();
+        Integer totalEventDiscounts = eventReward.sumEventRewards();
 
         //then
         assertThat(totalEventDiscounts).isEqualTo(31246);

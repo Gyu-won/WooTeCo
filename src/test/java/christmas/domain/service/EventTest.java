@@ -48,7 +48,7 @@ public class EventTest {
         Integer reserveDate = 19;
 
         //when
-        Integer weekdayDiscountAmount = Event.applyWeekdayDiscount(orderItems, reserveDate);
+        Integer weekdayDiscountAmount = Event.applyWeekdayDiscount(reserveDate, orderItems);
 
         //then
         assertThat(weekdayDiscountAmount).isEqualTo(6069);
@@ -68,7 +68,7 @@ public class EventTest {
         Integer reserveDate = 29;
 
         //when
-        Integer holidayDiscountAmount = Event.applyHolidayDiscount(orderItems, reserveDate);
+        Integer holidayDiscountAmount = Event.applyHolidayDiscount(reserveDate, orderItems);
 
         //then
         assertThat(holidayDiscountAmount).isEqualTo(6069);

@@ -7,7 +7,7 @@ import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class OrderTest {
+public class OrderDetailsTest {
 
     @DisplayName("총 이벤트 할인 금액을 계산한다.")
     @Test
@@ -19,12 +19,12 @@ public class OrderTest {
         orderMenus.put(Menu.ChocolateCake, 2);
         orderMenus.put(Menu.ZeroCoke, 1);
 
-        Order order = new Order(orderMenus, 142000);
+        OrderDetails orderDetails = new OrderDetails(3, 142000, orderMenus);
 
         //when
-        EventReward eventReward = order.calculateEventReward();
+        EventReward eventReward = orderDetails.calculateEventReward();
 
         //then
-        assertThat(eventReward.sumEventDiscounts()).isEqualTo(31246);
+        assertThat(eventReward.sumEventRewards()).isEqualTo(31246);
     }
 }
