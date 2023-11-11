@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -7,14 +7,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class ChristmasDiscountTest {
+public class ChristmasDiscountServiceTest {
 
     @DisplayName("크리스마스 디데이 할인 날짜에 포함되는 경우")
     @ParameterizedTest
     @ValueSource(ints = {23, 1, 25})
     public void 크리스마스_할인_기간에_포함되는_경우(Integer reserveDate) {
         //when
-        boolean isWithinPeriod = ChristmasDiscount.isWithinPeriod(reserveDate);
+        boolean isWithinPeriod = ChristmasDiscountService.isWithinPeriod(reserveDate);
 
         //then
         assertThat(isWithinPeriod).isTrue();
@@ -25,7 +25,7 @@ public class ChristmasDiscountTest {
     @ValueSource(ints = {26, 31})
     public void 크리스마스_할인_기간에_포함되지_않는_경우(Integer reserveDate) {
         //when
-        boolean isWithinPeriod = ChristmasDiscount.isWithinPeriod(reserveDate);
+        boolean isWithinPeriod = ChristmasDiscountService.isWithinPeriod(reserveDate);
 
         //then
         assertThat(isWithinPeriod).isFalse();
@@ -36,7 +36,7 @@ public class ChristmasDiscountTest {
     @CsvSource({"1, 1000", "2, 1100", "25, 3400"})
     public void 크리스마스_이벤트_할인금액_계산(Integer reserveDate, Integer actualDiscountAmount) {
         //when
-        Integer discountAmount = ChristmasDiscount.calculate(reserveDate);
+        Integer discountAmount = ChristmasDiscountService.calculate(reserveDate);
 
         //then
         assertThat(discountAmount).isEqualTo(actualDiscountAmount);

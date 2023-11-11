@@ -1,6 +1,6 @@
-package christmas.domain;
+package christmas.service;
 
-public class GiftEvent {
+public class GiftEventService {
     private static final Integer MINIMUM_ORDER_AMOUNT = 120000;
 
     public static boolean isApplicable(Integer totalOrderAmount) {

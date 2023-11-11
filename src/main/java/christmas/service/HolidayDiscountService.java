@@ -1,14 +1,15 @@
-package christmas.domain;
+package christmas.service;
 
+import christmas.domain.DayOfWeek;
+import christmas.domain.Menu;
 import java.util.Map;
 
-public class WeekdayDiscount {
-
-    private static final Integer WEEKDAY_DISCOUNT_AMOUNT = 2023;
+public class HolidayDiscountService {
+    private static final Integer HOLIDAY_DISCOUNT_AMOUNT = 2023;
     private static final Integer NO_DISCOUNT_AMOUNT = 0;
 
     public static boolean isWithinPeriod(Integer reserveDate) {
-        return DayOfWeek.isWeekday(reserveDate);
+        return DayOfWeek.isHoliday(reserveDate);
     }
 
     public static Integer calculate(Map<Menu, Integer> orderItems) {
@@ -18,8 +19,8 @@ public class WeekdayDiscount {
     }
 
     private static Integer calculateItemDiscount(Menu menu, Integer quantity) {
-        if (menu.isDessert()) {
-            return WEEKDAY_DISCOUNT_AMOUNT * quantity;
+        if (menu.isMain()) {
+            return HOLIDAY_DISCOUNT_AMOUNT * quantity;
         }
         return NO_DISCOUNT_AMOUNT;
     }
