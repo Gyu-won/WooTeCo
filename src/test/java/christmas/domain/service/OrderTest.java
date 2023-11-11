@@ -25,6 +25,16 @@ public class OrderTest {
                 .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 
+    @DisplayName("메뉴판에 없는 메뉴를 입력한 경우 에러를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"해산물파스티-2", "해산물파스타-2, 레드와인-1"})
+    public void 메뉴판에_없는_메뉴를_입력한_경우(String menusInput) {
+        //when+then
+        assertThatThrownBy(() -> Order.validate(menusInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+    }
+
     @DisplayName("주문 메뉴의 금액 합계를 계산한다.")
     @ParameterizedTest
     @MethodSource("MenuAndPriceProvider")
