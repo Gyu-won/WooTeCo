@@ -48,6 +48,22 @@ public class Order {
     }
 
     private static Integer findCount(String menuCount) {
-        return 0;
+        Integer parsedMenuCount = toInt(menuCount);
+        if (isValidCount(parsedMenuCount)) {
+            throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
+        }
+        return parsedMenuCount;
+    }
+
+    private static Integer toInt(String menuCount) {
+        try {
+            return Integer.parseInt(menuCount);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
+        }
+    }
+
+    private static boolean isValidCount(Integer parsedMenuCount) {
+        return parsedMenuCount < 1;
     }
 }

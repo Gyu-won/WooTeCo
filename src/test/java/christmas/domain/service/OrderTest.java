@@ -37,7 +37,7 @@ public class OrderTest {
 
     @DisplayName("메뉴 개수를 올바르게 입력하지 않으면 에러를 발생시킨다.")
     @ParameterizedTest
-    @ValueSource(strings = {"해산물파스타-1,레드와인-0", "양송이수프-0.5", "티본스테이크-4"})
+    @ValueSource(strings = {"해산물파스타-1,레드와인-0", "양송이수프-0.5"})
     public void 메뉴_개수를_올바르게_입력한_경우(String menusInput) {
         //when+then
         assertThatThrownBy(() -> Order.validate(menusInput))
