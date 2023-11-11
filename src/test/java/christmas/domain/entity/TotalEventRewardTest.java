@@ -2,6 +2,7 @@ package christmas.domain.entity;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,14 +12,8 @@ public class TotalEventRewardTest {
     @Test
     public void 총_할인금액을_계산() {
         //given
-        Integer christmasDiscount = 1200;
-        Integer weekdayDiscount = 4046;
-        Integer holidayDiscount = 0;
-        Integer specialDiscount = 1000;
-        Integer giftEvent = 25000;
-
-        TotalEventReward totalEventReward = TotalEventReward.create(christmasDiscount, weekdayDiscount, holidayDiscount,
-                specialDiscount, giftEvent);
+        List<Integer> totalEventRewards = List.of(1200, 4046, 0, 1000, 25000);
+        TotalEventReward totalEventReward = TotalEventReward.create(totalEventRewards);
 
         //when
         Integer totalEventDiscounts = totalEventReward.sumEventDiscounts();
