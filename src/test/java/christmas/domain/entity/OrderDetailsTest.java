@@ -25,7 +25,7 @@ public class OrderDetailsTest {
         orderMenus.put(Menu.BarbecueRibs, 1);
         orderMenus.put(Menu.ChocolateCake, 2);
         orderMenus.put(Menu.ZeroCoke, 1);
-        OrderDetails orderDetails = new OrderDetails(3, 142000, orderMenus);
+        OrderDetails orderDetails = new OrderDetails(3, orderMenus);
 
         //when
         EventReward eventReward = orderDetails.calculateEventReward();
@@ -40,7 +40,7 @@ public class OrderDetailsTest {
         //given
         orderMenus.put(Menu.Tapas, 1);
         orderMenus.put(Menu.ZeroCoke, 1);
-        OrderDetails orderDetails = new OrderDetails(25, 8500, orderMenus);
+        OrderDetails orderDetails = new OrderDetails(25, orderMenus);
 
         //when
         EventReward eventReward = orderDetails.calculateEventReward();

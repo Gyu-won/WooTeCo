@@ -32,6 +32,10 @@ public enum Menu {
         return this.category.equals("메인");
     }
 
+    public Integer getPrice() {
+        return this.price;
+    }
+
     public static Integer calculateGiftPrice() {
         return Menu.Champagne.price;
     }

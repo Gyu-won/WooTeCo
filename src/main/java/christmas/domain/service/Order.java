@@ -5,6 +5,8 @@ import java.util.Map;
 
 public class Order {
     public static Integer calculateTotalPrice(Map<Menu, Integer> orderMenus) {
-        return null;
+        return orderMenus.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
+                .sum();
     }
 }

@@ -1,6 +1,7 @@
 package christmas.domain.entity;
 
 import christmas.domain.service.Event;
+import christmas.domain.service.Order;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,10 +12,10 @@ public class OrderDetails {
     private final Integer totalPrice;
     private final Map<Menu, Integer> orderMenus;
 
-    public OrderDetails(Integer reserveDate, Integer totalPrice, Map<Menu, Integer> orderMenus) {
+    public OrderDetails(Integer reserveDate, Map<Menu, Integer> orderMenus) {
         this.reserveDate = reserveDate;
-        this.totalPrice = totalPrice;
         this.orderMenus = orderMenus;
+        this.totalPrice = Order.calculateTotalPrice(orderMenus);
     }
 
     public EventReward calculateEventReward() {

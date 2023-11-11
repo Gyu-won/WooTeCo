@@ -31,8 +31,8 @@ public class OrderTest {
 
     static Stream<Arguments> MenuAndPriceProvider() {
         return Stream.of(
-                Arguments.arguments(List.of(Menu.TBoneSteak, Menu.BarbecueRibs, Menu.ZeroCoke), 1, 102000),
-                Arguments.arguments(List.of(Menu.Tapas, Menu.RedWine), 2, 132000)
+                Arguments.arguments(List.of(Menu.TBoneSteak, Menu.BarbecueRibs, Menu.ZeroCoke), 1, 112000),
+                Arguments.arguments(List.of(Menu.Tapas, Menu.RedWine), 2, 131000)
         );
     }
 }
