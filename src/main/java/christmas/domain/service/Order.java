@@ -13,7 +13,8 @@ public class Order {
         for (String menuInput : menuInputs) {
             List<String> menuAndCount = splitMenuAndCount(menuInput);
             checkInputTypeValidation(menuAndCount);
-            checkMenuExist(menuAndCount.get(0));
+            Menu menu = findMenu(menuAndCount.get(0));
+            Integer count = findCount(menuAndCount.get(1));
         }
     }
 
@@ -37,12 +38,16 @@ public class Order {
         }
     }
 
-    private static void checkMenuExist(String menuName) {
+    private static Menu findMenu(String menuName) {
         for (Menu menu : Menu.values()) {
             if (menu.isSame(menuName)) {
-                return;
+                return menu;
             }
         }
         throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
+    }
+
+    private static Integer findCount(String menuCount) {
+        return 0;
     }
 }
