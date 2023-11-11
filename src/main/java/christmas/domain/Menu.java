@@ -31,4 +31,8 @@ public enum Menu {
     public boolean isMain() {
         return this.category.equals("메인");
     }
+
+    public static Integer calculateGiftPrice() {
+        return Menu.Champagne.price;
+    }
 }
