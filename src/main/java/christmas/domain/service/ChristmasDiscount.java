@@ -1,6 +1,6 @@
-package christmas.service;
+package christmas.domain.service;
 
-public class ChristmasDiscountService {
+public class ChristmasDiscount {
     private static final Integer EVENT_START_DATE = 1;
     private static final Integer EVENT_END_DATE = 25;
     private static final Integer BASIC_DISCOUNT = 1000;

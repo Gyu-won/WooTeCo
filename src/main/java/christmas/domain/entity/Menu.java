@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.entity;
 
 public enum Menu {
     MushroomSoup("양송이수프", "애피타이저", 6000),

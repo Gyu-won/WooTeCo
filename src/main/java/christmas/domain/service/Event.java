@@ -1,42 +1,42 @@
-package christmas.service;
+package christmas.domain.service;
 
-import christmas.domain.Menu;
+import christmas.domain.entity.Menu;
 import java.util.Map;
 
-public class EventService {
+public class Event {
     private static final Integer NO_DISCOUNT = 0;
 
     public static Integer applyGiftEvent(Integer totalOrderAmount) {
-        if (GiftEventService.isApplicable(totalOrderAmount)) {
+        if (GiftEvent.isApplicable(totalOrderAmount)) {
             return Menu.calculateGiftPrice();
         }
         return NO_DISCOUNT;
     }
 
     public static Integer applyChristmasDiscount(Integer reserveDate) {
-        if (ChristmasDiscountService.isWithinPeriod(reserveDate)) {
-            return ChristmasDiscountService.calculate(reserveDate);
+        if (ChristmasDiscount.isWithinPeriod(reserveDate)) {
+            return ChristmasDiscount.calculate(reserveDate);
         }
         return NO_DISCOUNT;
     }
 
     public static Integer applyWeekdayDiscount(Map<Menu, Integer> orderItems, Integer reserveDate) {
-        if (WeekdayDiscountService.isWithinPeriod(reserveDate)) {
-            return WeekdayDiscountService.calculate(orderItems);
+        if (WeekdayDiscount.isWithinPeriod(reserveDate)) {
+            return WeekdayDiscount.calculate(orderItems);
         }
         return NO_DISCOUNT;
     }
 
     public static Integer applyHolidayDiscount(Map<Menu, Integer> orderItems, Integer reserveDate) {
-        if (HolidayDiscountService.isWithinPeriod(reserveDate)) {
-            return HolidayDiscountService.calculate(orderItems);
+        if (HolidayDiscount.isWithinPeriod(reserveDate)) {
+            return HolidayDiscount.calculate(orderItems);
         }
         return NO_DISCOUNT;
     }
 
     public static Integer applySpecialDiscount(Integer reserveDate) {
-        if (SpecialDiscountService.isWithinPeriod(reserveDate)) {
-            return SpecialDiscountService.AMOUNT;
+        if (SpecialDiscount.isWithinPeriod(reserveDate)) {
+            return SpecialDiscount.AMOUNT;
         }
         return NO_DISCOUNT;
     }

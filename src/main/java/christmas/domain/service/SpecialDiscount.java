@@ -1,8 +1,8 @@
-package christmas.service;
+package christmas.domain.service;
 
-import christmas.domain.DayOfWeek;
+import christmas.domain.entity.DayOfWeek;
 
-public class SpecialDiscountService {
+public class SpecialDiscount {
     private static final Integer CHRISTMAS_DAY = 25;
     public static final Integer AMOUNT = 1000;
 
