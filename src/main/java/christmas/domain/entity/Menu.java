@@ -24,6 +24,10 @@ public enum Menu {
         this.price = price;
     }
 
+    public static Integer calculateGiftPrice() {
+        return Menu.Champagne.price;
+    }
+
     public boolean isDessert() {
         return this.category.equals("디저트");
     }
@@ -36,7 +40,8 @@ public enum Menu {
         return this.price;
     }
 
-    public static Integer calculateGiftPrice() {
-        return Menu.Champagne.price;
+    public boolean isSame(String menuName) {
+        return this.name.equals(menuName);
     }
+
 }

@@ -1,6 +1,7 @@
 package christmas.domain.service;
 
 import christmas.domain.entity.Menu;
+import christmas.view.Error;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ public class Order {
         for (String menuInput : menuInputs) {
             List<String> menuAndCount = splitMenuAndCount(menuInput);
             checkInputTypeValidation(menuAndCount);
+            checkMenuExist(menuAndCount.get(0));
         }
     }
 
@@ -31,7 +33,16 @@ public class Order {
 
     private static void checkInputTypeValidation(List<String> menuAndCount) {
         if (menuAndCount.size() != 2) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
         }
+    }
+
+    private static void checkMenuExist(String menuName) {
+        for (Menu menu : Menu.values()) {
+            if (menu.isSame(menuName)) {
+                return;
+            }
+        }
+        throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
     }
 }
