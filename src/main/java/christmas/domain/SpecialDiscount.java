@@ -2,7 +2,7 @@ package christmas.domain;
 
 public class SpecialDiscount {
     private static final Integer CHRISTMAS_DAY = 25;
-    private static final Integer SPECIAL_DISCOUNT_AMOUNT = 1000;
+    public static final Integer AMOUNT = 1000;
 
     public static boolean isWithinPeriod(Integer reserveDate) {
         return DayOfWeek.isSunday(reserveDate) || isChristmasDay(reserveDate);

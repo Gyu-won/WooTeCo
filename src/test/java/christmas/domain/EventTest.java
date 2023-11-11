@@ -20,7 +20,7 @@ public class EventTest {
         Integer reserveDate = 26;
 
         //when
-        int discountAmount = Event.apply(orderItems, reserveDate);
+        Integer discountAmount = Event.apply(orderItems, reserveDate);
 
         //then
         assertThat(discountAmount).isEqualTo(0);
@@ -39,7 +39,7 @@ public class EventTest {
         Integer reserveDate = 3;
 
         //when
-        int discountAmount = Event.apply(orderItems, reserveDate);
+        Integer discountAmount = Event.apply(orderItems, reserveDate);
 
         //then
         assertThat(discountAmount).isEqualTo(31246);
