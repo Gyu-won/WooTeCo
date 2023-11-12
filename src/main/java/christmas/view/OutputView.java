@@ -33,6 +33,10 @@ public class OutputView {
         System.out.println(DynamicMessage.TOTAL_PRICE.getMessage(discountedPrice));
     }
 
+    public static void printBadge(String badge) {
+        System.out.println(PromptMessage.EVENT_BADGE.getMessage());
+    }
+
     private static void printTotalDiscountAmount(EventReward eventReward) {
         System.out.println(PromptMessage.TOTAL_DISCOUNT.getMessage());
         System.out.println(DynamicMessage.DISCOUNT_AMOUNT.getMessage(eventReward.sumEventRewards()));

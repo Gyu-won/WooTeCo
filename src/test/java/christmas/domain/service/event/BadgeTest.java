@@ -16,7 +16,7 @@ public class BadgeTest {
         Integer totalEventReward = 4999;
 
         //when
-        String rank = Badge.calculate(totalEventReward);
+        String rank = Badge.assign(totalEventReward);
 
         //then
         assertThat(rank).isEqualTo("없음");
@@ -27,7 +27,7 @@ public class BadgeTest {
     @ValueSource(ints = {5000, 9999})
     public void 별_배지를_부여받는_경우(Integer totalEventReward) {
         //when
-        String rank = Badge.calculate(totalEventReward);
+        String rank = Badge.assign(totalEventReward);
 
         //then
         assertThat(rank).isEqualTo("별");
@@ -38,7 +38,7 @@ public class BadgeTest {
     @ValueSource(ints = {10000, 19999})
     public void 트리_배지를_부여받는_경우(Integer totalEventReward) {
         //when
-        String rank = Badge.calculate(totalEventReward);
+        String rank = Badge.assign(totalEventReward);
 
         //then
         assertThat(rank).isEqualTo("트리");
@@ -49,7 +49,7 @@ public class BadgeTest {
     @ValueSource(ints = {20000, 1000000})
     public void 산타_배지를_부여받는_경우(Integer totalEventReward) {
         //when
-        String rank = Badge.calculate(totalEventReward);
+        String rank = Badge.assign(totalEventReward);
 
         //then
         assertThat(rank).isEqualTo("산타");

@@ -3,6 +3,7 @@ package christmas.controller;
 import christmas.domain.entity.EventReward;
 import christmas.domain.entity.Menu;
 import christmas.domain.entity.OrderDetails;
+import christmas.domain.service.event.Badge;
 import christmas.domain.service.validation.OrderValidator;
 import christmas.domain.service.validation.VisitDate;
 import christmas.view.InputView;
@@ -26,6 +27,7 @@ public class EventPlanner {
         EventReward eventReward = orderDetails.calculateEventReward();
         OutputView.printEventReward(eventReward);
         OutputView.printDiscountedPrice(orderDetails.applyEvent(eventReward));
+        OutputView.printBadge(Badge.assign(eventReward.sumEventRewards()));
     }
 
 

@@ -9,7 +9,7 @@ public class Badge {
     private static final Integer TREE_MINIMUM = 10000;
     private static final Integer SANTA_MINIMUM = 20000;
 
-    public static String calculate(Integer totalEventReward) {
+    public static String assign(Integer totalEventReward) {
         if (isSanta(totalEventReward)) {
             return SANTA;
         }
