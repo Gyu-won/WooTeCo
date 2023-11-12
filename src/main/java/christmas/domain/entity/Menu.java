@@ -44,4 +44,7 @@ public enum Menu {
         return this.name.equals(menuName);
     }
 
+    public boolean isDrinkCategory() {
+        return this.category.equals("음료");
+    }
 }
