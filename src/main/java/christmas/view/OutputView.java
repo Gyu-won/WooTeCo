@@ -21,6 +21,20 @@ public class OutputView {
         printOrderPrice(orderDetails);
     }
 
+    public static void printEventReward(EventReward eventReward) {
+        printGiftMenu(eventReward);
+        printBenefitDetails(eventReward);
+    }
+
+    private static void printBenefitDetails(EventReward eventReward) {
+        System.out.println(PromptMessage.EVENT_REWARD.getMessage());
+    }
+
+    private static void printGiftMenu(EventReward eventReward) {
+        System.out.println(PromptMessage.GIFT_MENU.getMessage());
+        System.out.println(generateGiftMessage(eventReward.getEventRewards().get(GIFT_EVENT_INDEX)));
+    }
+
     private static void printOrderPrice(OrderDetails orderDetails) {
         System.out.println(PromptMessage.TOTAL_PRICE.getMessage());
         System.out.println(DynamicMessage.PRICE.getMessage(orderDetails.getTotalPrice()));
@@ -34,11 +48,6 @@ public class OutputView {
         System.out.println(PromptMessage.ORDER_SUMMARY.getMessage());
         orderDetails.getOrderMenus().forEach((key, value) ->
                 System.out.println(DynamicMessage.ORDER_MENU.getMessage(key.getName(), value)));
-    }
-
-    public static void printEventReward(EventReward eventReward) {
-        System.out.println(PromptMessage.GIFT_MENU.getMessage());
-        System.out.println(generateGiftMessage(eventReward.getEventRewards().get(GIFT_EVENT_INDEX)));
     }
 
     private static String generateGiftMessage(Integer giftMenuPrice) {
