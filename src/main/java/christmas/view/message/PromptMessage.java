@@ -8,7 +8,8 @@ public enum PromptMessage {
     TOTAL_PRICE("\n<할인 전 총주문 금액>"),
     GIFT_MENU("\n<증정 메뉴>"),
     EVENT_REWARD("\n<혜택 내역>"),
-    TOTAL_DISCOUNT("\n<총혜택 금액>");
+    TOTAL_DISCOUNT("\n<총혜택 금액>"),
+    DISCOUNTED_PRICE("\n<할인 후 예상 결제 금액>");
 
     private final String message;
 
