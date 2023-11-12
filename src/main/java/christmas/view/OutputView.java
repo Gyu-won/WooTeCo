@@ -25,6 +25,11 @@ public class OutputView {
     public static void printEventReward(EventReward eventReward) {
         printGiftMenu(eventReward);
         printBenefitDetails(eventReward);
+        printTotalDiscountAmount(eventReward);
+    }
+
+    private static void printTotalDiscountAmount(EventReward eventReward) {
+        System.out.println(PromptMessage.TOTAL_DISCOUNT.getMessage());
     }
 
     private static void printBenefitDetails(EventReward eventReward) {
