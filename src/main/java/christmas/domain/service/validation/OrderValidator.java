@@ -1,7 +1,7 @@
 package christmas.domain.service.validation;
 
 import christmas.domain.entity.Menu;
-import christmas.view.Error;
+import christmas.view.message.ErrorMessage;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
@@ -18,7 +18,7 @@ public class OrderValidator {
 
     private static void validateMenuCount(Collection<Integer> values) {
         if (calculateMenuCount(values) > MAX_ORDER_COUNT) {
-            throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
 
@@ -32,6 +32,6 @@ public class OrderValidator {
                 return;
             }
         }
-        throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
+        throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
     }
 }

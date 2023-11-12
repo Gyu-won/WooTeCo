@@ -1,7 +1,7 @@
 package christmas.domain.service.validation;
 
 import christmas.domain.entity.Menu;
-import christmas.view.Error;
+import christmas.view.message.ErrorMessage;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +27,7 @@ public class MenuInputValidator {
 
     private static Menu checkDuplicate(Menu menu, Map<Menu, Integer> orderMenus) {
         if (orderMenus.containsKey(menu)) {
-            throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
         return menu;
     }
@@ -46,13 +46,13 @@ public class MenuInputValidator {
                 return menu;
             }
         }
-        throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
+        throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
     }
 
     private static Integer findCount(String menuCount) {
         Integer parsedMenuCount = toInt(menuCount);
         if (isValidCount(parsedMenuCount)) {
-            throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
         return parsedMenuCount;
     }
@@ -61,7 +61,7 @@ public class MenuInputValidator {
         try {
             return Integer.parseInt(menuCount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
 
@@ -71,7 +71,7 @@ public class MenuInputValidator {
 
     private static void validateInputType(List<String> menuAndCount) {
         if (menuAndCount.size() != VALIDATE_INPUT_SIZE) {
-            throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
 }

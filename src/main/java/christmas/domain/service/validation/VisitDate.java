@@ -1,6 +1,6 @@
 package christmas.domain.service.validation;
 
-import christmas.view.Error;
+import christmas.view.message.ErrorMessage;
 
 public class VisitDate {
     private static final Integer MAXIMUM_RESERVATION_DEADLINE = 31;
@@ -12,7 +12,7 @@ public class VisitDate {
 
     private static Integer checkRange(Integer parsedVisitDate) {
         if (isSmallerThanMin(parsedVisitDate) || isBiggerThanMax(parsedVisitDate)) {
-            throw new IllegalArgumentException(Error.INVALID_VISIT_DATE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_VISIT_DATE.getMessage());
         }
         return parsedVisitDate;
     }
@@ -29,7 +29,7 @@ public class VisitDate {
         try {
             return Integer.parseInt(visitDate);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Error.INVALID_VISIT_DATE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_VISIT_DATE.getMessage());
         }
     }
 }
