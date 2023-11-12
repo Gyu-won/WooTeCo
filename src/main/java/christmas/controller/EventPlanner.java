@@ -10,6 +10,7 @@ import java.util.Map;
 
 public class EventPlanner {
     public static void run() {
+        OutputView.printGreetingMessage();
         Integer visitDate = inputVisitDate();
         Map<Menu, Integer> orderMenus = inputOrderMenus();
         OrderDetails orderDetails = new OrderDetails(visitDate, orderMenus);

@@ -6,7 +6,6 @@ import christmas.view.message.PromptMessage;
 
 public class InputView {
     public static String inputVisitDate() {
-        System.out.println(PromptMessage.GREETING.getMessage());
         System.out.println(PromptMessage.VISIT_DATE.getMessage());
         return readLine();
     }
