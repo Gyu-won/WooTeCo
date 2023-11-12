@@ -43,4 +43,15 @@ public class BadgeTest {
         //then
         assertThat(rank).isEqualTo("트리");
     }
+
+    @DisplayName("혜택금액이 20000원 이상이면 산타배지이다.")
+    @ParameterizedTest
+    @ValueSource(ints = {20000, 1000000})
+    public void 산타_배지를_부여받는_경우(Integer totalEventReward) {
+        //when
+        String rank = Badge.calculate(totalEventReward);
+
+        //then
+        assertThat(rank).isEqualTo("산타");
+    }
 }
