@@ -10,6 +10,11 @@ public class OutputView {
     public static void printOrderDetails(OrderDetails orderDetails) {
         printEventPreview(orderDetails);
         printOrderMenus(orderDetails);
+        printOrderPrice(orderDetails);
+    }
+
+    private static void printOrderPrice(OrderDetails orderDetails) {
+        System.out.println(PromptMessage.TOTAL_PRICE.getMessage());
     }
 
     private static void printEventPreview(OrderDetails orderDetails) {
