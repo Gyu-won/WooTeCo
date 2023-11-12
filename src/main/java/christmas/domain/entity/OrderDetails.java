@@ -17,17 +17,17 @@ public class OrderDetails {
         this.totalPrice = this.calculateTotalPrice();
     }
 
-    private Integer calculateTotalPrice() {
-        return this.orderMenus.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
-                .sum();
-    }
-
     public EventReward calculateEventReward() {
         if (totalPrice < 10000) {
             return EventReward.create(cannotApplyEvent());
         }
         return EventReward.create(applyEvent());
+    }
+
+    private Integer calculateTotalPrice() {
+        return this.orderMenus.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
+                .sum();
     }
 
     private List<Integer> cannotApplyEvent() {
