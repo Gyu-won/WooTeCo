@@ -35,6 +35,7 @@ public class OutputView {
 
     public static void printBadge(String badge) {
         System.out.println(PromptMessage.EVENT_BADGE.getMessage());
+        System.out.println(badge);
     }
 
     private static void printTotalDiscountAmount(EventReward eventReward) {
