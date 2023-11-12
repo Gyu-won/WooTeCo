@@ -3,11 +3,12 @@ package christmas.view;
 import christmas.domain.entity.EventReward;
 import christmas.domain.entity.OrderDetails;
 import christmas.view.message.DynamicMessage;
+import christmas.view.message.EventMessage;
 import christmas.view.message.PromptMessage;
 
 public class OutputView {
     private static final Integer GIFT_EVENT_INDEX = 4;
-    private static final Integer NO_GIFT_PRICE = 0;
+    private static final Integer NO_DISCOUNT_AMOUNT = 0;
     private static final String NO_REWARD = "없음";
     private static final String GIFT_MENU = "샴페인 1개";
 
@@ -28,6 +29,14 @@ public class OutputView {
 
     private static void printBenefitDetails(EventReward eventReward) {
         System.out.println(PromptMessage.EVENT_REWARD.getMessage());
+        System.out.println(makeBenefitMessage(eventReward));
+    }
+
+    private static String makeBenefitMessage(EventReward eventReward) {
+        if (eventReward.sumEventRewards().equals(NO_DISCOUNT_AMOUNT)) {
+            return NO_REWARD;
+        }
+        return EventMessage.calculateAllBenefits(eventReward.getEventRewards());
     }
 
     private static void printGiftMenu(EventReward eventReward) {
@@ -51,7 +60,7 @@ public class OutputView {
     }
 
     private static String generateGiftMessage(Integer giftMenuPrice) {
-        if (giftMenuPrice.equals(NO_GIFT_PRICE)) {
+        if (giftMenuPrice.equals(NO_DISCOUNT_AMOUNT)) {
             return NO_REWARD;
         }
         return GIFT_MENU;
