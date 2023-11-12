@@ -6,6 +6,10 @@ import christmas.view.message.DynamicMessage;
 import christmas.view.message.PromptMessage;
 
 public class OutputView {
+    private static final Integer GIFT_EVENT_INDEX = 4;
+    private static final Integer NO_GIFT_PRICE = 0;
+    private static final String NO_REWARD = "없음";
+    private static final String GIFT_MENU = "샴페인 1개";
 
     public static void printGreetingMessage() {
         System.out.println(PromptMessage.GREETING.getMessage());
@@ -34,5 +38,13 @@ public class OutputView {
 
     public static void printEventReward(EventReward eventReward) {
         System.out.println(PromptMessage.GIFT_MENU.getMessage());
+        System.out.println(generateGiftMessage(eventReward.getEventRewards().get(GIFT_EVENT_INDEX)));
+    }
+
+    private static String generateGiftMessage(Integer giftMenuPrice) {
+        if (giftMenuPrice.equals(NO_GIFT_PRICE)) {
+            return NO_REWARD;
+        }
+        return GIFT_MENU;
     }
 }
