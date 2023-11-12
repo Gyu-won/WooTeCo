@@ -11,10 +11,14 @@ import java.util.Map;
 public class EventPlanner {
     public static void run() {
         OutputView.printGreetingMessage();
-        Integer visitDate = inputVisitDate();
-        Map<Menu, Integer> orderMenus = inputOrderMenus();
-        OrderDetails orderDetails = new OrderDetails(visitDate, orderMenus);
+        OrderDetails orderDetails = order();
+    }
+
+    private static OrderDetails order() {
+        OrderDetails orderDetails = new OrderDetails(inputVisitDate(), inputOrderMenus());
         OutputView.printOrderDetails(orderDetails);
+        return orderDetails;
+
     }
 
     private static Integer inputVisitDate() {
