@@ -17,7 +17,7 @@ public class MenuInputValidator {
         Map<Menu, Integer> orderMenus = new HashMap<>();
         for (String menuInput : splitMenusInput(menusInput)) {
             List<String> menuAndCount = splitMenuAndCount(menuInput);
-            checkInputTypeValidation(menuAndCount);
+            validateInputType(menuAndCount);
             Menu menu = checkDuplicate(findMenu(menuAndCount.get(MENU_INDEX)), orderMenus);
             Integer count = findCount(menuAndCount.get(COUNT_INDEX));
             orderMenus.put(menu, count);
@@ -69,7 +69,7 @@ public class MenuInputValidator {
         return parsedMenuCount < 1;
     }
 
-    private static void checkInputTypeValidation(List<String> menuAndCount) {
+    private static void validateInputType(List<String> menuAndCount) {
         if (menuAndCount.size() != VALIDATE_INPUT_SIZE) {
             throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
         }
