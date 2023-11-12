@@ -55,4 +55,8 @@ public class OrderDetails {
     public Map<Menu, Integer> getOrderMenus() {
         return orderMenus;
     }
+
+    public Integer applyEvent(EventReward eventReward) {
+        return totalPrice - eventReward.sumEventRewards();
+    }
 }

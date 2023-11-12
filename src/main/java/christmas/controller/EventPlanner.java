@@ -12,15 +12,7 @@ import java.util.Map;
 public class EventPlanner {
     public static void run() {
         OutputView.printGreetingMessage();
-        OrderDetails orderDetails = order();
-        EventReward eventReward = applyEvent(orderDetails);
-
-    }
-
-    private static EventReward applyEvent(OrderDetails orderDetails) {
-        EventReward eventReward = orderDetails.calculateEventReward();
-        OutputView.printEventReward(eventReward);
-        return eventReward;
+        applyEvent(order());
     }
 
     private static OrderDetails order() {
@@ -29,6 +21,13 @@ public class EventPlanner {
         return orderDetails;
 
     }
+
+    private static void applyEvent(OrderDetails orderDetails) {
+        EventReward eventReward = orderDetails.calculateEventReward();
+        OutputView.printEventReward(eventReward);
+        OutputView.printDiscountedPrice(orderDetails.applyEvent(eventReward));
+    }
+
 
     private static Integer inputVisitDate() {
         try {
