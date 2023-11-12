@@ -11,6 +11,11 @@ public class InputView {
         return readLine();
     }
 
+    public static String inputOrderMenus() {
+        System.out.println(PromptMessage.ORDER_MENU.getMessage());
+        return null;
+    }
+
     public static void printErrorMessage(String message) {
         System.out.println(message);
     }
