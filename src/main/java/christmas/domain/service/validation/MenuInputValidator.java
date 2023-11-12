@@ -9,16 +9,27 @@ import java.util.Map;
 
 public class MenuInputValidator {
 
+    private static final int VALIDATE_INPUT_SIZE = 2;
+    private static final int MENU_INDEX = 0;
+    private static final int COUNT_INDEX = 1;
+
     public static Map<Menu, Integer> validate(String menusInput) {
         Map<Menu, Integer> orderMenus = new HashMap<>();
         for (String menuInput : splitMenusInput(menusInput)) {
             List<String> menuAndCount = splitMenuAndCount(menuInput);
             checkInputTypeValidation(menuAndCount);
-            Menu menu = findMenu(menuAndCount.get(0));
-            Integer count = findCount(menuAndCount.get(1));
+            Menu menu = checkDuplicate(findMenu(menuAndCount.get(MENU_INDEX)), orderMenus);
+            Integer count = findCount(menuAndCount.get(COUNT_INDEX));
             orderMenus.put(menu, count);
         }
         return orderMenus;
+    }
+
+    private static Menu checkDuplicate(Menu menu, Map<Menu, Integer> orderMenus) {
+        if (orderMenus.containsKey(menu)) {
+            throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
+        }
+        return menu;
     }
 
     private static List<String> splitMenusInput(String menusInput) {
@@ -27,12 +38,6 @@ public class MenuInputValidator {
 
     private static List<String> splitMenuAndCount(String menuInput) {
         return Arrays.asList(menuInput.split("-", -1));
-    }
-
-    private static void checkInputTypeValidation(List<String> menuAndCount) {
-        if (menuAndCount.size() != 2) {
-            throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
-        }
     }
 
     private static Menu findMenu(String menuName) {
@@ -62,5 +67,11 @@ public class MenuInputValidator {
 
     private static boolean isValidCount(Integer parsedMenuCount) {
         return parsedMenuCount < 1;
+    }
+
+    private static void checkInputTypeValidation(List<String> menuAndCount) {
+        if (menuAndCount.size() != VALIDATE_INPUT_SIZE) {
+            throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
+        }
     }
 }
