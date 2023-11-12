@@ -30,6 +30,7 @@ public class OutputView {
 
     private static void printTotalDiscountAmount(EventReward eventReward) {
         System.out.println(PromptMessage.TOTAL_DISCOUNT.getMessage());
+        System.out.println(DynamicMessage.DISCOUNT_AMOUNT.getMessage(eventReward.sumEventRewards()));
     }
 
     private static void printBenefitDetails(EventReward eventReward) {
@@ -51,7 +52,7 @@ public class OutputView {
 
     private static void printOrderPrice(OrderDetails orderDetails) {
         System.out.println(PromptMessage.TOTAL_PRICE.getMessage());
-        System.out.println(DynamicMessage.PRICE.getMessage(orderDetails.getTotalPrice()));
+        System.out.println(DynamicMessage.TOTAL_PRICE.getMessage(orderDetails.getTotalPrice()));
     }
 
     private static void printEventPreview(OrderDetails orderDetails) {
