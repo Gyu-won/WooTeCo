@@ -36,15 +36,19 @@ public enum Menu {
         return this.category.equals("메인");
     }
 
-    public Integer getPrice() {
-        return this.price;
-    }
-
     public boolean isSame(String menuName) {
         return this.name.equals(menuName);
     }
 
     public boolean isDrinkCategory() {
         return this.category.equals("음료");
+    }
+
+    public Integer getPrice() {
+        return this.price;
+    }
+
+    public String getName() {
+        return name;
     }
 }
