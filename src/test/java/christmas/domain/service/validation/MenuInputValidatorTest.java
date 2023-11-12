@@ -3,6 +3,7 @@ package christmas.domain.service.validation;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -32,6 +33,18 @@ public class MenuInputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"해산물파스타-1,레드와인-0", "양송이수프-0.5"})
     public void 메뉴_개수를_올바르게_입력한_경우(String menusInput) {
+        //when+then
+        assertThatThrownBy(() -> MenuInputValidator.validate(menusInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+    }
+
+    @DisplayName("중복된 메뉴를 입력한 경우 에러를 발생시킨다")
+    @Test
+    public void 중복된_메뉴를_입력한_경우() {
+        //given
+        String menusInput = "해산물파스타-1,레드와인-2,해산물파스타-1";
+
         //when+then
         assertThatThrownBy(() -> MenuInputValidator.validate(menusInput))
                 .isInstanceOf(IllegalArgumentException.class)
