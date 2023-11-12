@@ -22,7 +22,7 @@ public class BadgeTest {
         assertThat(rank).isEqualTo("없음");
     }
 
-    @DisplayName("혜택금액이 5000원 이상 10000원 미만이면  없다.")
+    @DisplayName("혜택금액이 5000원 이상 10000원 미만이면 별배지이다.")
     @ParameterizedTest
     @ValueSource(ints = {5000, 9999})
     public void 별_배지를_부여받는_경우(Integer totalEventReward) {
@@ -31,5 +31,16 @@ public class BadgeTest {
 
         //then
         assertThat(rank).isEqualTo("별");
+    }
+
+    @DisplayName("혜택금액이 10000원 이상 20000원 미만이면 트리배지이다.")
+    @ParameterizedTest
+    @ValueSource(ints = {10000, 19999})
+    public void 트리_배지를_부여받는_경우(Integer totalEventReward) {
+        //when
+        String rank = Badge.calculate(totalEventReward);
+
+        //then
+        assertThat(rank).isEqualTo("트리");
     }
 }
