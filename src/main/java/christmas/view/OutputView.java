@@ -1,11 +1,11 @@
 package christmas.view;
 
+import christmas.domain.entity.EventReward;
 import christmas.domain.entity.OrderDetails;
 import christmas.view.message.DynamicMessage;
 import christmas.view.message.PromptMessage;
 
 public class OutputView {
-    private static final String ORDER_MENU = "%s %d개\n";
 
     public static void printGreetingMessage() {
         System.out.println(PromptMessage.GREETING.getMessage());
@@ -29,6 +29,10 @@ public class OutputView {
     private static void printOrderMenus(OrderDetails orderDetails) {
         System.out.println(PromptMessage.ORDER_SUMMARY.getMessage());
         orderDetails.getOrderMenus().forEach((key, value) ->
-                System.out.printf(ORDER_MENU, key.getName(), value));
+                System.out.println(DynamicMessage.ORDER_MENU.getMessage(key.getName(), value)));
+    }
+
+    public static void printEventReward(EventReward eventReward) {
+        System.out.println(PromptMessage.GIFT_MENU.getMessage());
     }
 }
