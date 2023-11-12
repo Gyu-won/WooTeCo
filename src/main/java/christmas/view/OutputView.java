@@ -30,6 +30,7 @@ public class OutputView {
 
     public static void printDiscountedPrice(Integer discountedPrice) {
         System.out.println(PromptMessage.DISCOUNTED_PRICE.getMessage());
+        System.out.println(DynamicMessage.TOTAL_PRICE.getMessage(discountedPrice));
     }
 
     private static void printTotalDiscountAmount(EventReward eventReward) {
