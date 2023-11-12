@@ -13,7 +13,7 @@ public class InputView {
 
     public static String inputOrderMenus() {
         System.out.println(PromptMessage.ORDER_MENU.getMessage());
-        return null;
+        return readLine();
     }
 
     public static void printErrorMessage(String message) {
