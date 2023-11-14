@@ -74,4 +74,22 @@ public class OrderDetailsTest {
                 Arguments.arguments(List.of(Menu.Tapas, Menu.RedWine), 2, 131000)
         );
     }
+
+    @DisplayName("할인 전 총 주문 금액에서 할인금액을 뺴서 예상결제금액을 계산한다.")
+    @Test
+    public void 예상결제금액을_계산() {
+        //given
+        EventReward eventReward = EventReward.create(List.of(1200, 4046, 0, 1000, 25000));
+        orderMenus.put(Menu.TBoneSteak, 1);
+        orderMenus.put(Menu.BarbecueRibs, 1);
+        orderMenus.put(Menu.ChocolateCake, 2);
+        orderMenus.put(Menu.ZeroCoke, 1);
+        OrderDetails orderDetails = new OrderDetails(3, orderMenus);
+
+        //when
+        Integer discountedPrice = orderDetails.calculateDiscountedPrice(eventReward);
+
+        //then
+        assertThat(discountedPrice).isEqualTo(135754);
+    }
 }
