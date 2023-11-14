@@ -10,7 +10,7 @@ public class OrderDetails {
     private static final Integer EVENT_APPLICABLE_MINIMUM_PRICE = 10000;
     private static final Integer NUMBER_OF_EVENT = 5;
     private static final Integer NO_DISCOUNT = 0;
-    
+
     private final Integer reserveDate;
     private final Integer totalPrice;
     private final Map<Menu, Integer> orderMenus;
@@ -26,6 +26,10 @@ public class OrderDetails {
             return EventReward.create(cannotApplyEvent());
         }
         return EventReward.create(applyEvent());
+    }
+
+    public Integer calculateDiscountedPrice(EventReward eventReward) {
+        return totalPrice - eventReward.calculateDiscountAmount();
     }
 
     private Integer calculateTotalPrice() {
@@ -58,9 +62,5 @@ public class OrderDetails {
 
     public Map<Menu, Integer> getOrderMenus() {
         return orderMenus;
-    }
-
-    public Integer calculateDiscountedPrice(EventReward eventReward) {
-        return totalPrice - eventReward.sumEventRewards();
     }
 }

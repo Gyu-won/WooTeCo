@@ -3,6 +3,8 @@ package christmas.domain.entity;
 import java.util.List;
 
 public class EventReward {
+    private final static Integer GIFT_REWARD_INDEX = 4;
+
     private final List<Integer> eventRewards;
 
     private EventReward(List<Integer> eventRewards) {
@@ -15,6 +17,10 @@ public class EventReward {
 
     public Integer sumEventRewards() {
         return eventRewards.stream().mapToInt(Integer::intValue).sum();
+    }
+
+    public Integer calculateDiscountAmount() {
+        return sumEventRewards() - eventRewards.get(GIFT_REWARD_INDEX);
     }
 
     public List<Integer> getEventRewards() {
