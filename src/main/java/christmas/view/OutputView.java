@@ -33,14 +33,31 @@ public class OutputView {
         System.out.println(OrderMessage.TOTAL_PRICE.getMessage(discountedPrice));
     }
 
-    public static void printBadge(String badge) {
-        System.out.println(PromptMessage.EVENT_BADGE.getMessage());
-        System.out.println(badge);
+    private static void printEventPreview(OrderDetails orderDetails) {
+        System.out.println(PromptMessage.EVENT_PREVIEW.getMessage(orderDetails.getReserveDate()));
     }
 
-    private static void printTotalDiscountAmount(EventReward eventReward) {
-        System.out.println(PromptMessage.TOTAL_DISCOUNT.getMessage());
-        System.out.println(OrderMessage.DISCOUNT_AMOUNT.getMessage(eventReward.sumEventRewards()));
+    private static void printOrderMenus(OrderDetails orderDetails) {
+        System.out.println(PromptMessage.ORDER_SUMMARY.getMessage());
+        orderDetails.getOrderMenus().forEach((key, value) ->
+                System.out.println(OrderMessage.ORDER_MENU.getMessage(key.getName(), value)));
+    }
+
+    private static void printOrderPrice(OrderDetails orderDetails) {
+        System.out.println(PromptMessage.TOTAL_PRICE.getMessage());
+        System.out.println(OrderMessage.TOTAL_PRICE.getMessage(orderDetails.getTotalPrice()));
+    }
+
+    private static void printGiftMenu(EventReward eventReward) {
+        System.out.println(PromptMessage.GIFT_MENU.getMessage());
+        System.out.println(makeGiftMessage(eventReward.getEventRewards().get(GIFT_EVENT_INDEX)));
+    }
+
+    private static String makeGiftMessage(Integer giftMenuPrice) {
+        if (giftMenuPrice.equals(NO_DISCOUNT_AMOUNT)) {
+            return NO_REWARD;
+        }
+        return GIFT_MENU;
     }
 
     private static void printBenefitDetails(EventReward eventReward) {
@@ -55,30 +72,13 @@ public class OutputView {
         return EventMessage.calculateAllBenefits(eventReward.getEventRewards());
     }
 
-    private static void printGiftMenu(EventReward eventReward) {
-        System.out.println(PromptMessage.GIFT_MENU.getMessage());
-        System.out.println(generateGiftMessage(eventReward.getEventRewards().get(GIFT_EVENT_INDEX)));
+    private static void printTotalDiscountAmount(EventReward eventReward) {
+        System.out.println(PromptMessage.TOTAL_DISCOUNT.getMessage());
+        System.out.println(OrderMessage.DISCOUNT_AMOUNT.getMessage(eventReward.sumEventRewards()));
     }
 
-    private static void printOrderPrice(OrderDetails orderDetails) {
-        System.out.println(PromptMessage.TOTAL_PRICE.getMessage());
-        System.out.println(OrderMessage.TOTAL_PRICE.getMessage(orderDetails.getTotalPrice()));
-    }
-
-    private static void printEventPreview(OrderDetails orderDetails) {
-        System.out.println(PromptMessage.EVENT_PREVIEW.getMessage(orderDetails.getReserveDate()));
-    }
-
-    private static void printOrderMenus(OrderDetails orderDetails) {
-        System.out.println(PromptMessage.ORDER_SUMMARY.getMessage());
-        orderDetails.getOrderMenus().forEach((key, value) ->
-                System.out.println(OrderMessage.ORDER_MENU.getMessage(key.getName(), value)));
-    }
-
-    private static String generateGiftMessage(Integer giftMenuPrice) {
-        if (giftMenuPrice.equals(NO_DISCOUNT_AMOUNT)) {
-            return NO_REWARD;
-        }
-        return GIFT_MENU;
+    public static void printBadge(String badge) {
+        System.out.println(PromptMessage.EVENT_BADGE.getMessage());
+        System.out.println(badge);
     }
 }
