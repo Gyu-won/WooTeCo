@@ -2,7 +2,7 @@ package christmas.domain.service.validation;
 
 import christmas.view.message.ErrorMessage;
 
-public class VisitDate {
+public class VisitDateValidator {
     private static final Integer MAXIMUM_RESERVATION_DEADLINE = 31;
     private static final Integer MINIMUM_RESERVATION_DEADLINE = 1;
 

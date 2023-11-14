@@ -5,7 +5,7 @@ import christmas.domain.entity.Menu;
 import christmas.domain.entity.OrderDetails;
 import christmas.domain.service.event.Badge;
 import christmas.domain.service.validation.OrderValidator;
-import christmas.domain.service.validation.VisitDate;
+import christmas.domain.service.validation.VisitDateValidator;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 import java.util.Map;
@@ -33,7 +33,7 @@ public class EventPlanner {
 
     private static Integer inputVisitDate() {
         try {
-            return VisitDate.validate(InputView.inputVisitDate());
+            return VisitDateValidator.validate(InputView.inputVisitDate());
         } catch (IllegalArgumentException e) {
             InputView.printErrorMessage(e.getMessage());
             return inputVisitDate();
