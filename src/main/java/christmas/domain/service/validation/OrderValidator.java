@@ -9,8 +9,8 @@ import java.util.Set;
 public class OrderValidator {
     private static final Integer MAX_ORDER_COUNT = 20;
 
-    public static Map<Menu, Integer> validate(String menusInput) {
-        Map<Menu, Integer> orderMenus = MenuInputValidator.validate(menusInput);
+    public static Map<Menu, Integer> validate(String orders) {
+        Map<Menu, Integer> orderMenus = MenuInputValidator.validate(orders);
         validateAllDrinks(orderMenus.keySet());
         validateMenuCount(orderMenus.values());
         return orderMenus;

@@ -11,17 +11,17 @@ public class VisitDateValidator {
     }
 
     private static Integer checkRange(Integer parsedVisitDate) {
-        if (isSmallerThanMin(parsedVisitDate) || isBiggerThanMax(parsedVisitDate)) {
+        if (isEarlierThanFistDay(parsedVisitDate) || isLaterThanLastDay(parsedVisitDate)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_VISIT_DATE.getMessage());
         }
         return parsedVisitDate;
     }
 
-    private static boolean isBiggerThanMax(Integer parsedVisitDate) {
+    private static boolean isLaterThanLastDay(Integer parsedVisitDate) {
         return parsedVisitDate > MAXIMUM_RESERVATION_DEADLINE;
     }
 
-    private static boolean isSmallerThanMin(Integer parsedVisitDate) {
+    private static boolean isEarlierThanFistDay(Integer parsedVisitDate) {
         return parsedVisitDate < MINIMUM_RESERVATION_DEADLINE;
     }
 

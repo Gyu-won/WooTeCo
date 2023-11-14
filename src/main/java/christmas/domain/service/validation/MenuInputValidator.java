@@ -8,21 +8,49 @@ import java.util.List;
 import java.util.Map;
 
 public class MenuInputValidator {
+    private static final Integer MENU = 0;
+    private static final Integer COUNT = 1;
+    private static final Integer SPLIT_LIMIT = -1;
+    private static final Integer MINIMUM_VALID_COUNT = 1;
+    private static final Integer VALIDATE_INPUT_SIZE = 2;
+    private static final String ORDER_DELIMITER = ",";
+    private static final String MENU_COUNT_DELIMITER = "-";
 
-    private static final int VALIDATE_INPUT_SIZE = 2;
-    private static final int MENU_INDEX = 0;
-    private static final int COUNT_INDEX = 1;
-
-    public static Map<Menu, Integer> validate(String menusInput) {
+    public static Map<Menu, Integer> validate(String orders) {
         Map<Menu, Integer> orderMenus = new HashMap<>();
-        for (String menuInput : splitMenusInput(menusInput)) {
-            List<String> menuAndCount = splitMenuAndCount(menuInput);
-            validateInputType(menuAndCount);
-            Menu menu = checkDuplicate(findMenu(menuAndCount.get(MENU_INDEX)), orderMenus);
-            Integer count = findCount(menuAndCount.get(COUNT_INDEX));
-            orderMenus.put(menu, count);
+        for (String order : splitOrder(orders)) {
+            List<String> menuAndCount = validateInputType(splitMenuAndCount(order));
+            orderMenus.put(validateMenu(menuAndCount.get(MENU), orderMenus), validateCount(menuAndCount.get(COUNT)));
         }
         return orderMenus;
+    }
+
+    private static List<String> splitOrder(String menusInput) {
+        return Arrays.asList(menusInput.split(ORDER_DELIMITER, SPLIT_LIMIT));
+    }
+
+    private static List<String> splitMenuAndCount(String menuInput) {
+        return Arrays.asList(menuInput.split(MENU_COUNT_DELIMITER, SPLIT_LIMIT));
+    }
+
+    private static List<String> validateInputType(List<String> menuAndCount) {
+        if (menuAndCount.size() != VALIDATE_INPUT_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
+        }
+        return menuAndCount;
+    }
+
+    private static Menu validateMenu(String menuName, Map<Menu, Integer> orderMenus) {
+        return checkDuplicate(toMenu(menuName), orderMenus);
+    }
+
+    private static Menu toMenu(String menuName) {
+        for (Menu menu : Menu.values()) {
+            if (menu.isSame(menuName)) {
+                return menu;
+            }
+        }
+        throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
     }
 
     private static Menu checkDuplicate(Menu menu, Map<Menu, Integer> orderMenus) {
@@ -32,29 +60,12 @@ public class MenuInputValidator {
         return menu;
     }
 
-    private static List<String> splitMenusInput(String menusInput) {
-        return Arrays.asList(menusInput.split(",", -1));
-    }
-
-    private static List<String> splitMenuAndCount(String menuInput) {
-        return Arrays.asList(menuInput.split("-", -1));
-    }
-
-    private static Menu findMenu(String menuName) {
-        for (Menu menu : Menu.values()) {
-            if (menu.isSame(menuName)) {
-                return menu;
-            }
-        }
-        throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
-    }
-
-    private static Integer findCount(String menuCount) {
-        Integer parsedMenuCount = toInt(menuCount);
-        if (isValidCount(parsedMenuCount)) {
+    private static Integer validateCount(String menuCount) {
+        Integer parsedIntCount = toInt(menuCount);
+        if (isInValidCount(parsedIntCount)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
-        return parsedMenuCount;
+        return parsedIntCount;
     }
 
     private static Integer toInt(String menuCount) {
@@ -65,13 +76,7 @@ public class MenuInputValidator {
         }
     }
 
-    private static boolean isValidCount(Integer parsedMenuCount) {
-        return parsedMenuCount < 1;
-    }
-
-    private static void validateInputType(List<String> menuAndCount) {
-        if (menuAndCount.size() != VALIDATE_INPUT_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
-        }
+    private static boolean isInValidCount(Integer parsedMenuCount) {
+        return parsedMenuCount < MINIMUM_VALID_COUNT;
     }
 }
