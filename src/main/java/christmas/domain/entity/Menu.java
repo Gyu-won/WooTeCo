@@ -40,7 +40,7 @@ public enum Menu {
         return this.name.equals(menuName);
     }
 
-    public boolean isDrinkCategory() {
+    public boolean isDrink() {
         return this.category.equals("음료");
     }
 
