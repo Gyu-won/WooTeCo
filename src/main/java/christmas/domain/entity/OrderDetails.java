@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 public class OrderDetails {
+    private static final Integer EVENT_APPLICABLE_MINIMUM_PRICE = 10000;
+    private static final Integer NUMBER_OF_EVENT = 5;
+    private static final Integer NO_DISCOUNT = 0;
+    
     private final Integer reserveDate;
     private final Integer totalPrice;
     private final Map<Menu, Integer> orderMenus;
@@ -18,7 +22,7 @@ public class OrderDetails {
     }
 
     public EventReward calculateEventReward() {
-        if (totalPrice < 10000) {
+        if (totalPrice < EVENT_APPLICABLE_MINIMUM_PRICE) {
             return EventReward.create(cannotApplyEvent());
         }
         return EventReward.create(applyEvent());
@@ -31,7 +35,7 @@ public class OrderDetails {
     }
 
     private List<Integer> cannotApplyEvent() {
-        return Collections.nCopies(5, 0);
+        return Collections.nCopies(NUMBER_OF_EVENT, NO_DISCOUNT);
     }
 
     private List<Integer> applyEvent() {
@@ -56,7 +60,7 @@ public class OrderDetails {
         return orderMenus;
     }
 
-    public Integer applyEvent(EventReward eventReward) {
+    public Integer calculateDiscountedPrice(EventReward eventReward) {
         return totalPrice - eventReward.sumEventRewards();
     }
 }

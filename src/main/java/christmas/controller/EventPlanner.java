@@ -43,7 +43,7 @@ public class EventPlanner {
     private static void applyEvent(OrderDetails orderDetails) {
         EventReward eventReward = orderDetails.calculateEventReward();
         OutputView.printEventReward(eventReward);
-        OutputView.printDiscountedPrice(orderDetails.applyEvent(eventReward));
+        OutputView.printDiscountedPrice(orderDetails.calculateDiscountedPrice(eventReward));
         OutputView.printBadge(Badge.assign(eventReward.sumEventRewards()));
     }
 }
