@@ -5,7 +5,7 @@
 ### 총 할인 금액을 계산한다.
 
 이벤트의 목표가 고객이 혜택을 많이 받고, 이를 통해 매출을 증가시키고 내년 이벤트에 많이 참여하도록 유도하는
-것이기 때문에 할인 금액을 계산하는 기능이 가장 중요하다.
+것이기 때문에**할인 금액을 계산**하는 기능이 가장 중요하다.
 
 할인 금액을 결정해야지만 할인 후 예상 결제 금액과 이벤트 배지를 부여하는 기능이 정의될 수 있다.
 이러한 이유로 핵심 기능인 총 할인 금액을 계산하는 기능부터 작은단위로 먼저 구현한다.
@@ -128,6 +128,111 @@
 
 ## 📁 &nbsp;패키지 구조
 
+<table>
+    <tr>
+        <th align="center">Package</th>
+        <th align="center">Class</th>
+        <th align="center">Description</th>
+    </tr>
+    <tr>
+        <td>&nbsp;controller</td>
+        <td>&nbsp; EventPlanner</td>
+        <td>이벤트 플레너의 전체적인 흐름을 제어하는 클래스</td>
+    </tr>
+    <tr><td colspan="3"></td></tr>
+    <tr>
+        <td rowspan="4">domain.entity</td>
+        <td>&nbsp;&nbsp;DayOfWeek</td>
+        <td>요일정보를 관리하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;EventReward</td>
+        <td>고객이 받은 이벤트 혜택을 저장하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;Menu</td>
+        <td>메뉴정보를 관리하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;OrderDetails</td>
+        <td>고객의 주문정보를 저장하는 클래스</td>
+    </tr>
+    <tr><td colspan="3"></td></tr>
+    <tr>
+        <td rowspan="7">domain.service.event
+        </td>
+        <td>&nbsp;&nbsp;Badge</td>
+        <td>혜택금액에 따라 배지를 부여하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;ChristmasDiscount</td>
+        <td>크리스마스 이벤트 할인을 적용하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;Event</td>
+        <td>모든 이벤트들의 적용조건을 확인하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;GiftEvent</td>
+        <td>증정품 이벤트를 적용하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;HolidayDiscount</td>
+        <td>주말 이벤트 할인을 적용하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;SpecialDiscount</td>
+        <td>특별 이벤트 할인을 적용하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;WeekdayDiscount</td>
+        <td>평일 이벤트 할인을 적용하는 클래스</td>
+    </tr>
+    <tr><td colspan="3"></td></tr>
+    <tr>
+        <td rowspan="3">&nbsp;domain.service.validation</td>
+        <td>&nbsp;&nbsp;MenuInputValidator</td>
+        <td>메뉴와 관련된 주문 유효성을 검증하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;OrderValidator</td>
+        <td>주문 조건과 관련된 주문 유효성을 검증하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;VisitDateValidator</td>
+        <td>방문날짜에 대한 유효성을 검증하는 클래스</td>
+    </tr>
+    <tr><td colspan="3"></td></tr>
+    <tr>
+        <td rowspan="2">&nbsp;&nbsp;view</td>
+        <td>&nbsp;&nbsp;InputView</td>
+        <td>고객의 입력을 받는 기능을 수행하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;OutputView</td>
+        <td>고객에게 결과를 출력하는 기능을 수행하는 클래스</td>
+    </tr>
+    <tr><td colspan="3"></td></tr>
+    <tr>
+        <td rowspan="4">view.message</td>
+        <td>&nbsp;&nbsp;ErrorMessage</td>
+        <td>에러 메시지를 관리하는 enum 클래스</td>        
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;EventMessage</td>
+        <td>이벤트 적용 결과 안내 메시지를 관리하는 enum 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;OrderMessage</td>
+        <td>주문내역 출력 템플릿을 관리하는 enum 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;PromptMessage</td>
+        <td>EventPlanner 안내메시지를 관리하는 enum 클래스</td>
+    </tr>
+</table>
+
+
 ---
 
 ## 🙋🏽‍♂️ &nbsp;기능 요구사항
@@ -149,8 +254,6 @@
 ```
 
 #### 달력
-
-![](image.png)
 
 #### 이벤트 목표
 

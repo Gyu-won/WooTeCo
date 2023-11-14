@@ -2,8 +2,8 @@ package christmas.view;
 
 import christmas.domain.entity.EventReward;
 import christmas.domain.entity.OrderDetails;
-import christmas.view.message.DynamicMessage;
 import christmas.view.message.EventMessage;
+import christmas.view.message.OrderMessage;
 import christmas.view.message.PromptMessage;
 
 public class OutputView {
@@ -30,7 +30,7 @@ public class OutputView {
 
     public static void printDiscountedPrice(Integer discountedPrice) {
         System.out.println(PromptMessage.DISCOUNTED_PRICE.getMessage());
-        System.out.println(DynamicMessage.TOTAL_PRICE.getMessage(discountedPrice));
+        System.out.println(OrderMessage.TOTAL_PRICE.getMessage(discountedPrice));
     }
 
     public static void printBadge(String badge) {
@@ -40,7 +40,7 @@ public class OutputView {
 
     private static void printTotalDiscountAmount(EventReward eventReward) {
         System.out.println(PromptMessage.TOTAL_DISCOUNT.getMessage());
-        System.out.println(DynamicMessage.DISCOUNT_AMOUNT.getMessage(eventReward.sumEventRewards()));
+        System.out.println(OrderMessage.DISCOUNT_AMOUNT.getMessage(eventReward.sumEventRewards()));
     }
 
     private static void printBenefitDetails(EventReward eventReward) {
@@ -62,17 +62,17 @@ public class OutputView {
 
     private static void printOrderPrice(OrderDetails orderDetails) {
         System.out.println(PromptMessage.TOTAL_PRICE.getMessage());
-        System.out.println(DynamicMessage.TOTAL_PRICE.getMessage(orderDetails.getTotalPrice()));
+        System.out.println(OrderMessage.TOTAL_PRICE.getMessage(orderDetails.getTotalPrice()));
     }
 
     private static void printEventPreview(OrderDetails orderDetails) {
-        System.out.println(DynamicMessage.PREVIEW.getMessage(orderDetails.getReserveDate()));
+        System.out.println(PromptMessage.EVENT_PREVIEW.getMessage(orderDetails.getReserveDate()));
     }
 
     private static void printOrderMenus(OrderDetails orderDetails) {
         System.out.println(PromptMessage.ORDER_SUMMARY.getMessage());
         orderDetails.getOrderMenus().forEach((key, value) ->
-                System.out.println(DynamicMessage.ORDER_MENU.getMessage(key.getName(), value)));
+                System.out.println(OrderMessage.ORDER_MENU.getMessage(key.getName(), value)));
     }
 
     private static String generateGiftMessage(Integer giftMenuPrice) {

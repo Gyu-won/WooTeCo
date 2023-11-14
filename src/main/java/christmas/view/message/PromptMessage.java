@@ -10,7 +10,8 @@ public enum PromptMessage {
     EVENT_REWARD("\n<혜택 내역>"),
     TOTAL_DISCOUNT("\n<총혜택 금액>"),
     DISCOUNTED_PRICE("\n<할인 후 예상 결제 금액>"),
-    EVENT_BADGE("\n<12월 이벤트 배지>");
+    EVENT_BADGE("\n<12월 이벤트 배지>"),
+    EVENT_PREVIEW("12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
 
     private final String message;
 
@@ -20,5 +21,9 @@ public enum PromptMessage {
 
     public String getMessage() {
         return message;
+    }
+
+    public String getMessage(Integer data) {
+        return String.format(message, data);
     }
 }
