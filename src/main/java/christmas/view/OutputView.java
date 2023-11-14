@@ -9,6 +9,7 @@ import christmas.view.message.PromptMessage;
 public class OutputView {
     private static final Integer GIFT_EVENT_INDEX = 4;
     private static final Integer NO_DISCOUNT_AMOUNT = 0;
+    private static final String NO_DISCOUNT = "0원";
     private static final String NO_REWARD = "없음";
     private static final String GIFT_MENU = "샴페인 1개";
 
@@ -74,7 +75,14 @@ public class OutputView {
 
     private static void printTotalDiscountAmount(EventReward eventReward) {
         System.out.println(PromptMessage.TOTAL_DISCOUNT.getMessage());
-        System.out.println(OrderMessage.DISCOUNT_AMOUNT.getMessage(eventReward.sumEventRewards()));
+        System.out.println(makeDiscountAmountMessage(eventReward.sumEventRewards()));
+    }
+
+    private static String makeDiscountAmountMessage(Integer totalDiscountPrice) {
+        if (totalDiscountPrice.equals(NO_DISCOUNT_AMOUNT)) {
+            return NO_DISCOUNT;
+        }
+        return OrderMessage.DISCOUNT_AMOUNT.getMessage(totalDiscountPrice);
     }
 
     public static void printBadge(String badge) {
