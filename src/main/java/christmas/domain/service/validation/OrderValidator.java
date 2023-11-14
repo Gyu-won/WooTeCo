@@ -46,7 +46,7 @@ public class OrderValidator {
 
     private static Menu toMenu(String menuName) {
         for (Menu menu : Menu.values()) {
-            if (menu.isSame(menuName)) {
+            if (menu.isSameName(menuName)) {
                 return menu;
             }
         }

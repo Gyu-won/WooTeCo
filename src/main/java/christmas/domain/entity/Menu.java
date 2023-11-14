@@ -36,7 +36,7 @@ public enum Menu {
         return this.category.equals("메인");
     }
 
-    public boolean isSame(String menuName) {
+    public boolean isSameName(String menuName) {
         return this.name.equals(menuName);
     }
 
