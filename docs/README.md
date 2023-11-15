@@ -190,13 +190,17 @@
     </tr>
     <tr><td colspan="3"></td></tr>
     <tr>
-        <td rowspan="3">&nbsp;domain.service.validation</td>
-        <td>&nbsp;&nbsp;MenuInputValidator</td>
-        <td>메뉴와 관련된 주문 유효성을 검증하는 클래스</td>
+        <td rowspan="4">&nbsp;domain.service.validation</td>
+        <td>&nbsp;MenuCountValidator</td>
+        <td>메뉴의 주문 개수에 대한 유효성을 검증하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;MenuValidator</td>
+        <td>주문메뉴에 대한 유효성을 검증하는 클래스</td>
     </tr>
     <tr>
         <td>&nbsp;&nbsp;OrderValidator</td>
-        <td>주문 조건과 관련된 주문 유효성을 검증하는 클래스</td>
+        <td>전체 주문에 대한 유효성을 검증하는 클래스</td>
     </tr>
     <tr>
         <td>&nbsp;&nbsp;VisitDateValidator</td>
