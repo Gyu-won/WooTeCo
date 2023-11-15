@@ -4,7 +4,7 @@ import christmas.domain.entity.EventReward;
 import christmas.domain.entity.Menu;
 import christmas.domain.entity.OrderDetails;
 import christmas.domain.service.event.Badge;
-import christmas.domain.service.validation.OrdersValidator;
+import christmas.domain.service.validation.OrderValidator;
 import christmas.domain.service.validation.VisitDateValidator;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -33,7 +33,7 @@ public class EventPlanner {
 
     private static Map<Menu, Integer> inputOrders() {
         try {
-            return OrdersValidator.validate(InputView.inputOrders());
+            return OrderValidator.validate(InputView.inputOrders());
         } catch (IllegalArgumentException e) {
             InputView.printErrorMessage(e.getMessage());
             return inputOrders();
