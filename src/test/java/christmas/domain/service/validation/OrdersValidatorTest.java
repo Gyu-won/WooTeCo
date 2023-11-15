@@ -20,7 +20,19 @@ public class OrdersValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
-    
+
+    @DisplayName("중복된 메뉴를 입력한 경우 에러를 발생시킨다")
+    @Test
+    public void 중복된_메뉴를_입력한_경우() {
+        //given
+        String menusInput = "해산물파스타-1,레드와인-2,해산물파스타-1";
+
+        //when+then
+        assertThatThrownBy(() -> OrdersValidator.validate(menusInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+    }
+
     @DisplayName("음료만 주문 시 에러를 발생시킨다.")
     @ParameterizedTest
     @ValueSource(strings = {"제로콜라-3", "레드와인-1,샴폐인1"})
