@@ -5,7 +5,6 @@ public enum DayOfWeek {
     SATURDAY(2),
     SUNDAY(3);
 
-
     public static final Integer DAYS_IN_WEEK = 7;
     private final Integer value;
 

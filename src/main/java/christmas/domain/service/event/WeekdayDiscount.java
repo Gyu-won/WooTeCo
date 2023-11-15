@@ -5,7 +5,6 @@ import christmas.domain.entity.Menu;
 import java.util.Map;
 
 public class WeekdayDiscount {
-
     private static final Integer WEEKDAY_DISCOUNT_AMOUNT = 2023;
     private static final Integer NO_DISCOUNT_AMOUNT = 0;
 
