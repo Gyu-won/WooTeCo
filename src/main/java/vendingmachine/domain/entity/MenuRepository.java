@@ -8,6 +8,10 @@ import vendingmachine.view.message.Error;
 public class MenuRepository {
     private static final Integer SPLIT_LIMIT = -1;
     private static final String MENU_DELIMITER = ";";
+    private static final String OPEN_BRACKET = "[";
+    private static final String CLOSE_BRACKET = "]";
+    private static final String NOTHING = "";
+    private static final int MINIMUM_VALID_TOTAL_QUANTITY = 0;
 
     private static final List<Menu> menus = new ArrayList<>();
 
@@ -19,7 +23,7 @@ public class MenuRepository {
     }
 
     private static String removeBrackets(String menu) {
-        return menu.replace("[", "").replace("]", "");
+        return menu.replace(OPEN_BRACKET, NOTHING).replace(CLOSE_BRACKET, NOTHING);
     }
 
     private static List<String> splitMenus(String menusInput) {
@@ -40,11 +44,10 @@ public class MenuRepository {
         throw new IllegalArgumentException(Error.ORDER.getMessage());
     }
 
-    //TODO: menu getter 안쓰고 리펙터링
     public static boolean purchaseAvailable(Money money) {
         int minimumPrice = calculateCheapestMenuPrice();
         int totalMenuQuantity = calculateMenusQuantity();
-        return money.isBiggerOrEqual(minimumPrice) && totalMenuQuantity > 0;
+        return money.isBiggerOrEqual(minimumPrice) && totalMenuQuantity > MINIMUM_VALID_TOTAL_QUANTITY;
     }
 
     private static int calculateMenusQuantity() {
@@ -58,6 +61,6 @@ public class MenuRepository {
                 .filter(Menu::isPurchaseAble)
                 .mapToInt(Menu::getPrice)
                 .min()
-                .orElseThrow(() -> new IllegalArgumentException("Menu가 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException(Error.NO_PURCHASABLE_MENU.getMessage()));
     }
 }

@@ -1,5 +1,7 @@
 package vendingmachine.domain.entity;
 
+import vendingmachine.view.message.Error;
+
 public enum Coin {
     COIN_500(0, 500),
     COIN_100(1, 100),
@@ -21,7 +23,7 @@ public enum Coin {
                 return coin;
             }
         }
-        throw new IllegalArgumentException("올바르지 않은 코인 입니다.");
+        throw new IllegalArgumentException(Error.COIN.getMessage());
     }
 
     public int getAmount() {

@@ -7,6 +7,14 @@ import vendingmachine.view.message.Error;
 public class Menu {
     private static final Integer SPLIT_LIMIT = -1;
     private static final String ITEM_DELIMITER = ",";
+    private static final int NAME_INDEX = 0;
+    private static final int PRICE_INDEX = 1;
+    private static final int QUANTITY_INDEX = 2;
+    private static final int MINIMUM_VALID_QUANTITY = 0;
+    private static final Integer PRICE_DIVISOR = 10;
+    private static final int NO_REMAINDER = 0;
+    private static final int MINIMUM_VALID_PRICE = 100;
+    private static final Integer CHANGE_AMOUNT = 1;
 
     private final String name;
     private final Integer price;
@@ -14,9 +22,9 @@ public class Menu {
 
     public Menu(String menu) {
         List<String> parsedMenu = splitMenu(menu);
-        name = parsedMenu.get(0);
-        price = validateAndReturnPrice(parsedMenu.get(1));
-        quantity = validateAndReturnQuantity(parsedMenu.get(2));
+        name = parsedMenu.get(NAME_INDEX);
+        price = validateAndReturnPrice(parsedMenu.get(PRICE_INDEX));
+        quantity = validateAndReturnQuantity(parsedMenu.get(QUANTITY_INDEX));
     }
 
     private Integer validateAndReturnQuantity(String quantityInput) {
@@ -26,7 +34,7 @@ public class Menu {
     }
 
     private void checkBiggerOrEqualThanMinimumQuantity(int parsedQuantity) {
-        if (parsedQuantity < 0) {
+        if (parsedQuantity < MINIMUM_VALID_QUANTITY) {
             throw new IllegalArgumentException(Error.MENU_INPUT.getMessage());
         }
     }
@@ -39,13 +47,13 @@ public class Menu {
     }
 
     private void checkDivisibleByTen(Integer parsedPrice) {
-        if (parsedPrice % 10 != 0) {
+        if (parsedPrice % PRICE_DIVISOR != NO_REMAINDER) {
             throw new IllegalArgumentException(Error.MENU_INPUT.getMessage());
         }
     }
 
     private void checkBiggerOrEqualThanMinimumPrice(int parsedPrice) {
-        if (parsedPrice < 100) {
+        if (parsedPrice < MINIMUM_VALID_PRICE) {
             throw new IllegalArgumentException(Error.MENU_INPUT.getMessage());
         }
     }
@@ -66,12 +74,11 @@ public class Menu {
         return name.equals(menuNameToBuy);
     }
 
-    //TODO: money getter 안쓰고 리펙터링
     public void buy(Money money) {
-        if (money.getAmount() < price || quantity == 0) {
+        if (money.getAmount() < price || quantity == MINIMUM_VALID_QUANTITY) {
             throw new IllegalArgumentException(Error.PURCHASE.getMessage());
         }
-        quantity -= 1;
+        quantity -= CHANGE_AMOUNT;
         money.minus(price);
     }
 
@@ -84,6 +91,6 @@ public class Menu {
     }
 
     public boolean isPurchaseAble() {
-        return quantity > 0;
+        return quantity > MINIMUM_VALID_QUANTITY;
     }
 }
