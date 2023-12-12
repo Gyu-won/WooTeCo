@@ -19,7 +19,7 @@ public class VendingMachine {
         }
 
         OutputView.printLeftMoney(money);
-
+        CoinRepository.calculateExchange(money);
     }
 
     private static void purchaseProduct(Money money) {

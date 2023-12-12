@@ -13,6 +13,15 @@ public enum Coin {
         this.amount = amount;
     }
 
+    public static Coin findByAmount(int amount) {
+        for (Coin coin : Coin.values()) {
+            if (coin.amount == amount) {
+                return coin;
+            }
+        }
+        throw new IllegalArgumentException("올바르지 않은 코인 입니다.");
+    }
+
     public int getAmount() {
         return amount;
     }

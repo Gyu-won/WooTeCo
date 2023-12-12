@@ -1,6 +1,7 @@
 package vendingmachine.view;
 
 import java.util.Map;
+import vendingmachine.domain.entity.Coin;
 import vendingmachine.domain.entity.Money;
 import vendingmachine.view.message.Prompt;
 
@@ -9,12 +10,11 @@ public class OutputView {
         System.out.println(errorMessage);
     }
 
-    public static void printCoin(Map<Integer, Integer> coins) {
+    public static void printCoin(Map<Coin, Integer> coins) {
         System.out.println(Prompt.MACHINE_COIN.getMessage());
-        System.out.printf("%d원 - %d개\n", 500, coins.get(500));
-        System.out.printf("%d원 - %d개\n", 100, coins.get(100));
-        System.out.printf("%d원 - %d개\n", 50, coins.get(50));
-        System.out.printf("%d원 - %d개\n", 10, coins.get(10));
+        for (Coin coin : Coin.values()) {
+            System.out.printf("%d원 - %d개\n", coin.getAmount(), coins.get(coin));
+        }
     }
 
     public static void printLeftMoney(Money money) {
