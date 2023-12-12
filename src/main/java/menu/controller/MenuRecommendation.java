@@ -23,6 +23,7 @@ public class MenuRecommendation {
         for (Weekday weekday : Weekday.values()) {
             Category category = Category.validate(RandomGenerator.selectCategory());
             List<Menu> menus = Menu.findAllByCategory(category);
+            CoachRepository.recommendMenu(menus);
         }
     }
 
