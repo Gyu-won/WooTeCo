@@ -11,6 +11,14 @@ public class CoachNameValidator {
     public static void validate(String coachNameInput) {
         List<String> parsedCoachNameInput = splitCoachName(coachNameInput);
         checkNumberOfCoach(parsedCoachNameInput);
+        parsedCoachNameInput.forEach(CoachNameValidator::checkCoachNameLength);
+    }
+
+    private static void checkCoachNameLength(String coachName) {
+        int coachNameLength = coachName.length();
+        if (coachNameLength < 2 || coachNameLength > 4) {
+            throw new IllegalArgumentException(Error.NAME_LENGTH_OF_COACH.getMessage());
+        }
     }
 
     private static void checkNumberOfCoach(List<String> parsedCoachNameInput) {
