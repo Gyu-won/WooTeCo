@@ -18,6 +18,8 @@ public class VendingMachine {
             purchaseProduct(money);
         }
 
+        OutputView.printLeftMoney(money);
+
     }
 
     private static void purchaseProduct(Money money) {
