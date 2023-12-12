@@ -1,7 +1,7 @@
 package vendingmachine.view.message;
 
 public enum Error {
-    MONEY("올바르지 않은 금액 입력입니다.");
+    MONEY("\n올바르지 않은 금액 입력입니다.");
 
     private static final String CODE = "[ERROR] ";
 
