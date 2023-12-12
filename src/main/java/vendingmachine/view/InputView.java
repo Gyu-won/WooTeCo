@@ -19,4 +19,9 @@ public class InputView {
         System.out.println(Prompt.INSERT_MONEY_INPUT.getMessage());
         return readLine();
     }
+
+    public static String inputMenuNameToBuy() {
+        System.out.println(Prompt.PURCHASE_INPUT.getMessage());
+        return readLine();
+    }
 }

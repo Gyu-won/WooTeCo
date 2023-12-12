@@ -13,7 +13,7 @@ public class VendingMachine {
         Integer leftMoney = inputInsertedMoney();
 
         OutputView.printLeftMoney(leftMoney);
-
+        InputView.inputMenuNameToBuy();
 
     }
 
