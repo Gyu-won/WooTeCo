@@ -6,10 +6,21 @@ public class MoneyValidator {
 
     public static Integer validateAndReturn(String money) {
         Integer parsedMoney = toInteger(money);
-        if (다른 유효성검증 메서드) {
+        checkBiggerOrEqualThanZero(parsedMoney);
+        checkDivisibleByTen(parsedMoney);
+        return parsedMoney;
+    }
+
+    private static void checkDivisibleByTen(Integer parsedMoney) {
+        if (parsedMoney % 10 != 0) {
             throw new IllegalArgumentException(Error.MONEY.getMessage());
         }
-        return parsedMoney;
+    }
+
+    private static void checkBiggerOrEqualThanZero(Integer parsedMoney) {
+        if (parsedMoney < 0) {
+            throw new IllegalArgumentException(Error.MONEY.getMessage());
+        }
     }
 
     private static Integer toInteger(String money) {
@@ -18,9 +29,5 @@ public class MoneyValidator {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(Error.MONEY.getMessage());
         }
-    }
-
-    private static boolean 다른유효성검증메서드명(타입 변수명) {
-        return 조건;
     }
 }
