@@ -4,6 +4,7 @@ import java.util.List;
 import menu.domain.entity.Coach;
 import menu.domain.entity.CoachRepository;
 import menu.domain.validation.CoachNameValidator;
+import menu.domain.validation.MenuValidator;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -17,7 +18,7 @@ public class MenuRecommendation {
     }
 
     private static void askDislikeMenu(Coach coach) {
-        InputView.inputDislikeMenu(coach);
+        MenuValidator.validate(InputView.inputDislikeMenu(coach));
     }
 
     private static List<Coach> createCoach() {
