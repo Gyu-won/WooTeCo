@@ -1,5 +1,7 @@
 package menu.domain.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import menu.view.message.Error;
 
 public enum Menu {
@@ -74,5 +76,15 @@ public enum Menu {
             }
         }
         throw new IllegalArgumentException(Error.INVALID_MENU_NAME.getMessage());
+    }
+
+    public static List<Menu> findAllByCategory(Category category) {
+        List<Menu> menus = new ArrayList<>();
+        for (Menu menu : Menu.values()) {
+            if (menu.category.equals(category)) {
+                menus.add(menu);
+            }
+        }
+        return menus;
     }
 }
