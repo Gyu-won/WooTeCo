@@ -2,6 +2,7 @@ package menu.domain.validation;
 
 import java.util.Arrays;
 import java.util.List;
+import menu.view.message.Error;
 
 public class MenuValidator {
     private static final Integer SPLIT_LIMIT = -1;
@@ -9,6 +10,13 @@ public class MenuValidator {
 
     public static void validate(String menuInput) {
         List<String> parsedMenuInput = splitMenu(menuInput);
+        checkNumberOfMenus(parsedMenuInput);
+    }
+
+    private static void checkNumberOfMenus(List<String> parsedMenuInput) {
+        if (parsedMenuInput.size() > 2) {
+            throw new IllegalArgumentException(Error.NUMBER_OF_DISLIKE_MENU.getMessage());
+        }
     }
 
     private static List<String> splitMenu(String menuInput) {

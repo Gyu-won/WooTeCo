@@ -27,6 +27,7 @@ public class MenuRecommendation {
             return CoachRepository.create(coachNames);
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception.getMessage());
+            return createCoach();
         }
     }
 }
