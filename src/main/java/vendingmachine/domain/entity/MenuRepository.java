@@ -10,7 +10,13 @@ public class MenuRepository {
 
     public static void create(String menusInput) {
         List<String> menus = splitMenu(menusInput);
+        for (String menu : menus) {
+            removeBrackets(menu);
+        }
+    }
 
+    private static String removeBrackets(String menu) {
+        return menu.replace("[", "").replace("]", "");
     }
 
     private static List<String> splitMenu(String menusInput) {
