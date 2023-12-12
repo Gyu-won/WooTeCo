@@ -9,10 +9,16 @@ public enum Category {
 
     private final String name;
     private final Integer index;
+    private Integer selectedCount;
 
     Category(String name, Integer index) {
         this.name = name;
         this.index = index;
+        selectedCount = 0;
+    }
+
+    public static Category validate(Integer selectedIndex) {
+        return null;
     }
 
     public String getName() {

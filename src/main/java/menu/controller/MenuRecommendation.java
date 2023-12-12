@@ -1,9 +1,12 @@
 package menu.controller;
 
 import java.util.List;
+import menu.domain.RandomGenerator;
+import menu.domain.entity.Category;
 import menu.domain.entity.Coach;
 import menu.domain.entity.CoachRepository;
 import menu.domain.entity.Menu;
+import menu.domain.entity.Weekday;
 import menu.domain.validation.CoachNameValidator;
 import menu.domain.validation.MenuValidator;
 import menu.view.InputView;
@@ -16,6 +19,10 @@ public class MenuRecommendation {
         List<Coach> coaches = createCoach();
 
         coaches.forEach(MenuRecommendation::askDislikeMenu);
+
+        for (Weekday weekday : Weekday.values()) {
+            Category category = Category.validate(RandomGenerator.selectCategory());
+        }
     }
 
     private static void askDislikeMenu(Coach coach) {
