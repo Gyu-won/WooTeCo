@@ -1,5 +1,7 @@
 package menu.domain.entity;
 
+import menu.domain.RandomGenerator;
+
 public enum Category {
     JAPANESE("일식", 1),
     KOREAN("한식", 2),
@@ -18,7 +20,22 @@ public enum Category {
     }
 
     public static Category validate(Integer selectedIndex) {
-        return null;
+        Category selectedCategory = findByIndex(selectedIndex);
+        selectedCategory.selectedCount += 1;
+        if (selectedCategory.selectedCount > 2) {
+            selectedCategory.selectedCount -= 1;
+            return Category.validate(RandomGenerator.selectCategory());
+        }
+        return selectedCategory;
+    }
+
+    private static Category findByIndex(Integer index) {
+        for (Category category : Category.values()) {
+            if (category.index.equals(index)) {
+                return category;
+            }
+        }
+        throw new IllegalArgumentException("해당하는 카테고리는 없습니다.");
     }
 
     public String getName() {
