@@ -1,7 +1,9 @@
 package menu.domain.validation;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import menu.view.message.Error;
 
 public class MenuValidator {
@@ -11,6 +13,14 @@ public class MenuValidator {
     public static void validate(String menuInput) {
         List<String> parsedMenuInput = splitMenu(menuInput);
         checkNumberOfMenus(parsedMenuInput);
+        checkDuplicateMenu(parsedMenuInput);
+    }
+
+    private static void checkDuplicateMenu(List<String> parsedMenuInput) {
+        Set<String> uniqueMenuNames = new HashSet<>(parsedMenuInput);
+        if (uniqueMenuNames.size() != parsedMenuInput.size()) {
+            throw new IllegalArgumentException(Error.DUPLICATE_DISLIKE_MENU.getMessage());
+        }
     }
 
     private static void checkNumberOfMenus(List<String> parsedMenuInput) {
