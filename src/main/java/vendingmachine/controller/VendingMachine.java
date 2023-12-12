@@ -10,7 +10,10 @@ public class VendingMachine {
     public static void run() {
         OutputView.printCoin(CoinRepository.generate(inputMoney()));
         inputMenu();
-        inputInsertedMoney();
+        Integer leftMoney = inputInsertedMoney();
+
+        OutputView.printLeftMoney(leftMoney);
+
 
     }
 
