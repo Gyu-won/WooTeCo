@@ -5,7 +5,8 @@ public enum Prompt {
     MACHINE_COIN("\n자판기가 보유한 동전"),
     MENU_INPUT("\n상품명과 가격, 수량을 입력해 주세요."),
     INSERT_MONEY_INPUT("\n투입 금액을 입력해 주세요."),
-    PURCHASE_INPUT("구매할 상품명을 입력해 주세요.");
+    PURCHASE_INPUT("\n구매할 상품명을 입력해 주세요."),
+    EXCHANGE("\n잔돈");
 
     private final String message;
 

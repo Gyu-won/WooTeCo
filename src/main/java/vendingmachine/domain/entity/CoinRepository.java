@@ -28,11 +28,22 @@ public class CoinRepository {
 
     public static List<Integer> calculateExchange(Money money) {
         // index 0이 500원
-        List<Integer> exchanges = new ArrayList<>(Collections.nCopies(4, 0));
+        List<Integer> exchange = new ArrayList<>(Collections.nCopies(4, 0));
         while (isAvailableToReturn(money)) {
-
+            calculateMinimumCoinNumberExchange(money, exchange);
         }
-        return exchanges;
+        return exchange;
+    }
+
+    private static void calculateMinimumCoinNumberExchange(Money money, List<Integer> exchange) {
+        for (Coin coin : Coin.values()) {
+            while (money.getAmount() >= coin.getAmount() && coins.get(coin) > 0) {
+                int index = coin.getIndex();
+                exchange.set(index, exchange.get(index) + 1);
+                money.minus(coin.getAmount());
+                coins.put(coin, coins.get(coin) - 1);
+            }
+        }
     }
 
     private static boolean isAvailableToReturn(Money money) {

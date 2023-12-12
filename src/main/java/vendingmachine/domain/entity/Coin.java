@@ -1,15 +1,17 @@
 package vendingmachine.domain.entity;
 
 public enum Coin {
-    COIN_500(500),
-    COIN_100(100),
-    COIN_50(50),
-    COIN_10(10);
+    COIN_500(0, 500),
+    COIN_100(1, 100),
+    COIN_50(2, 50),
+    COIN_10(3, 10);
 
     //접근제어자 변경 불가능
+    private final int index;
     private final int amount;
 
-    Coin(final int amount) {
+    Coin(final int index, final int amount) {
+        this.index = index;
         this.amount = amount;
     }
 
@@ -24,5 +26,9 @@ public enum Coin {
 
     public int getAmount() {
         return amount;
+    }
+
+    public int getIndex() {
+        return index;
     }
 }
