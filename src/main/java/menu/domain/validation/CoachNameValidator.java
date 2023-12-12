@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import menu.domain.entity.CoachRepository;
 import menu.view.message.Error;
 
 public class CoachNameValidator {
@@ -15,6 +16,7 @@ public class CoachNameValidator {
         checkNumberOfCoach(parsedCoachNameInput);
         parsedCoachNameInput.forEach(CoachNameValidator::checkCoachNameLength);
         checkDuplicate(parsedCoachNameInput);
+        CoachRepository.create(parsedCoachNameInput);
     }
 
     private static void checkDuplicate(List<String> parsedCoachNameInput) {
