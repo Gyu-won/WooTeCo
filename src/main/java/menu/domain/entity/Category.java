@@ -1,5 +1,7 @@
 package menu.domain.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import menu.domain.RandomGenerator;
 
 public enum Category {
@@ -38,11 +40,11 @@ public enum Category {
         throw new IllegalArgumentException("해당하는 카테고리는 없습니다.");
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Integer getIndex() {
-        return index;
+    public static List<String> getAllName() {
+        List<String> categoryNames = new ArrayList<>();
+        for (Category category : Category.values()) {
+            categoryNames.add(category.name);
+        }
+        return categoryNames;
     }
 }

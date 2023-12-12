@@ -25,6 +25,10 @@ public class MenuRecommendation {
             List<Menu> menus = Menu.findAllByCategory(category);
             CoachRepository.recommendMenu(menus);
         }
+
+        OutputView.printRecommendResult(coaches);
+
+        OutputView.printEndMessage();
     }
 
     private static void askDislikeMenu(Coach coach) {
