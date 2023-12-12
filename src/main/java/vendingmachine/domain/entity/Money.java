@@ -14,4 +14,8 @@ public class Money {
     public void minus(Integer price) {
         amount -= price;
     }
+
+    public boolean isBiggerOrEqual(int minimumPrice) {
+        return amount >= minimumPrice;
+    }
 }

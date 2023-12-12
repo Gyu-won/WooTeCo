@@ -14,9 +14,20 @@ public class VendingMachine {
 
         Money money = new Money(inputInsertedMoney());
 
-        OutputView.printLeftMoney(money);
-        MenuRepository.buy(InputView.inputMenuNameToBuy(), money);
+        while (MenuRepository.purchaseAvailable(money)) {
+            purchaseProduct(money);
+        }
 
+    }
+
+    private static void purchaseProduct(Money money) {
+        try {
+            OutputView.printLeftMoney(money);
+            MenuRepository.buy(InputView.inputMenuNameToBuy(), money);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+            purchaseProduct(money);
+        }
     }
 
     private static Integer inputInsertedMoney() {

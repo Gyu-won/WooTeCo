@@ -74,4 +74,12 @@ public class Menu {
         quantity -= 1;
         money.minus(price);
     }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
 }

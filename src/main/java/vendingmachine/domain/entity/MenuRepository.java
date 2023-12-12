@@ -39,4 +39,24 @@ public class MenuRepository {
         }
         throw new IllegalArgumentException(Error.ORDER.getMessage());
     }
+
+    //TODO: menu getter 안쓰고 리펙터링
+    public static boolean purchaseAvailable(Money money) {
+        int minimumPrice = calculateCheapestMenuPrice();
+        int totalMenuQuantity = calculateMenusQuantity();
+        return money.isBiggerOrEqual(minimumPrice) && totalMenuQuantity > 0;
+    }
+
+    private static int calculateMenusQuantity() {
+        return menus.stream()
+                .mapToInt(Menu::getQuantity)
+                .sum();
+    }
+
+    private static int calculateCheapestMenuPrice() {
+        return menus.stream()
+                .mapToInt(Menu::getPrice)
+                .min()
+                .orElseThrow(() -> new IllegalArgumentException("Menu가 없습니다."));
+    }
 }
