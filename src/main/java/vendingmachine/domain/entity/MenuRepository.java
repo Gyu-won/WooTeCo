@@ -8,7 +8,7 @@ public class MenuRepository {
     private static final Integer SPLIT_LIMIT = -1;
     private static final String MENU_DELIMITER = ";";
 
-    private static List<Menu> menus = new ArrayList<>();
+    private static final List<Menu> menus = new ArrayList<>();
 
     public static void create(String menusInput) {
         List<String> parsedMenus = splitMenus(menusInput);

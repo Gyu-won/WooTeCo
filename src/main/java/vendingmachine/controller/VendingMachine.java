@@ -10,6 +10,17 @@ public class VendingMachine {
     public static void run() {
         OutputView.printCoin(CoinRepository.generate(inputMoney()));
         inputMenu();
+        inputInsertedMoney();
+
+    }
+
+    private static Integer inputInsertedMoney() {
+        try {
+            return MoneyValidator.validateAndReturn(InputView.inputInsertedMoney());
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+            return inputMoney();
+        }
     }
 
     private static void inputMenu() {
