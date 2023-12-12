@@ -55,6 +55,7 @@ public class MenuRepository {
 
     private static int calculateCheapestMenuPrice() {
         return menus.stream()
+                .filter(Menu::isPurchaseAble)
                 .mapToInt(Menu::getPrice)
                 .min()
                 .orElseThrow(() -> new IllegalArgumentException("Menu가 없습니다."));

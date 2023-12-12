@@ -82,4 +82,8 @@ public class Menu {
     public Integer getQuantity() {
         return quantity;
     }
+
+    public boolean isPurchaseAble() {
+        return quantity > 0;
+    }
 }
