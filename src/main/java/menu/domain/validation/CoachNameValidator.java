@@ -1,7 +1,9 @@
 package menu.domain.validation;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import menu.view.message.Error;
 
 public class CoachNameValidator {
@@ -12,6 +14,14 @@ public class CoachNameValidator {
         List<String> parsedCoachNameInput = splitCoachName(coachNameInput);
         checkNumberOfCoach(parsedCoachNameInput);
         parsedCoachNameInput.forEach(CoachNameValidator::checkCoachNameLength);
+        checkDuplicate(parsedCoachNameInput);
+    }
+
+    private static void checkDuplicate(List<String> parsedCoachNameInput) {
+        Set<String> uniqueCoachName = new HashSet<>(parsedCoachNameInput);
+        if (uniqueCoachName.size() != parsedCoachNameInput.size()) {
+            throw new IllegalArgumentException(Error.DUPLICATE_COACH_NAME.getMessage());
+        }
     }
 
     private static void checkCoachNameLength(String coachName) {
