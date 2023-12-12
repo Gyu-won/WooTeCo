@@ -10,7 +10,7 @@ public class Menu {
 
     private final String name;
     private final Integer price;
-    private final Integer quantity;
+    private Integer quantity;
 
     public Menu(String menu) {
         List<String> parsedMenu = splitMenu(menu);
@@ -64,5 +64,14 @@ public class Menu {
 
     public boolean isSameName(String menuNameToBuy) {
         return name.equals(menuNameToBuy);
+    }
+
+    //TODO: money getter 안쓰고 리펙터링
+    public void buy(Money money) {
+        if (money.getAmount() < price || quantity == 0) {
+            throw new IllegalArgumentException(Error.PURCHASE.getMessage());
+        }
+        quantity -= 1;
+        money.minus(price);
     }
 }

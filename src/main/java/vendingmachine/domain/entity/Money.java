@@ -10,4 +10,8 @@ public class Money {
     public Integer getAmount() {
         return amount;
     }
+
+    public void minus(Integer price) {
+        amount -= price;
+    }
 }

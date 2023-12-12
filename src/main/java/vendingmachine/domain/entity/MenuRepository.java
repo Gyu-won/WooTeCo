@@ -27,14 +27,14 @@ public class MenuRepository {
     }
 
     public static void buy(String menuNameToBuy, Money money) {
-        checkMenuIsContain(menuNameToBuy);
-
+        Menu menu = findMenu(menuNameToBuy);
+        menu.buy(money);
     }
 
-    private static void checkMenuIsContain(String menuNameToBuy) {
+    private static Menu findMenu(String menuNameToBuy) {
         for (Menu menu : menus) {
             if (menu.isSameName(menuNameToBuy)) {
-                return;
+                return menu;
             }
         }
         throw new IllegalArgumentException(Error.ORDER.getMessage());
