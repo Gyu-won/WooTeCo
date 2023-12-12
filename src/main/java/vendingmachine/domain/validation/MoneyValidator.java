@@ -13,13 +13,13 @@ public class MoneyValidator {
 
     private static void checkDivisibleByTen(Integer parsedMoney) {
         if (parsedMoney % 10 != 0) {
-            throw new IllegalArgumentException(Error.MONEY.getMessage());
+            throw new IllegalArgumentException(Error.MONEY_INPUT.getMessage());
         }
     }
 
     private static void checkBiggerOrEqualThanZero(Integer parsedMoney) {
         if (parsedMoney < 0) {
-            throw new IllegalArgumentException(Error.MONEY.getMessage());
+            throw new IllegalArgumentException(Error.MONEY_INPUT.getMessage());
         }
     }
 
@@ -27,7 +27,7 @@ public class MoneyValidator {
         try {
             return Integer.parseInt(money);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Error.MONEY.getMessage());
+            throw new IllegalArgumentException(Error.MONEY_INPUT.getMessage());
         }
     }
 }
