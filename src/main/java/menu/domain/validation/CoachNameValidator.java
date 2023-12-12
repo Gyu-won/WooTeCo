@@ -4,19 +4,18 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import menu.domain.entity.CoachRepository;
 import menu.view.message.Error;
 
 public class CoachNameValidator {
     private static final Integer SPLIT_LIMIT = -1;
     private static final String DELIMITER = ",";
 
-    public static void validate(String coachNameInput) {
+    public static List<String> validate(String coachNameInput) {
         List<String> parsedCoachNameInput = splitCoachName(coachNameInput);
         checkNumberOfCoach(parsedCoachNameInput);
         parsedCoachNameInput.forEach(CoachNameValidator::checkCoachNameLength);
         checkDuplicate(parsedCoachNameInput);
-        CoachRepository.create(parsedCoachNameInput);
+        return parsedCoachNameInput;
     }
 
     private static void checkDuplicate(List<String> parsedCoachNameInput) {

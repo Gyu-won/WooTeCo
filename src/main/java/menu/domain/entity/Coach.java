@@ -7,4 +7,8 @@ public class Coach {
     public Coach(String name) {
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
 }
