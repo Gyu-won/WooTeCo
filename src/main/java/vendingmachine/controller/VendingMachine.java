@@ -2,6 +2,7 @@ package vendingmachine.controller;
 
 import vendingmachine.domain.entity.CoinRepository;
 import vendingmachine.domain.entity.MenuRepository;
+import vendingmachine.domain.entity.Money;
 import vendingmachine.domain.validation.MoneyValidator;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
@@ -10,9 +11,10 @@ public class VendingMachine {
     public static void run() {
         OutputView.printCoin(CoinRepository.generate(inputMoney()));
         inputMenu();
-        Integer leftMoney = inputInsertedMoney();
 
-        OutputView.printLeftMoney(leftMoney);
+        Money money = new Money(inputInsertedMoney());
+
+        OutputView.printLeftMoney(money);
         InputView.inputMenuNameToBuy();
 
     }

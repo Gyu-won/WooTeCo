@@ -1,6 +1,7 @@
 package vendingmachine.view;
 
 import java.util.Map;
+import vendingmachine.domain.entity.Money;
 import vendingmachine.view.message.Prompt;
 
 public class OutputView {
@@ -16,7 +17,7 @@ public class OutputView {
         System.out.printf("%d원 - %d개\n", 10, coins.get(10));
     }
 
-    public static void printLeftMoney(Integer leftMoney) {
-        System.out.printf("\n투입 금액: %d원", leftMoney);
+    public static void printLeftMoney(Money money) {
+        System.out.printf("\n투입 금액: %d원", money.getAmount());
     }
 }
