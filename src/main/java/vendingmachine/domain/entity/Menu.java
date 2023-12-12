@@ -20,7 +20,15 @@ public class Menu {
     }
 
     private Integer validateAndReturnQuantity(String quantityInput) {
-        return 0;
+        int parsedQuantity = toInteger(quantityInput);
+        checkBiggerOrEqualThanMinimumQuantity(parsedQuantity);
+        return parsedQuantity;
+    }
+
+    private void checkBiggerOrEqualThanMinimumQuantity(int parsedQuantity) {
+        if (parsedQuantity < 0) {
+            throw new IllegalArgumentException(Error.MENU_INPUT.getMessage());
+        }
     }
 
     private Integer validateAndReturnPrice(String priceInput) {
