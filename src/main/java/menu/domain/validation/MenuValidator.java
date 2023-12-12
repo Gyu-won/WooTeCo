@@ -4,16 +4,20 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import menu.domain.entity.Menu;
 import menu.view.message.Error;
 
 public class MenuValidator {
     private static final Integer SPLIT_LIMIT = -1;
     private static final String DELIMITER = ",";
 
-    public static void validate(String menuInput) {
+    public static List<Menu> validate(String menuInput) {
         List<String> parsedMenuInput = splitMenu(menuInput);
         checkNumberOfMenus(parsedMenuInput);
         checkDuplicateMenu(parsedMenuInput);
+        return parsedMenuInput.stream().map(Menu::findByName)
+                .collect(Collectors.toList());
     }
 
     private static void checkDuplicateMenu(List<String> parsedMenuInput) {

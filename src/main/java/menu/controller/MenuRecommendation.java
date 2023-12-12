@@ -3,6 +3,7 @@ package menu.controller;
 import java.util.List;
 import menu.domain.entity.Coach;
 import menu.domain.entity.CoachRepository;
+import menu.domain.entity.Menu;
 import menu.domain.validation.CoachNameValidator;
 import menu.domain.validation.MenuValidator;
 import menu.view.InputView;
@@ -18,7 +19,13 @@ public class MenuRecommendation {
     }
 
     private static void askDislikeMenu(Coach coach) {
-        MenuValidator.validate(InputView.inputDislikeMenu(coach));
+        try {
+            List<Menu> menus = MenuValidator.validate(InputView.inputDislikeMenu(coach));
+            coach.dislike(menus);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+            askDislikeMenu(coach);
+        }
     }
 
     private static List<Coach> createCoach() {
