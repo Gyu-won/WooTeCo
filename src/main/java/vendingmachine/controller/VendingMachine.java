@@ -15,7 +15,7 @@ public class VendingMachine {
         Money money = new Money(inputInsertedMoney());
 
         OutputView.printLeftMoney(money);
-        InputView.inputMenuNameToBuy();
+        MenuRepository.buy(InputView.inputMenuNameToBuy(), money);
 
     }
 

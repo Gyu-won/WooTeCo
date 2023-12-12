@@ -61,4 +61,8 @@ public class Menu {
             throw new IllegalArgumentException(Error.MENU_INPUT.getMessage());
         }
     }
+
+    public boolean isSameName(String menuNameToBuy) {
+        return name.equals(menuNameToBuy);
+    }
 }

@@ -3,6 +3,7 @@ package vendingmachine.domain.entity;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import vendingmachine.view.message.Error;
 
 public class MenuRepository {
     private static final Integer SPLIT_LIMIT = -1;
@@ -23,5 +24,19 @@ public class MenuRepository {
 
     private static List<String> splitMenus(String menusInput) {
         return Arrays.asList(menusInput.split(MENU_DELIMITER, SPLIT_LIMIT));
+    }
+
+    public static void buy(String menuNameToBuy, Money money) {
+        checkMenuIsContain(menuNameToBuy);
+
+    }
+
+    private static void checkMenuIsContain(String menuNameToBuy) {
+        for (Menu menu : menus) {
+            if (menu.isSameName(menuNameToBuy)) {
+                return;
+            }
+        }
+        throw new IllegalArgumentException(Error.ORDER.getMessage());
     }
 }
