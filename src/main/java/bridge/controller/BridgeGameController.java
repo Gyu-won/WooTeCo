@@ -32,7 +32,8 @@ public class BridgeGameController {
             BridgeGameResult bridgeGameResult = bridgeGame.move(currentLocation, block);
             outputView.printMap(bridgeGameResult);
             if (bridgeGameResult.isGameOver()) {
-                if (isRetry()) {
+                if (isRetry(askForRetry())) {
+                    bridgeGame.retry();
                     gameStart(bridgeSize, bridgeGame);
                 }
                 break;
@@ -40,7 +41,11 @@ public class BridgeGameController {
         }
     }
 
-    private static boolean isRetry() {
-        String retryFlag = RetryFlagValidator.validateAndReturn(inputView.readGameCommand());
+    private static String askForRetry() {
+        return RetryFlagValidator.validateAndReturn(inputView.readGameCommand());
+    }
+
+    private static boolean isRetry(String retryFlag) {
+        return retryFlag.equals("R");
     }
 }
