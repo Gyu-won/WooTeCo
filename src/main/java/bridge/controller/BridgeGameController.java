@@ -17,7 +17,7 @@ public class BridgeGameController {
 
     public static void run() {
 
-        int bridgeSize = BridgeSizeValidator.validateAndReturn(inputView.readBridgeSize());
+        int bridgeSize = inputBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
@@ -26,15 +26,34 @@ public class BridgeGameController {
 
     }
 
+    private static int inputBridgeSize() {
+        try {
+            return BridgeSizeValidator.validateAndReturn(inputView.readBridgeSize());
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            return inputBridgeSize();
+        }
+
+    }
+
     private static void gameStart(int bridgeSize, BridgeGame bridgeGame) {
         for (int currentLocation = 0; currentLocation < bridgeSize; currentLocation++) {
-            String block = MoveBlockValidator.validateAndReturn(inputView.readMoving());
+            String block = inputMoveBlock();
             BridgeGameResult bridgeGameResult = bridgeGame.move(currentLocation, block);
             outputView.printMap(bridgeGameResult);
             if (bridgeGameResult.isGameOver()) {
                 retryOrExit(bridgeSize, bridgeGame);
                 break;
             }
+        }
+    }
+
+    private static String inputMoveBlock() {
+        try {
+            return MoveBlockValidator.validateAndReturn(inputView.readMoving());
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            return inputMoveBlock();
         }
     }
 
