@@ -41,7 +41,15 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         System.out.println(Prompt.RESULT.getMessage());
         printMap(bridgeGame.getGameResult());
+        System.out.println(Result.GAME_STATUS.getMessage(gameStatusToString(bridgeGame)));
+    }
 
+    private String gameStatusToString(BridgeGame bridgeGame) {
+        BridgeGameResult bridgeGameResult = bridgeGame.getGameResult();
+        if (bridgeGameResult.isGameOver()) {
+            return "실패";
+        }
+        return "성공";
     }
 
     public void printErrorMessage(String errorMessage) {
