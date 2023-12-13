@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.validation.BridgeSizeValidator;
 import bridge.domain.validation.MoveBlockValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -7,7 +8,7 @@ import bridge.view.OutputView;
 public class BridgeGameController {
     public static void run(InputView inputView, OutputView outputView) {
 
-        inputView.readBridgeSize();
+        int bridgeSize = BridgeSizeValidator.validateAndReturn(inputView.readBridgeSize());
 
         String moveBlock = MoveBlockValidator.validateAndReturn(inputView.readMoving());
     }

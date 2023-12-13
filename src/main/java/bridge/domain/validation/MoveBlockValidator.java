@@ -7,6 +7,7 @@ public class MoveBlockValidator {
         if (!isValid(moveBlock)) {
             throw new IllegalArgumentException(Error.INVALID_MOVE_VLOCK.getMessage());
         }
+        return moveBlock;
     }
 
     private static boolean isValid(String moveBlock) {
