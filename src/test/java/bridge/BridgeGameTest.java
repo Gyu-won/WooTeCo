@@ -36,4 +36,14 @@ public class BridgeGameTest {
         //then
         assertThat(bridgeGameResult.isGameOver()).isTrue();
     }
+
+    @DisplayName("게임을 재시작하면 재시작 횟수가 1 증가")
+    @Test
+    public void 재시작_횟수가_증가하는_경우() {
+        //when
+        bridgeGame.retry();
+
+        //then
+        assertThat(bridgeGame.getTryCount()).isEqualTo(2);
+    }
 }
