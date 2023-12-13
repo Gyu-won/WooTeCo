@@ -16,6 +16,7 @@ public class BridgeGameController {
     private static final OutputView outputView = new OutputView();
 
     public static void run() {
+        outputView.printStartMessage();
 
         int bridgeSize = inputBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
