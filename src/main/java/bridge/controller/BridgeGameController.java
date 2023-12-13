@@ -13,9 +13,13 @@ public class BridgeGameController {
 
         int bridgeSize = BridgeSizeValidator.validateAndReturn(inputView.readBridgeSize());
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        
+
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
 
-        String moveBlock = MoveBlockValidator.validateAndReturn(inputView.readMoving());
+        for (int currentLocation = 1; currentLocation <= bridgeSize; currentLocation++) {
+            String block = MoveBlockValidator.validateAndReturn(inputView.readMoving());
+            bridgeGame.move(currentLocation, block);
+        }
+
     }
 }
