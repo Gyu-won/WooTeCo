@@ -38,7 +38,7 @@ public class BridgeGameController {
     }
 
     private static boolean isRetry() {
-
+        inputView.readGameCommand();
         return false;
     }
 }
