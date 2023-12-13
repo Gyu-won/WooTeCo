@@ -2,7 +2,8 @@ package bridge.view.message;
 
 public enum Result {
     MAP("[%s]"),
-    GAME_STATUS("게임 성공 여부: %s");
+    GAME_STATUS("게임 성공 여부: %s"),
+    NUMBER_OF_TRY("총 시도한 횟수: %d");
 
     private final String template;
 

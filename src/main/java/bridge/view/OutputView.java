@@ -42,6 +42,11 @@ public class OutputView {
         System.out.println(Prompt.RESULT.getMessage());
         printMap(bridgeGame.getGameResult());
         System.out.println(Result.GAME_STATUS.getMessage(gameStatusToString(bridgeGame)));
+        System.out.println(Result.NUMBER_OF_TRY.getMessage(toString(bridgeGame.getTryCount())));
+    }
+
+    private String toString(Integer tryCont) {
+        return Integer.toString(tryCont);
     }
 
     private String gameStatusToString(BridgeGame bridgeGame) {
