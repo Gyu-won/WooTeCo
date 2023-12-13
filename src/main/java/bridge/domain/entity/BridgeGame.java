@@ -17,12 +17,19 @@ public class BridgeGame {
     public BridgeGameResult move(Integer currentLocation, String moveBlock) {
         gameResult.add(currentLocation, moveBlock);
         gameResult.checkGameOver(currentLocation, bridge);
-        gameResult.checkGameClear(bridge);
         return gameResult;
     }
 
     public void retry() {
         tryCount += 1;
         gameResult = new BridgeGameResult();
+    }
+
+    public Integer getTryCount() {
+        return tryCount;
+    }
+
+    public BridgeGameResult getGameResult() {
+        return gameResult;
     }
 }

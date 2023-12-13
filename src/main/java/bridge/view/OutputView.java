@@ -1,6 +1,9 @@
 package bridge.view;
 
+import bridge.domain.entity.BridgeGame;
 import bridge.domain.entity.BridgeGameResult;
+import bridge.view.message.Prompt;
+import bridge.view.message.Result;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,13 +12,11 @@ import java.util.List;
  */
 public class OutputView {
 
-    private static final String RESULT_PRINT_FORMAT = "[%s]\n";
-
     public void printMap(BridgeGameResult bridgeGameResult) {
         List<String> upperBlock = makeBlock(bridgeGameResult, "U");
         List<String> lowerBlock = makeBlock(bridgeGameResult, "D");
-        System.out.printf(RESULT_PRINT_FORMAT, String.join("|", upperBlock));
-        System.out.printf(RESULT_PRINT_FORMAT, String.join("|", lowerBlock));
+        System.out.printf(Result.MAP.getMessage(String.join("|", upperBlock)));
+        System.out.printf(Result.MAP.getMessage(String.join("|", lowerBlock)));
     }
 
     private List<String> makeBlock(BridgeGameResult bridgeGameResult, String blockName) {
@@ -37,13 +38,10 @@ public class OutputView {
         return "   ";
     }
 
+    public void printResult(BridgeGame bridgeGame) {
+        System.out.println(Prompt.RESULT.getMessage());
+        printMap(bridgeGame.getGameResult());
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
     }
 
     public void printErrorMessage(String errorMessage) {

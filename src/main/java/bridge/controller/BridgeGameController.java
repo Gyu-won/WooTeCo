@@ -24,6 +24,7 @@ public class BridgeGameController {
 
         gameStart(bridgeSize, bridgeGame);
 
+        outputView.printResult(bridgeGame);
     }
 
     private static int inputBridgeSize() {
