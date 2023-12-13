@@ -32,12 +32,16 @@ public class BridgeGameController {
             BridgeGameResult bridgeGameResult = bridgeGame.move(currentLocation, block);
             outputView.printMap(bridgeGameResult);
             if (bridgeGameResult.isGameOver()) {
-                if (isRetry(askForRetry())) {
-                    bridgeGame.retry();
-                    gameStart(bridgeSize, bridgeGame);
-                }
+                retryOrExit(bridgeSize, bridgeGame);
                 break;
             }
+        }
+    }
+
+    private static void retryOrExit(int bridgeSize, BridgeGame bridgeGame) {
+        if (isRetry(askForRetry())) {
+            bridgeGame.retry();
+            gameStart(bridgeSize, bridgeGame);
         }
     }
 

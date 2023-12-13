@@ -6,7 +6,6 @@ import java.util.List;
 public class BridgeGameResult {
 
     private boolean isGameOver = false;
-    private boolean isGameClear = false;
     private final List<String> result = new ArrayList<>();
 
     public void add(Integer currentLocation, String moveBlock) {
@@ -19,18 +18,8 @@ public class BridgeGameResult {
         }
     }
 
-    public void checkGameClear(List<String> bridge) {
-        if (!isGameOver && bridge.size() == result.size()) {
-            isGameClear = true;
-        }
-    }
-
     public boolean isGameOver() {
         return isGameOver;
-    }
-
-    public boolean isGameClear() {
-        return isGameClear;
     }
 
     public List<String> getResult() {
