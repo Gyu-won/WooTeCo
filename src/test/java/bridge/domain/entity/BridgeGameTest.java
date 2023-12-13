@@ -1,9 +1,7 @@
-package bridge;
+package bridge.domain.entity;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.domain.entity.BridgeGame;
-import bridge.domain.entity.BridgeGameResult;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
