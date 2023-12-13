@@ -12,6 +12,9 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGameController {
+    private static final int INITIAL_VALUE_OF_CURRENT_LOCATION = 0;
+    private static final String RESTART_FLAG = "R";
+
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
 
@@ -35,7 +38,7 @@ public class BridgeGameController {
 
     private static void start(BridgeGame bridgeGame) {
         int bridgeSize = bridgeGame.getBridgeSize();
-        for (int currentLocation = 0; currentLocation < bridgeSize; currentLocation++) {
+        for (int currentLocation = INITIAL_VALUE_OF_CURRENT_LOCATION; currentLocation < bridgeSize; currentLocation++) {
             String block = inputMoveBlock();
             BridgeGameResult bridgeGameResult = bridgeGame.move(currentLocation, block);
             outputView.printMap(bridgeGameResult);
@@ -63,7 +66,7 @@ public class BridgeGameController {
     }
 
     private static boolean isRetry(String retryFlag) {
-        return retryFlag.equals("R");
+        return retryFlag.equals(RESTART_FLAG);
     }
 
     private static String askForRetry() {
