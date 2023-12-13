@@ -6,7 +6,7 @@ import bridge.view.message.Prompt;
 
 public class InputView {
     public String readBridgeSize() {
-        System.out.println();
+        System.out.println(Prompt.BRIDGE_SIZE.getMessage());
         return readLine();
     }
 
