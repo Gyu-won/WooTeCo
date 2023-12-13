@@ -25,6 +25,10 @@ public class BridgeGame {
         gameResult = new BridgeGameResult();
     }
 
+    public int getBridgeSize() {
+        return bridge.size();
+    }
+
     public Integer getTryCount() {
         return tryCount;
     }

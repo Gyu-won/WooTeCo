@@ -9,22 +9,18 @@ import bridge.domain.validation.MoveBlockValidator;
 import bridge.domain.validation.RetryFlagValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import java.util.List;
 
 public class BridgeGameController {
-
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
 
     public static void run() {
         outputView.printStartMessage();
-
-        int bridgeSize = inputBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-
-        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
-
-        gameStart(bridgeSize, bridgeGame);
-
+        List<String> bridge = bridgeMaker.makeBridge(inputBridgeSize());
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        start(bridgeGame);
         outputView.printResult(bridgeGame);
     }
 
@@ -35,16 +31,16 @@ public class BridgeGameController {
             outputView.printErrorMessage(exception.getMessage());
             return inputBridgeSize();
         }
-
     }
 
-    private static void gameStart(int bridgeSize, BridgeGame bridgeGame) {
+    private static void start(BridgeGame bridgeGame) {
+        int bridgeSize = bridgeGame.getBridgeSize();
         for (int currentLocation = 0; currentLocation < bridgeSize; currentLocation++) {
             String block = inputMoveBlock();
             BridgeGameResult bridgeGameResult = bridgeGame.move(currentLocation, block);
             outputView.printMap(bridgeGameResult);
             if (bridgeGameResult.isGameOver()) {
-                retryOrExit(bridgeSize, bridgeGame);
+                retryOrExit(bridgeGame);
                 break;
             }
         }
@@ -59,18 +55,18 @@ public class BridgeGameController {
         }
     }
 
-    private static void retryOrExit(int bridgeSize, BridgeGame bridgeGame) {
+    private static void retryOrExit(BridgeGame bridgeGame) {
         if (isRetry(askForRetry())) {
             bridgeGame.retry();
-            gameStart(bridgeSize, bridgeGame);
+            start(bridgeGame);
         }
-    }
-
-    private static String askForRetry() {
-        return RetryFlagValidator.validateAndReturn(inputView.readGameCommand());
     }
 
     private static boolean isRetry(String retryFlag) {
         return retryFlag.equals("R");
+    }
+
+    private static String askForRetry() {
+        return RetryFlagValidator.validateAndReturn(inputView.readGameCommand());
     }
 }
