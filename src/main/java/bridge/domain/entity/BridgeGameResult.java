@@ -14,10 +14,14 @@ public class BridgeGameResult {
     }
 
     public void checkGameOver(List<String> bridge) {
-        int currentLocation = result.size() - INDEX_OFFSET;
-        if (!result.get(currentLocation).equals(bridge.get(currentLocation))) {
+        int currentPosition = result.size() - INDEX_OFFSET;
+        if (!canPass(currentPosition, bridge)) {
             isGameOver = true;
         }
+    }
+
+    private boolean canPass(int currentPosition, List<String> bridge) {
+        return result.get(currentPosition).equals(bridge.get(currentPosition));
     }
 
     public boolean isGameOver() {
