@@ -6,10 +6,14 @@ public class BridgeSizeValidator {
 
     public static int validateAndReturn(String bridgeSizeInput) {
         Integer parsedBridgeSize = toInteger(bridgeSizeInput);
-        if (isSmallerThanMinimumSize(parsedBridgeSize)) {
+        if (isSmallerThanMinimumSize(parsedBridgeSize) || isBiggerThanMaximumSize(parsedBridgeSize) {
             throw new IllegalArgumentException(Error.INVALID_BRIDGE_SIZE.getMessage());
         }
         return parsedBridgeSize;
+    }
+
+    private static boolean isBiggerThanMaximumSize(Integer parsedBridgeSize) {
+        return parsedBridgeSize > 20;
     }
 
     private static boolean isSmallerThanMinimumSize(Integer parsedBridgeSize) {
