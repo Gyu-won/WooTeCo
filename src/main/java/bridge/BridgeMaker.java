@@ -7,6 +7,7 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    //인스턴스 변수 변경 불가
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
