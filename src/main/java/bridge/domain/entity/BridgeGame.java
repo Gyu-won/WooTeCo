@@ -10,14 +10,15 @@ public class BridgeGame {
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
-        tryCount = 0;
+        tryCount = 1;
         gameResult = new BridgeGameResult();
     }
 
-    public void move(Integer currentLocation, String moveBlock) {
+    public BridgeGameResult move(Integer currentLocation, String moveBlock) {
         gameResult.add(currentLocation, moveBlock);
         gameResult.checkGameOver(currentLocation, bridge);
         gameResult.checkGameClear(bridge);
+        return gameResult;
     }
 
     /**

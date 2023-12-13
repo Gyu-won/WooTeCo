@@ -1,21 +1,20 @@
 package bridge.domain.entity;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class BridgeGameResult {
 
     private boolean isGameOver = false;
     private boolean isGameClear = false;
-    private final Map<Integer, String> result = new HashMap<>();
+    private final List<String> result = new ArrayList<>();
 
     public void add(Integer currentLocation, String moveBlock) {
-        result.put(currentLocation, moveBlock);
+        result.add(moveBlock);
     }
 
     public void checkGameOver(Integer currentLocation, List<String> bridge) {
-        if (!result.get(currentLocation).equals(bridge.get(currentLocation - 1))) {
+        if (!result.get(currentLocation).equals(bridge.get(currentLocation))) {
             isGameOver = true;
         }
     }
@@ -24,5 +23,17 @@ public class BridgeGameResult {
         if (!isGameOver && bridge.size() == result.size()) {
             isGameClear = true;
         }
+    }
+
+    public boolean isGameOver() {
+        return isGameOver;
+    }
+
+    public boolean isGameClear() {
+        return isGameClear;
+    }
+
+    public List<String> getResult() {
+        return result;
     }
 }
