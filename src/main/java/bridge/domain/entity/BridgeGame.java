@@ -1,9 +1,18 @@
 package bridge.domain.entity;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
+import java.util.List;
+
 public class BridgeGame {
+
+    private final List<String> bridge;
+    private Integer tryCount;
+    private BridgeGameResult gameResult;
+
+    public BridgeGame(List<String> bridge) {
+        this.bridge = bridge;
+        tryCount = 0;
+        gameResult = new BridgeGameResult();
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
