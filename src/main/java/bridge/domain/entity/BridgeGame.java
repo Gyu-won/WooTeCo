@@ -3,6 +3,8 @@ package bridge.domain.entity;
 import java.util.List;
 
 public class BridgeGame {
+    private static final Integer INITIAL_COUNT_VALUE = 0;
+    private static final Integer INCREASE_AMOUNT = 1;
 
     private final List<String> bridge;
     private Integer tryCount;
@@ -10,7 +12,7 @@ public class BridgeGame {
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
-        tryCount = 1;
+        tryCount = INITIAL_COUNT_VALUE;
         gameResult = new BridgeGameResult();
     }
 
@@ -21,7 +23,7 @@ public class BridgeGame {
     }
 
     public void retry() {
-        tryCount += 1;
+        tryCount += INCREASE_AMOUNT;
         gameResult = new BridgeGameResult();
     }
 
