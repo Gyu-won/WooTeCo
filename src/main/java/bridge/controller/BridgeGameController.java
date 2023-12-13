@@ -6,6 +6,7 @@ import bridge.domain.entity.BridgeGameResult;
 import bridge.domain.entity.BridgeMaker;
 import bridge.domain.validation.BridgeSizeValidator;
 import bridge.domain.validation.MoveBlockValidator;
+import bridge.domain.validation.RetryFlagValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -30,15 +31,16 @@ public class BridgeGameController {
             String block = MoveBlockValidator.validateAndReturn(inputView.readMoving());
             BridgeGameResult bridgeGameResult = bridgeGame.move(currentLocation, block);
             outputView.printMap(bridgeGameResult);
-            if (bridgeGameResult.isGameOver() || isRetry()) {
-                gameStart(bridgeSize, bridgeGame);
+            if (bridgeGameResult.isGameOver()) {
+                if (isRetry()) {
+                    gameStart(bridgeSize, bridgeGame);
+                }
                 break;
             }
         }
     }
 
     private static boolean isRetry() {
-        inputView.readGameCommand();
-        return false;
+        String retryFlag = RetryFlagValidator.validateAndReturn(inputView.readGameCommand());
     }
 }
