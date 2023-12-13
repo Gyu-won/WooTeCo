@@ -7,10 +7,10 @@ import bridge.view.message.Result;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
 public class OutputView {
+    public void printStartMessage() {
+        System.out.println(Prompt.START.getMessage());
+    }
 
     public void printMap(BridgeGameResult bridgeGameResult) {
         List<String> upperBlock = makeBlock(bridgeGameResult, "U");
@@ -19,12 +19,15 @@ public class OutputView {
         System.out.println(Result.MAP.getMessage(String.join("|", lowerBlock)));
     }
 
-    private List<String> makeBlock(BridgeGameResult bridgeGameResult, String blockName) {
-        List<String> block = new ArrayList<>();
-        for (int index = 0; index < bridgeGameResult.getResult().size(); index++) {
-            block.add(makeResultString(index, blockName, bridgeGameResult));
-        }
-        return block;
+    public void printResult(BridgeGame bridgeGame) {
+        System.out.println(Prompt.RESULT.getMessage());
+        printMap(bridgeGame.getGameResult());
+        System.out.println(Result.GAME_STATUS.getMessage(gameStatusToString(bridgeGame)));
+        System.out.println(Result.NUMBER_OF_TRY.getMessage(toString(bridgeGame.getTryCount())));
+    }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
     }
 
     private String makeResultString(int index, String blockName, BridgeGameResult bridgeGameResult) {
@@ -38,11 +41,12 @@ public class OutputView {
         return "   ";
     }
 
-    public void printResult(BridgeGame bridgeGame) {
-        System.out.println(Prompt.RESULT.getMessage());
-        printMap(bridgeGame.getGameResult());
-        System.out.println(Result.GAME_STATUS.getMessage(gameStatusToString(bridgeGame)));
-        System.out.println(Result.NUMBER_OF_TRY.getMessage(toString(bridgeGame.getTryCount())));
+    private List<String> makeBlock(BridgeGameResult bridgeGameResult, String blockName) {
+        List<String> block = new ArrayList<>();
+        for (int index = 0; index < bridgeGameResult.getResult().size(); index++) {
+            block.add(makeResultString(index, blockName, bridgeGameResult));
+        }
+        return block;
     }
 
     private String toString(Integer tryCont) {
@@ -55,13 +59,5 @@ public class OutputView {
             return "실패";
         }
         return "성공";
-    }
-
-    public void printErrorMessage(String errorMessage) {
-        System.out.println(errorMessage);
-    }
-
-    public void printStartMessage() {
-        System.out.println(Prompt.START.getMessage());
     }
 }

@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMaker {
+    private static final Integer INITIAL_POSITION = 0;
+    private static final int UPPER_VALUE = 1;
+    private static final String UP = "U";
+    private static final String DOWN = "D";
 
-    //인스턴스 변수 변경 불가
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -15,16 +18,20 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            bridge.add(convertBridgeNumberToBlock(bridgeNumberGenerator.generate()));
+        for (int position = INITIAL_POSITION; position < size; position++) {
+            bridge.add(convertBridgeNumberToBridge(bridgeNumberGenerator.generate()));
         }
         return bridge;
     }
 
-    private String convertBridgeNumberToBlock(int bridgeNumber) {
-        if (bridgeNumber == 0) {
-            return "D";
+    private String convertBridgeNumberToBridge(int bridgeNumber) {
+        if (isUpperBridge(bridgeNumber)) {
+            return UP;
         }
-        return "U";
+        return DOWN;
+    }
+
+    private boolean isUpperBridge(int bridgeNumber) {
+        return bridgeNumber == UPPER_VALUE;
     }
 }

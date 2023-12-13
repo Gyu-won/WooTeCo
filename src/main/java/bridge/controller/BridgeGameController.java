@@ -4,6 +4,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.entity.BridgeGame;
 import bridge.domain.entity.BridgeGameResult;
 import bridge.domain.entity.BridgeMaker;
+import bridge.domain.entity.RetryFlag;
 import bridge.domain.validation.BridgeSizeValidator;
 import bridge.domain.validation.MoveBlockValidator;
 import bridge.domain.validation.RetryFlagValidator;
@@ -12,8 +13,7 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGameController {
-    private static final int INITIAL_VALUE_OF_CURRENT_LOCATION = 0;
-    private static final String RESTART_FLAG = "R";
+    private static final int INITIAL_POSITION = 0;
 
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
@@ -37,10 +37,9 @@ public class BridgeGameController {
     }
 
     private static void start(BridgeGame bridgeGame) {
-        int bridgeSize = bridgeGame.getBridgeSize();
-        for (int currentLocation = INITIAL_VALUE_OF_CURRENT_LOCATION; currentLocation < bridgeSize; currentLocation++) {
+        for (int position = INITIAL_POSITION; position < bridgeGame.getBridgeSize(); position++) {
             String block = inputMoveBlock();
-            BridgeGameResult bridgeGameResult = bridgeGame.move(currentLocation, block);
+            BridgeGameResult bridgeGameResult = bridgeGame.move(block);
             outputView.printMap(bridgeGameResult);
             if (bridgeGameResult.isGameOver()) {
                 retryOrExit(bridgeGame);
@@ -59,17 +58,13 @@ public class BridgeGameController {
     }
 
     private static void retryOrExit(BridgeGame bridgeGame) {
-        if (isRetry(askForRetry())) {
+        if (askForRetry().isRetry()) {
             bridgeGame.retry();
             start(bridgeGame);
         }
     }
 
-    private static boolean isRetry(String retryFlag) {
-        return retryFlag.equals(RESTART_FLAG);
-    }
-
-    private static String askForRetry() {
-        return RetryFlagValidator.validateAndReturn(inputView.readGameCommand());
+    private static RetryFlag askForRetry() {
+        return new RetryFlag(RetryFlagValidator.validateAndReturn(inputView.readGameCommand()));
     }
 }

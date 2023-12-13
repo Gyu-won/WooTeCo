@@ -3,7 +3,7 @@ package bridge.domain.entity;
 import java.util.List;
 
 public class BridgeGame {
-    private static final Integer INITIAL_COUNT_VALUE = 0;
+    private static final Integer INITIAL_COUNT_VALUE = 1;
     private static final Integer INCREASE_AMOUNT = 1;
 
     private final List<String> bridge;
@@ -16,9 +16,9 @@ public class BridgeGame {
         gameResult = new BridgeGameResult();
     }
 
-    public BridgeGameResult move(Integer currentLocation, String moveBlock) {
-        gameResult.add(currentLocation, moveBlock);
-        gameResult.checkGameOver(currentLocation, bridge);
+    public BridgeGameResult move(String moveBlock) {
+        gameResult.add(moveBlock);
+        gameResult.checkGameOver(bridge);
         return gameResult;
     }
 
