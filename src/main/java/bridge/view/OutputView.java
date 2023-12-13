@@ -15,8 +15,8 @@ public class OutputView {
     public void printMap(BridgeGameResult bridgeGameResult) {
         List<String> upperBlock = makeBlock(bridgeGameResult, "U");
         List<String> lowerBlock = makeBlock(bridgeGameResult, "D");
-        System.out.printf(Result.MAP.getMessage(String.join("|", upperBlock)));
-        System.out.printf(Result.MAP.getMessage(String.join("|", lowerBlock)));
+        System.out.println(Result.MAP.getMessage(String.join("|", upperBlock)));
+        System.out.println(Result.MAP.getMessage(String.join("|", lowerBlock)));
     }
 
     private List<String> makeBlock(BridgeGameResult bridgeGameResult, String blockName) {
