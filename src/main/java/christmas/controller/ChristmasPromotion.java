@@ -26,6 +26,8 @@ public class ChristmasPromotion {
         OutputView.printGiftEvent(EventRepository.applyGiftEvent(order));
 
         OutputView.printAllEventDetails(EventRepository.applyDiscountEvent(order, visitDate));
+
+        EventRepository.calculateTotalDiscountPrice();
     }
 
     private static Map<String, Integer> inputOrder() {

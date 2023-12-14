@@ -49,4 +49,10 @@ public class EventRepository {
             discountDetails.put("크리스마스 디데이 할인", discountPrice);
         }
     }
+
+    public static Integer calculateTotalDiscountPrice() {
+        return discountDetails.values().stream()
+                .mapToInt(Integer::intValue)
+                .sum();
+    }
 }
