@@ -29,7 +29,7 @@ public class EventRepository {
             discountDetails.put("Holiday", DayEvent.applyHoliday());
             return;
         }
-        discountDetails.put("Weekday", DayEvent.applyWeekday());
+        discountDetails.put("Weekday", DayEvent.applyWeekday(order));
 
     }
 

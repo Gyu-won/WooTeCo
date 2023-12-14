@@ -44,4 +44,8 @@ public enum Menu {
         }
         return 0;
     }
+
+    public static boolean isDessert(String name) {
+        return Menu.DESSERT.menu.containsKey(name);
+    }
 }
