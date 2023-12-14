@@ -2,9 +2,11 @@ package christmas.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import christmas.view.message.Prompt;
+
 public class InputView {
-    public static String input메서드명() {
-        System.out.println();
+    public static String inputVisitDate() {
+        System.out.println(Prompt.VISIT_DATE.getMessage());
         return readLine();
     }
 }

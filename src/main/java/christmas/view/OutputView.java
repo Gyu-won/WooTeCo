@@ -8,6 +8,6 @@ public class OutputView {
     }
 
     public static void printStartMessage() {
-        System.out.println(Prompt.Start.getMessage());
+        System.out.println(Prompt.START.getMessage());
     }
 }
