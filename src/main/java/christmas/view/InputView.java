@@ -9,4 +9,9 @@ public class InputView {
         System.out.println(Prompt.VISIT_DATE.getMessage());
         return readLine();
     }
+
+    public static String readOrder() {
+        System.out.println(Prompt.ORDER.getMessage());
+        return readLine();
+    }
 }

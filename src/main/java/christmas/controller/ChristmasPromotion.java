@@ -10,6 +10,8 @@ public class ChristmasPromotion {
         OutputView.printStartMessage();
 
         VisitDate visitDate = new VisitDate(inputVisitDate());
+
+        InputView.readOrder();
     }
 
     private static Integer inputVisitDate() {
