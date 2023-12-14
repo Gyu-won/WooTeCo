@@ -6,6 +6,7 @@ import christmas.domain.validation.OrderValidator;
 import christmas.domain.validation.VisitDateValidator;
 import christmas.view.InputView;
 import christmas.view.OutputView;
+import java.util.Map;
 
 public class ChristmasPromotion {
     public static void start() {
@@ -13,7 +14,16 @@ public class ChristmasPromotion {
 
         VisitDate visitDate = new VisitDate(inputVisitDate());
 
-        Order order = new Order(OrderValidator.validateAndReturn(InputView.readOrder()));
+        Order order = new Order(inputOrder());
+    }
+
+    private static Map<String, Integer> inputOrder() {
+        try {
+            return OrderValidator.validateAndReturn(InputView.readOrder());
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+            return inputOrder();
+        }
     }
 
     private static Integer inputVisitDate() {
