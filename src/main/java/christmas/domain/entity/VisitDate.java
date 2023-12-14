@@ -7,4 +7,8 @@ public class VisitDate {
     public VisitDate(Integer visitDate) {
         this.visitDate = visitDate;
     }
+
+    public Integer getVisitDate() {
+        return visitDate;
+    }
 }
