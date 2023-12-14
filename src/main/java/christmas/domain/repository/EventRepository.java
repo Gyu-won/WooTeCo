@@ -55,4 +55,12 @@ public class EventRepository {
                 .mapToInt(Integer::intValue)
                 .sum();
     }
+
+    public static Integer calculateFinalPrice(Order order) {
+        int discountPrice = calculateTotalDiscountPrice();
+        if (discountDetails.containsKey("증정 이벤트")) {
+            discountPrice -= 25000;
+        }
+        return order.calculatePrice() - discountPrice;
+    }
 }
