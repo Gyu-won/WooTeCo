@@ -30,7 +30,17 @@ public class OrderValidator {
     private static List<Integer> validateAndReturnCount(List<String> counts) {
         List<Integer> parsedCounts = toInteger(counts);
         checkInvalidCount(parsedCounts);
+        checkTotalCount(parsedCounts);
         return parsedCounts;
+    }
+
+    private static void checkTotalCount(List<Integer> parsedCounts) {
+        int totalCount = parsedCounts.stream()
+                .mapToInt(Integer::intValue)
+                .sum();
+        if (totalCount > 20) {
+            throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
+        }
     }
 
     private static void checkInvalidCount(List<Integer> parsedCounts) {
