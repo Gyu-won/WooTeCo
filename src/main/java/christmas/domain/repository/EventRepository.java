@@ -3,6 +3,7 @@ package christmas.domain.repository;
 import christmas.domain.entity.ChristmasEvent;
 import christmas.domain.entity.DayEvent;
 import christmas.domain.entity.Order;
+import christmas.domain.entity.SpecialEvent;
 import christmas.domain.entity.VisitDate;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +22,14 @@ public class EventRepository {
         if (order.calculatePrice() >= 10000) {
             applyChristmasEvent(order, visitDate);
             applyDayEvent(order, visitDate);
+            applySpecialEvent(visitDate);
+        }
+    }
+
+    private static void applySpecialEvent(VisitDate visitDate) {
+        int discountPrice = SpecialEvent.apply(visitDate);
+        if (discountPrice != 0) {
+            discountDetails.put("Special", discountPrice);
         }
     }
 
