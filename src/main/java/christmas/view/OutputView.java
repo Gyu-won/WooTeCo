@@ -22,7 +22,12 @@ public class OutputView {
     public static void printOrder(Order order) {
         System.out.println(Prompt.ORDER_MENU.getMessage());
         for (Entry<String, Integer> entry : order.getOrder().entrySet()) {
-            System.out.println(Result.ORDER.getMessage(entry.getKey(), entry.getValue()));
+            System.out.printf(Result.ORDER.getMessage(), entry.getKey(), entry.getValue());
         }
+    }
+
+    public static void printTotalPriceBeforeDiscount(Integer totalPrice) {
+        System.out.println(Prompt.BEFORE_DISCOUNT_PRICE.getMessage());
+        System.out.printf(Result.PRICE.getMessage(), totalPrice);
     }
 }

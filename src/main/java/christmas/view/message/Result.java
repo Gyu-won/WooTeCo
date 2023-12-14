@@ -1,7 +1,8 @@
 package christmas.view.message;
 
 public enum Result {
-    ORDER("%s %d");
+    ORDER("%s %d\n"),
+    PRICE("%,d원\n");
 
     private final String template;
 
@@ -9,7 +10,7 @@ public enum Result {
         this.template = template;
     }
 
-    public String getMessage(String menuName, Integer count) {
-        return String.format(template, menuName, count);
+    public String getMessage() {
+        return template;
     }
 }

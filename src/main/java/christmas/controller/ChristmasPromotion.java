@@ -20,7 +20,7 @@ public class ChristmasPromotion {
 
         OutputView.printOrder(order);
 
-        order.calculatePrice();
+        OutputView.printTotalPriceBeforeDiscount(order.calculatePrice());
     }
 
     private static Map<String, Integer> inputOrder() {
