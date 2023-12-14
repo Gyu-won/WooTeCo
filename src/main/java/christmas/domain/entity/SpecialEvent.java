@@ -7,9 +7,8 @@ public class SpecialEvent {
     private static final int DISCOUNT_AMOUNT = 1000;
     private static final int NO_DISCOUNT = 0;
 
-    public static int apply(VisitDate visitDate) {
-        int date = visitDate.getVisitDate();
-        if (date == CHRISTMAS || date % DAY_OF_WEEK == SUNDAY) {
+    public static int apply(Integer visitDate) {
+        if (visitDate == CHRISTMAS || visitDate % DAY_OF_WEEK == SUNDAY) {
             return DISCOUNT_AMOUNT;
         }
         return NO_DISCOUNT;

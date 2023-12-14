@@ -2,7 +2,6 @@ package christmas.view;
 
 import christmas.domain.entity.Badge;
 import christmas.domain.entity.Order;
-import christmas.domain.entity.VisitDate;
 import christmas.view.message.Prompt;
 import christmas.view.message.Result;
 import java.util.Map;
@@ -17,8 +16,8 @@ public class OutputView {
         System.out.println(Prompt.START.getMessage());
     }
 
-    public static void printEventMessage(VisitDate visitDate) {
-        System.out.printf(Prompt.EVENT.getMessage(), visitDate.getVisitDate());
+    public static void printEventMessage(Integer visitDate) {
+        System.out.printf(Prompt.EVENT.getMessage(), visitDate);
     }
 
     public static void printOrder(Order order) {

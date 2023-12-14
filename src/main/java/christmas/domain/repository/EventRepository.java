@@ -4,7 +4,6 @@ import christmas.domain.entity.ChristmasEvent;
 import christmas.domain.entity.DayEvent;
 import christmas.domain.entity.Order;
 import christmas.domain.entity.SpecialEvent;
-import christmas.domain.entity.VisitDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +17,7 @@ public class EventRepository {
         return discountDetails;
     }
 
-    public static Map<String, Integer> applyDiscountEvent(Order order, VisitDate visitDate) {
+    public static Map<String, Integer> applyDiscountEvent(Order order, Integer visitDate) {
         if (order.calculatePrice() >= 10000) {
             applyChristmasEvent(visitDate);
             applyDayEvent(order, visitDate);
@@ -27,14 +26,14 @@ public class EventRepository {
         return discountDetails;
     }
 
-    private static void applySpecialEvent(VisitDate visitDate) {
+    private static void applySpecialEvent(Integer visitDate) {
         int discountPrice = SpecialEvent.apply(visitDate);
         if (discountPrice != 0) {
             discountDetails.put("특별 할인", discountPrice);
         }
     }
 
-    private static void applyDayEvent(Order order, VisitDate visitDate) {
+    private static void applyDayEvent(Order order, Integer visitDate) {
         if (DayEvent.applicableHolidayEvent(visitDate)) {
             discountDetails.put("주말 할인", DayEvent.applyHoliday(order));
             return;
@@ -43,7 +42,7 @@ public class EventRepository {
 
     }
 
-    private static void applyChristmasEvent(VisitDate visitDate) {
+    private static void applyChristmasEvent(Integer visitDate) {
         int discountPrice = ChristmasEvent.apply(visitDate);
         if (discountPrice != 0) {
             discountDetails.put("크리스마스 디데이 할인", discountPrice);

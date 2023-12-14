@@ -9,8 +9,8 @@ public class DayEvent {
     private static final int INITIAL_DISCOUNT = 0;
     private static final int DISCOUNT_AMOUNT = 2023;
 
-    public static boolean applicableHolidayEvent(VisitDate visitDate) {
-        int weekday = visitDate.getVisitDate() % DAY_OF_WEEK;
+    public static boolean applicableHolidayEvent(Integer visitDate) {
+        int weekday = visitDate % DAY_OF_WEEK;
         return weekday == FRIDAY || weekday == SATURDAY;
     }
 
