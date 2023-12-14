@@ -1,5 +1,6 @@
 package christmas.domain.validation;
 
+import christmas.view.message.Error;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,7 +13,13 @@ public class OrderValidator {
         List<String> parsedOrders = splitOrderInput(orderInput);
         for (String order : parsedOrders) {
             List<String> menuAndCount = splitOrder(order);
-            
+            checkFormat(menuAndCount);
+        }
+    }
+
+    private static void checkFormat(List<String> menuAndCount) {
+        if (menuAndCount.size() != 2) {
+            throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
         }
     }
 
