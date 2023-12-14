@@ -1,5 +1,6 @@
 package christmas.domain.validation;
 
+import christmas.domain.entity.Menu;
 import christmas.view.message.Error;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,6 +28,15 @@ public class OrderValidator {
 
     private static void validateMenu(List<String> menus) {
         checkDuplicateMenu(menus);
+        checkExistInMenu(menus);
+    }
+
+    private static void checkExistInMenu(List<String> menus) {
+        for (String menuName : menus) {
+            if (!Menu.isContain(menuName)) {
+                throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
+            }
+        }
     }
 
     private static void checkDuplicateMenu(List<String> menus) {
