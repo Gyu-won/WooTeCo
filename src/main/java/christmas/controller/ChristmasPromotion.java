@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.domain.entity.Order;
 import christmas.domain.entity.VisitDate;
 import christmas.domain.validation.OrderValidator;
 import christmas.domain.validation.VisitDateValidator;
@@ -12,7 +13,7 @@ public class ChristmasPromotion {
 
         VisitDate visitDate = new VisitDate(inputVisitDate());
 
-        OrderValidator.validateAndReturn(InputView.readOrder());
+        Order order = new Order(OrderValidator.validateAndReturn(InputView.readOrder()));
     }
 
     private static Integer inputVisitDate() {

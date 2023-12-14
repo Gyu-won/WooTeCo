@@ -4,8 +4,10 @@ import christmas.domain.entity.Menu;
 import christmas.view.message.Error;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class OrderValidator {
@@ -13,7 +15,7 @@ public class OrderValidator {
     private static final String ORDER_DELIMITER = ",";
     private static final String MENU_AND_COUNT_DELIMITER = "-";
 
-    public static void validateAndReturn(String orderInput) {
+    public static Map<String, Integer> validateAndReturn(String orderInput) {
         List<String> menus = new ArrayList<>();
         List<String> counts = new ArrayList<>();
         List<String> parsedOrders = splitOrderInput(orderInput);
@@ -25,6 +27,15 @@ public class OrderValidator {
         }
         validateMenu(menus);
         List<Integer> parsedCounts = validateAndReturnCount(counts);
+        return createOrder(menus, parsedCounts);
+    }
+
+    private static Map<String, Integer> createOrder(List<String> menus, List<Integer> counts) {
+        Map<String, Integer> orders = new HashMap<>();
+        for (int index = 0; index < menus.size(); index++) {
+            orders.put(menus.get(index), counts.get(index));
+        }
+        return orders;
     }
 
     private static List<Integer> validateAndReturnCount(List<String> counts) {
