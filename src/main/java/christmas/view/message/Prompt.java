@@ -7,7 +7,8 @@ public enum Prompt {
     EVENT("12월 %s일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n"),
     ORDER_MENU("\n<주문 메뉴>"),
     BEFORE_DISCOUNT_PRICE("\n<할인 전 총주문 금액>"),
-    GiFT_MENU("\n<증정 메뉴>");
+    GiFT_MENU("\n<증정 메뉴>"),
+    EVENT_DETAILS("\n<혜택 내역>");
 
     private final String message;
 

@@ -4,7 +4,8 @@ public enum Result {
     ORDER("%s %d\n"),
     PRICE("%,d원\n"),
     NOTHING("없음"),
-    GIFT_MENU("샴페인 1개");
+    GIFT_MENU("샴페인 1개"),
+    EVENT("%s: -%,d원\n");
 
     private final String template;
 

@@ -43,4 +43,19 @@ public class OutputView {
         }
         return Result.GIFT_MENU.getMessage();
     }
+
+    public static void printAllEventDetails(Map<String, Integer> eventResult) {
+        System.out.println(Prompt.EVENT_DETAILS.getMessage());
+        printEventDetailsResult(eventResult);
+    }
+
+    private static void printEventDetailsResult(Map<String, Integer> eventResult) {
+        if (eventResult.isEmpty()) {
+            System.out.println(Result.NOTHING.getMessage());
+            return;
+        }
+        for (Entry<String, Integer> result : eventResult.entrySet()) {
+            System.out.printf(Result.EVENT.getMessage(), result.getKey(), result.getValue());
+        }
+    }
 }

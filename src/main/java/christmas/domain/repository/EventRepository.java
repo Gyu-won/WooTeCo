@@ -13,39 +13,40 @@ public class EventRepository {
 
     public static Map<String, Integer> applyGiftEvent(Order order) {
         if (order.calculatePrice() >= 120000) {
-            discountDetails.put("GIFT", 25000);
+            discountDetails.put("증정 이벤트", 25000);
         }
         return discountDetails;
     }
 
-    public static void applyDiscountEvent(Order order, VisitDate visitDate) {
+    public static Map<String, Integer> applyDiscountEvent(Order order, VisitDate visitDate) {
         if (order.calculatePrice() >= 10000) {
             applyChristmasEvent(order, visitDate);
             applyDayEvent(order, visitDate);
             applySpecialEvent(visitDate);
         }
+        return discountDetails;
     }
 
     private static void applySpecialEvent(VisitDate visitDate) {
         int discountPrice = SpecialEvent.apply(visitDate);
         if (discountPrice != 0) {
-            discountDetails.put("Special", discountPrice);
+            discountDetails.put("특별 할인", discountPrice);
         }
     }
 
     private static void applyDayEvent(Order order, VisitDate visitDate) {
         if (DayEvent.applicableHolidayEvent(visitDate)) {
-            discountDetails.put("Holiday", DayEvent.applyHoliday(order));
+            discountDetails.put("주말 할인", DayEvent.applyHoliday(order));
             return;
         }
-        discountDetails.put("Weekday", DayEvent.applyWeekday(order));
+        discountDetails.put("평일 할인", DayEvent.applyWeekday(order));
 
     }
 
     private static void applyChristmasEvent(Order order, VisitDate visitDate) {
         int discountPrice = ChristmasEvent.apply(order, visitDate);
         if (discountPrice != 0) {
-            discountDetails.put("Christmas", discountPrice);
+            discountDetails.put("크리스마스 디데이 할인", discountPrice);
         }
     }
 }
