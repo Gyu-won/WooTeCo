@@ -5,7 +5,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import christmas.view.message.Prompt;
 
 public class InputView {
-    public static String inputVisitDate() {
+    public static String readVisitDate() {
         System.out.println(Prompt.VISIT_DATE.getMessage());
         return readLine();
     }
