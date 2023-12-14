@@ -4,6 +4,7 @@ import christmas.domain.entity.Order;
 import christmas.domain.entity.VisitDate;
 import christmas.view.message.Prompt;
 import christmas.view.message.Result;
+import java.util.Map;
 import java.util.Map.Entry;
 
 public class OutputView {
@@ -29,5 +30,17 @@ public class OutputView {
     public static void printTotalPriceBeforeDiscount(Integer totalPrice) {
         System.out.println(Prompt.BEFORE_DISCOUNT_PRICE.getMessage());
         System.out.printf(Result.PRICE.getMessage(), totalPrice);
+    }
+
+    public static void printGiftEvent(Map<String, Integer> giftEventResult) {
+        System.out.println(Prompt.GiFT_MENU.getMessage());
+        System.out.println(writeGiftEventResult(giftEventResult));
+    }
+
+    private static String writeGiftEventResult(Map<String, Integer> giftEventResult) {
+        if (giftEventResult.isEmpty()) {
+            return Result.NOTHING.getMessage();
+        }
+        return Result.GIFT_MENU.getMessage();
     }
 }

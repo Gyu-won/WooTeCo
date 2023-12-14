@@ -6,7 +6,8 @@ public enum Prompt {
     ORDER_INPUT("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)"),
     EVENT("12월 %s일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n"),
     ORDER_MENU("\n<주문 메뉴>"),
-    BEFORE_DISCOUNT_PRICE("\n<할인 전 총주문 금액>");
+    BEFORE_DISCOUNT_PRICE("\n<할인 전 총주문 금액>"),
+    GiFT_MENU("\n<증정 메뉴>");
 
     private final String message;
 

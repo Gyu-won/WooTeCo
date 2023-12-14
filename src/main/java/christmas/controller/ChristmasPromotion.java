@@ -23,8 +23,7 @@ public class ChristmasPromotion {
 
         OutputView.printTotalPriceBeforeDiscount(order.calculatePrice());
 
-        EventRepository.applyGiftEvent(order);
-        
+        OutputView.printGiftEvent(EventRepository.applyGiftEvent(order));
     }
 
     private static Map<String, Integer> inputOrder() {

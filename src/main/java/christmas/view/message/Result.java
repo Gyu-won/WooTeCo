@@ -2,7 +2,9 @@ package christmas.view.message;
 
 public enum Result {
     ORDER("%s %d\n"),
-    PRICE("%,d원\n");
+    PRICE("%,d원\n"),
+    NOTHING("없음"),
+    GIFT_MENU("샴페인 1개");
 
     private final String template;
 
