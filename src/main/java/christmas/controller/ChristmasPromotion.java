@@ -19,6 +19,8 @@ public class ChristmasPromotion {
         OutputView.printEventMessage(visitDate);
 
         OutputView.printOrder(order);
+
+        order.calculatePrice();
     }
 
     private static Map<String, Integer> inputOrder() {

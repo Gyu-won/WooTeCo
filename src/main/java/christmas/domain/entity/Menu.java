@@ -34,4 +34,14 @@ public enum Menu {
     public static boolean isBeverage(String menuName) {
         return Menu.BEVERAGE.menu.containsKey(menuName);
     }
+
+    public static Integer findPriceByName(String name) {
+        for (Menu menuType : Menu.values()) {
+            Integer price = menuType.menu.get(name);
+            if (price != null) {
+                return price;
+            }
+        }
+        return 0;
+    }
 }
