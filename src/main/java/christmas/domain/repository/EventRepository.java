@@ -26,7 +26,7 @@ public class EventRepository {
 
     private static void applyDayEvent(Order order, VisitDate visitDate) {
         if (DayEvent.applicableHolidayEvent(visitDate)) {
-            discountDetails.put("Holiday", DayEvent.applyHoliday());
+            discountDetails.put("Holiday", DayEvent.applyHoliday(order));
             return;
         }
         discountDetails.put("Weekday", DayEvent.applyWeekday(order));

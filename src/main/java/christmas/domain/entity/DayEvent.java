@@ -9,8 +9,15 @@ public class DayEvent {
         return weekday == 1 || weekday == 2;
     }
 
-    public static Integer applyHoliday() {
-        return 1;
+    public static Integer applyHoliday(Order order) {
+        int totalDiscount = 0;
+        Map<String, Integer> orders = order.getOrder();
+        for (Entry<String, Integer> entry : order.getOrder().entrySet()) {
+            if (Menu.isMain(entry.getKey())) {
+                totalDiscount += 2023 * entry.getValue();
+            }
+        }
+        return totalDiscount;
     }
 
     public static Integer applyWeekday(Order order) {

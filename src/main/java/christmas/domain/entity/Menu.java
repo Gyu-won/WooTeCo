@@ -48,4 +48,8 @@ public enum Menu {
     public static boolean isDessert(String name) {
         return Menu.DESSERT.menu.containsKey(name);
     }
+
+    public static boolean isMain(String name) {
+        return Menu.MAIN.menu.containsKey(name);
+    }
 }
