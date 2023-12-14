@@ -29,6 +29,16 @@ public class OrderValidator {
     private static void validateMenu(List<String> menus) {
         checkDuplicateMenu(menus);
         checkExistInMenu(menus);
+        checkOnlyBeverage(menus);
+    }
+
+    private static void checkOnlyBeverage(List<String> menus) {
+        for (String menuName : menus) {
+            if (!Menu.isBeverage(menuName)) {
+                return;
+            }
+        }
+        throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
     }
 
     private static void checkExistInMenu(List<String> menus) {

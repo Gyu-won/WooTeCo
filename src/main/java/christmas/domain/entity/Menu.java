@@ -30,4 +30,8 @@ public enum Menu {
         }
         return false;
     }
+
+    public static boolean isBeverage(String menuName) {
+        return Menu.BEVERAGE.menu.containsKey(menuName);
+    }
 }
