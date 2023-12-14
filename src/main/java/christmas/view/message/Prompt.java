@@ -9,7 +9,8 @@ public enum Prompt {
     BEFORE_DISCOUNT_PRICE("\n<할인 전 총주문 금액>"),
     GiFT_MENU("\n<증정 메뉴>"),
     EVENT_DETAILS("\n<혜택 내역>"),
-    TOTAL_DISCOUNT_PRICE("\n<총혜택 금액>");
+    TOTAL_DISCOUNT_PRICE("\n<총혜택 금액>"),
+    FINAL_PRICE("\n<할인 후 예상 결제 금액>");
 
     private final String message;
 

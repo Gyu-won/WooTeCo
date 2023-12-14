@@ -63,4 +63,9 @@ public class OutputView {
         System.out.println(Prompt.TOTAL_DISCOUNT_PRICE.getMessage());
         System.out.println(Result.DISCOUNT_PRICE.getMessage());
     }
+
+    public static void printFinalPrice(Integer finalPrice) {
+        System.out.println(Prompt.FINAL_PRICE.getMessage());
+        System.out.printf(Result.PRICE.getMessage(), finalPrice);
+    }
 }

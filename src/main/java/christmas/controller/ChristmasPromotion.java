@@ -29,7 +29,7 @@ public class ChristmasPromotion {
 
         OutputView.printTotalDiscountPrice(EventRepository.calculateTotalDiscountPrice());
 
-        EventRepository.calculateFinalPrice(order);
+        OutputView.printFinalPrice(EventRepository.calculateFinalPrice(order));
     }
 
     private static Map<String, Integer> inputOrder() {
