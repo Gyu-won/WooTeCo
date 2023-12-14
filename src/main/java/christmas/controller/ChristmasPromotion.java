@@ -17,6 +17,8 @@ public class ChristmasPromotion {
         Order order = new Order(inputOrder());
 
         OutputView.printEventMessage(visitDate);
+
+        OutputView.printOrder(order);
     }
 
     private static Map<String, Integer> inputOrder() {

@@ -11,7 +11,7 @@ public class InputView {
     }
 
     public static String readOrder() {
-        System.out.println(Prompt.ORDER.getMessage());
+        System.out.println(Prompt.ORDER_INPUT.getMessage());
         return readLine();
     }
 }
