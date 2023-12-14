@@ -1,8 +1,15 @@
 package christmas.domain.entity;
 
-import java.util.Map;
-
 public class ChristmasEvent {
-    public static void apply(Map<String, Integer> discountDetails) {
+    public static Integer apply(Order order, VisitDate visitDate) {
+        int date = visitDate.getVisitDate();
+        if (date >= 1 && date <= 25) {
+            return calculateEventPrice(order);
+        }
+        return 0;
+    }
+
+    private static Integer calculateEventPrice(Order order) {
+        return 0;
     }
 }
