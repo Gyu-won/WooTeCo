@@ -1,8 +1,11 @@
 package christmas.domain.validation;
 
 import christmas.view.message.Error;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class OrderValidator {
     private static final Integer SPLIT_LIMIT = -1;
@@ -10,10 +13,26 @@ public class OrderValidator {
     private static final String MENU_AND_COUNT_DELIMITER = "-";
 
     public static void validateAndReturn(String orderInput) {
+        List<String> menus = new ArrayList<>();
+        List<String> counts = new ArrayList<>();
         List<String> parsedOrders = splitOrderInput(orderInput);
         for (String order : parsedOrders) {
             List<String> menuAndCount = splitOrder(order);
             checkFormat(menuAndCount);
+            menus.add(menuAndCount.get(0));
+            counts.add(menuAndCount.get(1));
+        }
+        validateMenu(menus);
+    }
+
+    private static void validateMenu(List<String> menus) {
+        checkDuplicateMenu(menus);
+    }
+
+    private static void checkDuplicateMenu(List<String> menus) {
+        Set<String> uniqueMenus = new HashSet<>(menus);
+        if (uniqueMenus.size() != menus.size()) {
+            throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
         }
     }
 
