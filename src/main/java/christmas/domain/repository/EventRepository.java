@@ -9,16 +9,27 @@ import java.util.Map;
 
 public class EventRepository {
     private static final Map<String, Integer> discountDetails = new HashMap<>();
+    private static final Integer GIFT_EVENT_PRICE_CONDITION = 120000;
+    private static final Integer DISCOUNT_EVENT_PRICE_CONDITION = 10000;
+    private static final Integer GIFT_EVENT_AMOUNT = 25000;
+    private static final Integer NO_DISCOUNT = 0;
+    private static final Integer SYMBOL = -1;
+    private static final String GIFT_EVENT = "증정 이벤트";
+    private static final String SPECIAL_DISCOUNT = "특별 할인";
+    private static final String HOLIDAY_DISCOUNT = "주말 할인";
+    private static final String WEEKDAY_DISCOUNT = "평일 할인";
+    private static final String CHRISTMAS_DISCOUNT = "크리스마스 디데이 할인";
+
 
     public static Map<String, Integer> applyGiftEvent(Order order) {
-        if (order.calculatePrice() >= 120000) {
-            discountDetails.put("증정 이벤트", 25000);
+        if (order.calculatePrice() >= GIFT_EVENT_PRICE_CONDITION) {
+            discountDetails.put(GIFT_EVENT, GIFT_EVENT_AMOUNT);
         }
         return discountDetails;
     }
 
     public static Map<String, Integer> applyDiscountEvent(Order order, Integer visitDate) {
-        if (order.calculatePrice() >= 10000) {
+        if (order.calculatePrice() >= DISCOUNT_EVENT_PRICE_CONDITION) {
             applyChristmasEvent(visitDate);
             applyDayEvent(order, visitDate);
             applySpecialEvent(visitDate);
@@ -28,37 +39,37 @@ public class EventRepository {
 
     private static void applySpecialEvent(Integer visitDate) {
         int discountPrice = SpecialEvent.apply(visitDate);
-        if (discountPrice != 0) {
-            discountDetails.put("특별 할인", discountPrice);
+        if (discountPrice != NO_DISCOUNT) {
+            discountDetails.put(SPECIAL_DISCOUNT, discountPrice);
         }
     }
 
     private static void applyDayEvent(Order order, Integer visitDate) {
         if (DayEvent.applicableHolidayEvent(visitDate)) {
-            discountDetails.put("주말 할인", DayEvent.applyHoliday(order));
+            discountDetails.put(HOLIDAY_DISCOUNT, DayEvent.applyHoliday(order));
             return;
         }
-        discountDetails.put("평일 할인", DayEvent.applyWeekday(order));
+        discountDetails.put(WEEKDAY_DISCOUNT, DayEvent.applyWeekday(order));
 
     }
 
     private static void applyChristmasEvent(Integer visitDate) {
         int discountPrice = ChristmasEvent.apply(visitDate);
-        if (discountPrice != 0) {
-            discountDetails.put("크리스마스 디데이 할인", discountPrice);
+        if (discountPrice != NO_DISCOUNT) {
+            discountDetails.put(CHRISTMAS_DISCOUNT, discountPrice);
         }
     }
 
     public static Integer calculateTotalDiscountPrice() {
-        return -1 * discountDetails.values().stream()
+        return SYMBOL * discountDetails.values().stream()
                 .mapToInt(Integer::intValue)
                 .sum();
     }
 
     public static Integer calculateFinalPrice(Order order) {
         int discountPrice = calculateTotalDiscountPrice();
-        if (discountDetails.containsKey("증정 이벤트")) {
-            discountPrice += 25000;
+        if (discountDetails.containsKey(GIFT_EVENT)) {
+            discountPrice += GIFT_EVENT_AMOUNT;
         }
         return order.calculatePrice() + discountPrice;
     }

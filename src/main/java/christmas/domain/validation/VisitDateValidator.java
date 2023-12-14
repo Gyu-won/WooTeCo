@@ -3,6 +3,9 @@ package christmas.domain.validation;
 import christmas.view.message.Error;
 
 public class VisitDateValidator {
+    private static final Integer LAST_DAY = 31;
+    private static final Integer FIRST_DAY = 1;
+
     public static Integer validateAndReturn(String visitDate) {
         Integer parsedVisitDate = toInteger(visitDate);
         checkSmallerThanMinimumValue(parsedVisitDate);
@@ -11,13 +14,13 @@ public class VisitDateValidator {
     }
 
     private static void checkBiggerThanMaximumValue(Integer parsedVisitDate) {
-        if (parsedVisitDate > 31) {
+        if (parsedVisitDate > LAST_DAY) {
             throw new IllegalArgumentException(Error.INVALID_VISIT_DATE.getMessage());
         }
     }
 
     private static void checkSmallerThanMinimumValue(Integer parsedVisitDate) {
-        if (parsedVisitDate < 1) {
+        if (parsedVisitDate < FIRST_DAY) {
             throw new IllegalArgumentException(Error.INVALID_VISIT_DATE.getMessage());
         }
     }

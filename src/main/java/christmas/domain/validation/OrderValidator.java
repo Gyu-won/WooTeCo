@@ -14,6 +14,12 @@ public class OrderValidator {
     private static final Integer SPLIT_LIMIT = -1;
     private static final String ORDER_DELIMITER = ",";
     private static final String MENU_AND_COUNT_DELIMITER = "-";
+    private static final int MENU_INDEX = 0;
+    private static final int COUNT_INDEX = 1;
+    private static final int INITIAL_INDEX = 0;
+    private static final int MAXIMUM_TOTAL_COUNT = 20;
+    private static final Integer MINIMUM_TOTAL_COUNT = 1;
+    private static final int VALID_ORDER_SIZE = 2;
 
     public static Map<String, Integer> validateAndReturn(String orderInput) {
         List<String> menus = new ArrayList<>();
@@ -22,8 +28,8 @@ public class OrderValidator {
         for (String order : parsedOrders) {
             List<String> menuAndCount = splitOrder(order);
             checkFormat(menuAndCount);
-            menus.add(menuAndCount.get(0));
-            counts.add(menuAndCount.get(1));
+            menus.add(menuAndCount.get(MENU_INDEX));
+            counts.add(menuAndCount.get(COUNT_INDEX));
         }
         validateMenu(menus);
         List<Integer> parsedCounts = validateAndReturnCount(counts);
@@ -32,7 +38,7 @@ public class OrderValidator {
 
     private static Map<String, Integer> createOrder(List<String> menus, List<Integer> counts) {
         Map<String, Integer> orders = new HashMap<>();
-        for (int index = 0; index < menus.size(); index++) {
+        for (int index = INITIAL_INDEX; index < menus.size(); index++) {
             orders.put(menus.get(index), counts.get(index));
         }
         return orders;
@@ -49,7 +55,7 @@ public class OrderValidator {
         int totalCount = parsedCounts.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
-        if (totalCount > 20) {
+        if (totalCount > MAXIMUM_TOTAL_COUNT) {
             throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
         }
     }
@@ -59,7 +65,7 @@ public class OrderValidator {
     }
 
     private static void checkSmallerThanMinimumCount(Integer count) {
-        if (count < 1) {
+        if (count < MINIMUM_TOTAL_COUNT) {
             throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
         }
     }
@@ -107,7 +113,7 @@ public class OrderValidator {
     }
 
     private static void checkFormat(List<String> menuAndCount) {
-        if (menuAndCount.size() != 2) {
+        if (menuAndCount.size() != VALID_ORDER_SIZE) {
             throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
         }
     }
