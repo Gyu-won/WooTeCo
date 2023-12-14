@@ -5,7 +5,8 @@ public enum Result {
     PRICE("%,d원\n"),
     NOTHING("없음"),
     GIFT_MENU("샴페인 1개"),
-    EVENT("%s: -%,d원\n");
+    EVENT("%s: -%,d원\n"),
+    DISCOUNT_PRICE("-%,d원\n");
 
     private final String template;
 

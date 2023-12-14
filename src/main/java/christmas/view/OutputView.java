@@ -58,4 +58,9 @@ public class OutputView {
             System.out.printf(Result.EVENT.getMessage(), result.getKey(), result.getValue());
         }
     }
+
+    public static void printTotalDiscountPrice(Integer discountPrice) {
+        System.out.println(Prompt.TOTAL_DISCOUNT_PRICE.getMessage());
+        System.out.println(Result.DISCOUNT_PRICE.getMessage());
+    }
 }

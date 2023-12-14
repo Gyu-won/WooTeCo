@@ -8,7 +8,8 @@ public enum Prompt {
     ORDER_MENU("\n<주문 메뉴>"),
     BEFORE_DISCOUNT_PRICE("\n<할인 전 총주문 금액>"),
     GiFT_MENU("\n<증정 메뉴>"),
-    EVENT_DETAILS("\n<혜택 내역>");
+    EVENT_DETAILS("\n<혜택 내역>"),
+    TOTAL_DISCOUNT_PRICE("\n<총혜택 금액>");
 
     private final String message;
 
