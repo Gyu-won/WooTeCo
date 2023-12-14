@@ -24,5 +24,8 @@ public class EventRepository {
 
     private static void applyChristmasEvent(Order order, VisitDate visitDate) {
         int discountPrice = ChristmasEvent.apply(order, visitDate);
+        if (discountPrice != 0) {
+            discountDetails.put("Christmas", discountPrice);
+        }
     }
 }
