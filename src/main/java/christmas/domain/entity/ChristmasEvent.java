@@ -1,15 +1,18 @@
 package christmas.domain.entity;
 
 public class ChristmasEvent {
-    public static Integer apply(Order order, VisitDate visitDate) {
+    private static final int FIRST_DAY = 1;
+    private static final int LAST_DAY = 25;
+
+    public static Integer apply(VisitDate visitDate) {
         int date = visitDate.getVisitDate();
-        if (date >= 1 && date <= 25) {
-            return calculateEventPrice(order, date);
+        if (date >= FIRST_DAY && date <= LAST_DAY) {
+            return calculateEventPrice(date);
         }
         return 0;
     }
 
-    private static Integer calculateEventPrice(Order order, int date) {
+    private static Integer calculateEventPrice(int date) {
         return 1000 + (date - 1) * 100;
     }
 }

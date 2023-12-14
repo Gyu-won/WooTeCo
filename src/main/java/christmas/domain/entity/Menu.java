@@ -16,6 +16,8 @@ public enum Menu {
             "레드와인", 60000,
             "샴페인", 25000));
 
+    private static final Integer NO_MENU = 0;
+    
     private final Map<String, Integer> menu;
 
     Menu(Map<String, Integer> menu) {
@@ -42,7 +44,7 @@ public enum Menu {
                 return price;
             }
         }
-        return 0;
+        return NO_MENU;
     }
 
     public static boolean isDessert(String name) {

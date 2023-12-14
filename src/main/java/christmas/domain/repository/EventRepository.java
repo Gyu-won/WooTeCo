@@ -20,7 +20,7 @@ public class EventRepository {
 
     public static Map<String, Integer> applyDiscountEvent(Order order, VisitDate visitDate) {
         if (order.calculatePrice() >= 10000) {
-            applyChristmasEvent(order, visitDate);
+            applyChristmasEvent(visitDate);
             applyDayEvent(order, visitDate);
             applySpecialEvent(visitDate);
         }
@@ -43,8 +43,8 @@ public class EventRepository {
 
     }
 
-    private static void applyChristmasEvent(Order order, VisitDate visitDate) {
-        int discountPrice = ChristmasEvent.apply(order, visitDate);
+    private static void applyChristmasEvent(VisitDate visitDate) {
+        int discountPrice = ChristmasEvent.apply(visitDate);
         if (discountPrice != 0) {
             discountDetails.put("크리스마스 디데이 할인", discountPrice);
         }
