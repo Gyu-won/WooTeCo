@@ -29,8 +29,18 @@ public class OrderValidator {
 
     private static List<Integer> validateAndReturnCount(List<String> counts) {
         List<Integer> parsedCounts = toInteger(counts);
-
+        checkInvalidCount(parsedCounts);
         return parsedCounts;
+    }
+
+    private static void checkInvalidCount(List<Integer> parsedCounts) {
+        parsedCounts.forEach(OrderValidator::checkSmallerThanMinimumCount);
+    }
+
+    private static void checkSmallerThanMinimumCount(Integer count) {
+        if (count < 1) {
+            throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
+        }
     }
 
     private static List<Integer> toInteger(List<String> counts) {
