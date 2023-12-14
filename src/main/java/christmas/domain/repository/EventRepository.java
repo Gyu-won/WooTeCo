@@ -51,7 +51,7 @@ public class EventRepository {
     }
 
     public static Integer calculateTotalDiscountPrice() {
-        return discountDetails.values().stream()
+        return -1 * discountDetails.values().stream()
                 .mapToInt(Integer::intValue)
                 .sum();
     }
@@ -59,8 +59,8 @@ public class EventRepository {
     public static Integer calculateFinalPrice(Order order) {
         int discountPrice = calculateTotalDiscountPrice();
         if (discountDetails.containsKey("증정 이벤트")) {
-            discountPrice -= 25000;
+            discountPrice += 25000;
         }
-        return order.calculatePrice() - discountPrice;
+        return order.calculatePrice() + discountPrice;
     }
 }
