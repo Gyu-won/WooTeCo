@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.domain.entity.Badge;
 import christmas.domain.entity.Order;
 import christmas.domain.entity.VisitDate;
 import christmas.domain.repository.EventRepository;
@@ -30,6 +31,8 @@ public class ChristmasPromotion {
         OutputView.printTotalDiscountPrice(EventRepository.calculateTotalDiscountPrice());
 
         OutputView.printFinalPrice(EventRepository.calculateFinalPrice(order));
+
+        Badge badge = new Badge(EventRepository.calculateTotalDiscountPrice());
     }
 
     private static Map<String, Integer> inputOrder() {
