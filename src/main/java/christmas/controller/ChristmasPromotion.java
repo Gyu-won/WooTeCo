@@ -32,7 +32,7 @@ public class ChristmasPromotion {
 
         OutputView.printFinalPrice(EventRepository.calculateFinalPrice(order));
 
-        Badge badge = new Badge(EventRepository.calculateTotalDiscountPrice());
+        OutputView.printBadge(new Badge(EventRepository.calculateTotalDiscountPrice()));
     }
 
     private static Map<String, Integer> inputOrder() {

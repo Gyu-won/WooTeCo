@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.domain.entity.Badge;
 import christmas.domain.entity.Order;
 import christmas.domain.entity.VisitDate;
 import christmas.view.message.Prompt;
@@ -67,5 +68,10 @@ public class OutputView {
     public static void printFinalPrice(Integer finalPrice) {
         System.out.println(Prompt.FINAL_PRICE.getMessage());
         System.out.printf(Result.PRICE.getMessage(), finalPrice);
+    }
+
+    public static void printBadge(Badge badge) {
+        System.out.println(Prompt.BADGE.getMessage());
+        System.out.println(badge.getBadge());
     }
 }
