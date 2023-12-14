@@ -13,26 +13,24 @@ import java.util.Map;
 public class ChristmasPromotion {
     public static void start() {
         OutputView.printStartMessage();
-
         VisitDate visitDate = new VisitDate(inputVisitDate());
-
         Order order = new Order(inputOrder());
+        applyEvent(order, visitDate);
+        printReceipt(order);
+    }
 
-        OutputView.printEventMessage(visitDate);
-
-        OutputView.printOrder(order);
-
-        OutputView.printTotalPriceBeforeDiscount(order.calculatePrice());
-
-        OutputView.printGiftEvent(EventRepository.applyGiftEvent(order));
-
-        OutputView.printAllEventDetails(EventRepository.applyDiscountEvent(order, visitDate));
-
+    private static void printReceipt(Order order) {
         OutputView.printTotalDiscountPrice(EventRepository.calculateTotalDiscountPrice());
-
         OutputView.printFinalPrice(EventRepository.calculateFinalPrice(order));
-
         OutputView.printBadge(new Badge(EventRepository.calculateTotalDiscountPrice()));
+    }
+
+    private static void applyEvent(Order order, VisitDate visitDate) {
+        OutputView.printEventMessage(visitDate);
+        OutputView.printOrder(order);
+        OutputView.printTotalPriceBeforeDiscount(order.calculatePrice());
+        OutputView.printGiftEvent(EventRepository.applyGiftEvent(order));
+        OutputView.printAllEventDetails(EventRepository.applyDiscountEvent(order, visitDate));
     }
 
     private static Map<String, Integer> inputOrder() {
