@@ -24,6 +24,25 @@ public class OrderValidator {
             counts.add(menuAndCount.get(1));
         }
         validateMenu(menus);
+        List<Integer> parsedCounts = validateAndReturnCount(counts);
+    }
+
+    private static List<Integer> validateAndReturnCount(List<String> counts) {
+        List<Integer> parsedCounts = toInteger(counts);
+
+        return parsedCounts;
+    }
+
+    private static List<Integer> toInteger(List<String> counts) {
+        try {
+            List<Integer> parsedCounts = new ArrayList<>();
+            for (String count : counts) {
+                parsedCounts.add(Integer.parseInt(count));
+            }
+            return parsedCounts;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Error.INVALID_ORDER.getMessage());
+        }
     }
 
     private static void validateMenu(List<String> menus) {
