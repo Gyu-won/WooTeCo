@@ -6,7 +6,14 @@ public class VisitDateValidator {
     public static Integer validateAndReturn(String visitDate) {
         Integer parsedVisitDate = toInteger(visitDate);
         checkSmallerThanMinimumValue(parsedVisitDate);
+        checkBiggerThanMaximumValue(parsedVisitDate);
         return parsedVisitDate;
+    }
+
+    private static void checkBiggerThanMaximumValue(Integer parsedVisitDate) {
+        if (parsedVisitDate > 31) {
+            throw new IllegalArgumentException(Error.INVALID_VISIT_DATE.getMessage());
+        }
     }
 
     private static void checkSmallerThanMinimumValue(Integer parsedVisitDate) {
