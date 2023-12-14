@@ -5,8 +5,14 @@ import christmas.view.message.Error;
 public class VisitDateValidator {
     public static Integer validateAndReturn(String visitDate) {
         Integer parsedVisitDate = toInteger(visitDate);
-
+        checkSmallerThanMinimumValue(parsedVisitDate);
         return parsedVisitDate;
+    }
+
+    private static void checkSmallerThanMinimumValue(Integer parsedVisitDate) {
+        if (parsedVisitDate < 1) {
+            throw new IllegalArgumentException(Error.INVALID_VISIT_DATE.getMessage());
+        }
     }
 
     private static Integer toInteger(String visitDate) {
