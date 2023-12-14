@@ -2,6 +2,7 @@ package christmas.controller;
 
 import christmas.domain.entity.Order;
 import christmas.domain.entity.VisitDate;
+import christmas.domain.repository.EventRepository;
 import christmas.domain.validation.OrderValidator;
 import christmas.domain.validation.VisitDateValidator;
 import christmas.view.InputView;
@@ -21,6 +22,9 @@ public class ChristmasPromotion {
         OutputView.printOrder(order);
 
         OutputView.printTotalPriceBeforeDiscount(order.calculatePrice());
+
+        EventRepository.applyGiftEvent(order);
+        
     }
 
     private static Map<String, Integer> inputOrder() {
