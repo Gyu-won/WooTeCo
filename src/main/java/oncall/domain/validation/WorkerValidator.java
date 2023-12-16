@@ -13,8 +13,15 @@ public class WorkerValidator {
         checkValidSize(workerNames);
         for (String workerName : workerNames) {
             checkShorterThanMinimumLength(workerName);
+            checkLongerThanMaximumLength(workerName);
         }
         return workerNames;
+    }
+
+    private static void checkLongerThanMaximumLength(String workerName) {
+        if (workerName.length() > 5) {
+            throw new IllegalArgumentException(Error.INVALID_WORKER.getMessage());
+        }
     }
 
     private static void checkShorterThanMinimumLength(String workerName) {
