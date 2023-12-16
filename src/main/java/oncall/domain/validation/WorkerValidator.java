@@ -8,10 +8,19 @@ public class WorkerValidator {
     private static final Integer SPLIT_LIMIT = -1;
     private static final String DELIMITER = ",";
 
-    public static List<String> validateAndReturn(String workerName) {
-        List<String> workerNames = splitWorkerName(workerName);
+    public static List<String> validateAndReturn(String workerNameInput) {
+        List<String> workerNames = splitWorkerName(workerNameInput);
         checkValidSize(workerNames);
+        for (String workerName : workerNames) {
+            checkShorterThanMinimumLength(workerName);
+        }
         return workerNames;
+    }
+
+    private static void checkShorterThanMinimumLength(String workerName) {
+        if (workerName.isEmpty()) {
+            throw new IllegalArgumentException(Error.INVALID_WORKER.getMessage());
+        }
     }
 
     private static void checkValidSize(List<String> workerNames) {
