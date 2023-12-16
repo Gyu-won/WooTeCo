@@ -29,4 +29,8 @@ public class WorkerRepository {
             throw new IllegalArgumentException(Error.INVALID_WORKER.getMessage());
         }
     }
+
+    public static void registerHolidayWorker(List<String> workers) {
+        workers.forEach(holidayWorkers::addLast);
+    }
 }
