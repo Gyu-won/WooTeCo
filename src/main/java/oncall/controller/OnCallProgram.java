@@ -13,8 +13,14 @@ public class OnCallProgram {
         inputWeekdayWorker();
     }
 
-    private static void inputWeekdayWorker() {
-        List<String> workers = WorkerValidator.validateAndReturn("준팍,도밥,고니,수아,루루,글로,솔로스타,우코,슬링키,참새,도리");
+    private static List<String> inputWeekdayWorker() {
+        try {
+            List<String> workers = WorkerValidator.validateAndReturn("준팍,도밥,고니,수아,루루,글로,솔로스타,우코,슬링키,참새,도리");
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+            return inputWeekdayWorker();
+        }
+
     }
 
     private static Calender createCalender() {
