@@ -36,4 +36,12 @@ public class Calender {
     public static boolean isHoliday(int day) {
         return holidays.contains(day);
     }
+
+    public static int month() {
+        return month;
+    }
+
+    public static String weekday(int day) {
+        return weekdays.get(day);
+    }
 }

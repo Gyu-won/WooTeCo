@@ -13,4 +13,8 @@ public class TimeTable {
     public static boolean isWorkBefore(String worker) {
         return timeTable.get(timeTable.size() - 1).equals(worker);
     }
+
+    public static List<String> timeTable() {
+        return timeTable;
+    }
 }

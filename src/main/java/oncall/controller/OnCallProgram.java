@@ -14,6 +14,7 @@ public class OnCallProgram {
         inputWeekdayWorker();
         registerHolidayWorker();
         WorkerRepository.createTimeTable();
+        OutputView.printTimeTable();
     }
 
     private static void registerHolidayWorker() {
