@@ -11,17 +11,24 @@ import oncall.view.OutputView;
 public class OnCallProgram {
     public static void run() {
         Calender calender = createCalender();
-        WorkerRepository.registerWeekdayWorker(inputWeekdayWorker());
+        inputWeekdayWorker();
+        registerHolidayWorker();
+
     }
 
-    private static List<String> inputWeekdayWorker() {
+    private static void registerHolidayWorker() {
+        List<String> workerNames = WorkerValidator.validateAndReturn("수아,루루,글로,솔로스타,우코,슬링키,참새,도리,준팍,도밥,고니");
+        workerNames.forEach(WorkerRepository::checkIsContainInWeekDaySequence);
+    }
+
+    private static void inputWeekdayWorker() {
         try {
-            List<String> workers = WorkerValidator.validateAndReturn("준팍,도밥,고니,수아,루루,글로,솔로스타,우코,슬링키,참새,도리");
+            List<String> workerNames = WorkerValidator.validateAndReturn("준팍,도밥,고니,수아,루루,글로,솔로스타,우코,슬링키,참새,도리");
+            WorkerRepository.registerWeekdayWorker(workerNames);
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception.getMessage());
-            return inputWeekdayWorker();
+            inputWeekdayWorker();
         }
-
     }
 
     private static Calender createCalender() {
