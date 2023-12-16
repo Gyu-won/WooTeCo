@@ -28,8 +28,8 @@ public class Calender {
 
     private void create(Integer month, Weekday weekday) {
         Integer lastDay = Month.lastDay(month);
-        for (int startDay = 1; startDay <= lastDay; startDay++) {
-            weekdays.put(startDay, weekday.find(startDay % 7 - 1));
+        for (int startDay = 0; startDay < lastDay; startDay++) {
+            weekdays.put(startDay + 1, weekday.find(startDay % 7));
         }
     }
 }
