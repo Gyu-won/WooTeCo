@@ -4,6 +4,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import oncall.domain.entity.Calender;
+import oncall.domain.entity.TimeTable;
 import oncall.view.message.Error;
 
 public class WorkerRepository {
@@ -38,9 +39,20 @@ public class WorkerRepository {
     public static void createTimeTable() {
         int lastDay = Calender.lastDay();
         for (int day = 1; day <= lastDay; day++) {
-            if (Calender.isHoliday(day)) {
+            String worker = findFirstWorker(day);
+            if (TimeTable.isWorkBefore(worker)) {
 
+            } else {
+                TimeTable.add(worker);
             }
+
         }
+    }
+
+    private static String findFirstWorker(int day) {
+        if (Calender.isHoliday(day)) {
+            return holidayWorkers.getFirst();
+        }
+        return weekdayWorkers.getFirst();
     }
 }
