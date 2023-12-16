@@ -9,4 +9,9 @@ public class InputView {
         System.out.printf(Prompt.INPUT_MONTH_AND_WEEKDAY.getMessage());
         return readLine();
     }
+
+    public static String readWeekdayWorkers() {
+        System.out.printf(Prompt.INPUT_WEEKDAY_WORKER.getMessage());
+        return readLine();
+    }
 }
