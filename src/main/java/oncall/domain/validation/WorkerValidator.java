@@ -1,7 +1,9 @@
 package oncall.domain.validation;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import oncall.view.message.Error;
 
 public class WorkerValidator {
@@ -15,7 +17,15 @@ public class WorkerValidator {
             checkShorterThanMinimumLength(workerName);
             checkLongerThanMaximumLength(workerName);
         }
+        checkDuplicate(workerNames);
         return workerNames;
+    }
+
+    private static void checkDuplicate(List<String> workerNames) {
+        Set<String> uniqueWorkerNames = new HashSet<>(workerNames);
+        if (uniqueWorkerNames.size() != workerNames.size()) {
+            throw new IllegalArgumentException(Error.INVALID_WORKER.getMessage());
+        }
     }
 
     private static void checkLongerThanMaximumLength(String workerName) {
