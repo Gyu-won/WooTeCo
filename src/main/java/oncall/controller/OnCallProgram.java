@@ -17,9 +17,14 @@ public class OnCallProgram {
     }
 
     private static void registerHolidayWorker() {
-        List<String> workerNames = WorkerValidator.validateAndReturn("수아,루루,글로,솔로스타,우코,슬링키,참새,도리,준팍,도밥,고니");
-        WorkerRepository.checkIsSameWithWeekdayWorker(workerNames);
-        WorkerRepository.registerHolidayWorker(workerNames);
+        try {
+            List<String> workerNames = WorkerValidator.validateAndReturn("수아,루루,글로,솔로스타,우코,슬링키,참새,도리,준팍,도밥,고니");
+            WorkerRepository.checkIsSameWithWeekdayWorker(workerNames);
+            WorkerRepository.registerHolidayWorker(workerNames);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+            registerHolidayWorker();
+        }
     }
 
     private static void inputWeekdayWorker() {
