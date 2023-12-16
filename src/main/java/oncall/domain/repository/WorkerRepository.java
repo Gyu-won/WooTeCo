@@ -8,6 +8,10 @@ import oncall.domain.entity.TimeTable;
 import oncall.view.message.Error;
 
 public class WorkerRepository {
+    private static final int FIRST_DAY = 1;
+    private static final int DAY_OF_WEEK = 7;
+    private static final String INITIAL_VALUE = "";
+
     private static final Deque<String> weekdayWorkers = new LinkedList<>();
     private static final Deque<String> holidayWorkers = new LinkedList<>();
 
@@ -30,16 +34,16 @@ public class WorkerRepository {
     }
 
     public static void registerWorker(List<String> weekdayWorker, List<String> holidayWorker) {
-        for (int i = 0; i < 7; i++) {
+        for (int i = FIRST_DAY; i <= DAY_OF_WEEK; i++) {
             weekdayWorker.forEach(weekdayWorkers::addLast);
             holidayWorker.forEach(holidayWorkers::addLast);
         }
     }
 
     public static void createTimeTable() {
-        TimeTable.add("");
+        TimeTable.add(INITIAL_VALUE);
         int lastDay = Calender.lastDay();
-        for (int day = 1; day <= lastDay; day++) {
+        for (int day = FIRST_DAY; day <= lastDay; day++) {
             addToTimeTable(day, findFirstWorker(day));
         }
     }

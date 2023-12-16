@@ -6,15 +6,22 @@ import java.util.List;
 import java.util.Map;
 
 public class Calender {
+    private static final int FIST_DAY = 1;
+    private static final String SATURDAY = "토";
+    private static final String SUNDAY = "일";
+    private static final int INDEX_OFFSET = 1;
+    private static final int DAY_OF_WEEK = 7;
+
+
     private static Integer month;
     private static final Map<Integer, String> weekdays = new HashMap<>();
     private static final List<Integer> holidays = new ArrayList<>();
 
     private static void createHolidayList() {
         Integer lastDay = Month.lastDay(month);
-        for (int day = 1; day <= lastDay; day++) {
+        for (int day = FIST_DAY; day <= lastDay; day++) {
             String weekday = weekdays.get(day);
-            if (weekday.equals("토") || weekday.equals("일") || Month.isHoliday(month, day)) {
+            if (weekday.equals(SATURDAY) || weekday.equals(SUNDAY) || Month.isHoliday(month, day)) {
                 holidays.add(day);
             }
         }
@@ -23,8 +30,8 @@ public class Calender {
     public static void create(Integer monthNumber, Weekday weekday) {
         month = monthNumber;
         Integer lastDay = Month.lastDay(month);
-        for (int startDay = 0; startDay < lastDay; startDay++) {
-            weekdays.put(startDay + 1, weekday.find(startDay % 7));
+        for (int startDay = FIST_DAY; startDay <= lastDay; startDay++) {
+            weekdays.put(startDay, weekday.find((startDay - INDEX_OFFSET) % DAY_OF_WEEK));
         }
         createHolidayList();
     }
