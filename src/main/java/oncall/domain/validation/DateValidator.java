@@ -2,6 +2,7 @@ package oncall.domain.validation;
 
 import java.util.Arrays;
 import java.util.List;
+import oncall.domain.entity.Month;
 import oncall.view.message.Error;
 
 public class DateValidator {
@@ -14,7 +15,14 @@ public class DateValidator {
 
     public static Integer validateAndReturnMonth(String month) {
         Integer parsedMonth = toInteger(month);
+        checkIsValid(parsedMonth);
         return parsedMonth;
+    }
+
+    private static void checkIsValid(Integer parsedMonth) {
+        if (!Month.isExist(parsedMonth)) {
+            throw new IllegalArgumentException(Error.INVALID_DATE.getMessage());
+        }
     }
 
     private static Integer toInteger(String month) {
