@@ -18,7 +18,7 @@ public class OnCallProgram {
 
     private static void registerHolidayWorker() {
         List<String> workerNames = WorkerValidator.validateAndReturn("수아,루루,글로,솔로스타,우코,슬링키,참새,도리,준팍,도밥,고니");
-        workerNames.forEach(WorkerRepository::checkIsContainInWeekDaySequence);
+        WorkerRepository.checkIsSameWithWeekdayWorker(workerNames);
     }
 
     private static void inputWeekdayWorker() {

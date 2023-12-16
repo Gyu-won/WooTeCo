@@ -13,11 +13,18 @@ public class WorkerRepository {
         workers.forEach(weekdayWorkers::addLast);
     }
 
-    public static void registerHolidayWorker(List<String> workers) {
-
+    public static void checkIsSameWithWeekdayWorker(List<String> workerNames) {
+        workerNames.forEach(WorkerRepository::checkIsContainInWeekDayWorker);
+        checkSameSize(workerNames);
     }
 
-    public static void checkIsContainInWeekDaySequence(String holidayWorker) {
+    private static void checkSameSize(List<String> workerNames) {
+        if (workerNames.size() != weekdayWorkers.size()) {
+            throw new IllegalArgumentException(Error.INVALID_WORKER.getMessage());
+        }
+    }
+
+    public static void checkIsContainInWeekDayWorker(String holidayWorker) {
         if (!weekdayWorkers.contains(holidayWorker)) {
             throw new IllegalArgumentException(Error.INVALID_WORKER.getMessage());
         }
