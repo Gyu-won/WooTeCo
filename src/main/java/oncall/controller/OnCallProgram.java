@@ -6,6 +6,7 @@ import oncall.domain.entity.Weekday;
 import oncall.domain.repository.WorkerRepository;
 import oncall.domain.validation.DateValidator;
 import oncall.domain.validation.WorkerValidator;
+import oncall.view.InputView;
 import oncall.view.OutputView;
 
 public class OnCallProgram {
@@ -40,7 +41,7 @@ public class OnCallProgram {
 
     private static void createCalender() {
         try {
-            List<String> monthAndWeekDay = DateValidator.splitToMonthAndWeekDay("5,월");
+            List<String> monthAndWeekDay = DateValidator.splitToMonthAndWeekDay(InputView.readMonthAndWeekday());
             Integer month = DateValidator.validateAndReturnMonth(monthAndWeekDay.get(0));
             Weekday weekday = DateValidator.validateAndReturnWeekday(monthAndWeekDay.get(1));
             Calender.create(month, weekday);
