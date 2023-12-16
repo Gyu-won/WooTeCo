@@ -3,6 +3,7 @@ package oncall.domain.repository;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import oncall.domain.entity.Calender;
 import oncall.view.message.Error;
 
 public class WorkerRepository {
@@ -32,5 +33,12 @@ public class WorkerRepository {
 
     public static void registerHolidayWorker(List<String> workers) {
         workers.forEach(holidayWorkers::addLast);
+    }
+
+    public static void createTimeTable() {
+        int lastDay = Calender.lastDay();
+        for (int day = 1; day <= lastDay; day++) {
+
+        }
     }
 }

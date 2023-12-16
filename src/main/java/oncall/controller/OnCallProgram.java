@@ -10,10 +10,10 @@ import oncall.view.OutputView;
 
 public class OnCallProgram {
     public static void run() {
-        Calender calender = createCalender();
+        createCalender();
         inputWeekdayWorker();
         registerHolidayWorker();
-
+        WorkerRepository.createTimeTable();
     }
 
     private static void registerHolidayWorker() {
@@ -37,16 +37,15 @@ public class OnCallProgram {
         }
     }
 
-    private static Calender createCalender() {
+    private static void createCalender() {
         try {
             List<String> monthAndWeekDay = DateValidator.splitToMonthAndWeekDay("5,월");
             Integer month = DateValidator.validateAndReturnMonth(monthAndWeekDay.get(0));
             Weekday weekday = DateValidator.validateAndReturnWeekday(monthAndWeekDay.get(1));
-            return new Calender(month, weekday);
+            Calender.create(month, weekday);
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception.getMessage());
-            return createCalender();
+            createCalender();
         }
-
     }
 }

@@ -6,17 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 public class Calender {
-    private final Integer month;
-    private final Map<Integer, String> weekdays = new HashMap<>();
-    private final List<Integer> holidays = new ArrayList<>();
+    private static Integer month;
+    private static final Map<Integer, String> weekdays = new HashMap<>();
+    private static final List<Integer> holidays = new ArrayList<>();
 
-    public Calender(Integer month, Weekday weekday) {
-        this.month = month;
-        create(month, weekday);
-        createHolidayList();
-    }
-
-    private void createHolidayList() {
+    private static void createHolidayList() {
         Integer lastDay = Month.lastDay(month);
         for (int day = 1; day <= lastDay; day++) {
             String weekday = weekdays.get(day);
@@ -26,10 +20,16 @@ public class Calender {
         }
     }
 
-    private void create(Integer month, Weekday weekday) {
+    public static void create(Integer monthNumber, Weekday weekday) {
+        month = monthNumber;
         Integer lastDay = Month.lastDay(month);
         for (int startDay = 0; startDay < lastDay; startDay++) {
             weekdays.put(startDay + 1, weekday.find(startDay % 7));
         }
+        createHolidayList();
+    }
+
+    public static int lastDay() {
+        return Month.lastDay(month);
     }
 }
