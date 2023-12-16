@@ -39,14 +39,26 @@ public class WorkerRepository {
     public static void createTimeTable() {
         int lastDay = Calender.lastDay();
         for (int day = 1; day <= lastDay; day++) {
-            String worker = findFirstWorker(day);
-            if (TimeTable.isWorkBefore(worker)) {
-
-            } else {
-                TimeTable.add(worker);
-            }
-
+            addToTimeTable(day, findFirstWorker(day));
         }
+    }
+
+    private static void addToTimeTable(Integer day, String worker) {
+        while (TimeTable.isWorkBefore(worker)) {
+            addToTimeTable(day, findNextWorker(day, worker));
+        }
+        TimeTable.add(worker);
+    }
+
+    private static String findNextWorker(Integer day, String worker) {
+        if (Calender.isHoliday(day)) {
+            String nextWorker = holidayWorkers.getFirst();
+            holidayWorkers.addFirst(worker);
+            return nextWorker;
+        }
+        String nextWorker = weekdayWorkers.getFirst();
+        weekdayWorkers.addFirst(worker);
+        return nextWorker;
     }
 
     private static String findFirstWorker(int day) {
