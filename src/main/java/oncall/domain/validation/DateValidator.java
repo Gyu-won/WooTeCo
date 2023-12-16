@@ -2,6 +2,7 @@ package oncall.domain.validation;
 
 import java.util.Arrays;
 import java.util.List;
+import oncall.view.message.Error;
 
 public class DateValidator {
     private static final Integer SPLIT_LIMIT = -1;
@@ -11,5 +12,16 @@ public class DateValidator {
         return Arrays.asList(date.split(DELIMITER, SPLIT_LIMIT));
     }
 
+    public static Integer validateAndReturnMonth(String month) {
+        Integer parsedMonth = toInteger(month);
+        return parsedMonth;
+    }
 
+    private static Integer toInteger(String month) {
+        try {
+            return Integer.parseInt(month);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Error.INVALID_DATE.getMessage());
+        }
+    }
 }
