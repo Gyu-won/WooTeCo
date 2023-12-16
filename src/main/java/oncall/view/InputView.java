@@ -14,4 +14,9 @@ public class InputView {
         System.out.printf(Prompt.INPUT_WEEKDAY_WORKER.getMessage());
         return readLine();
     }
+
+    public static String readHolidayWorkers() {
+        System.out.printf(Prompt.INPUT_HOLIDAY_WORKER.getMessage());
+        return readLine();
+    }
 }

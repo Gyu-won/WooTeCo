@@ -20,7 +20,7 @@ public class OnCallProgram {
 
     private static void registerHolidayWorker() {
         try {
-            List<String> workerNames = WorkerValidator.validateAndReturn(InputView.readWeekdayWorkers());
+            List<String> workerNames = WorkerValidator.validateAndReturn(InputView.readHolidayWorkers());
             WorkerRepository.checkIsSameWithWeekdayWorker(workerNames);
             WorkerRepository.registerHolidayWorker(workerNames);
         } catch (IllegalArgumentException exception) {
@@ -31,7 +31,7 @@ public class OnCallProgram {
 
     private static void inputWeekdayWorker() {
         try {
-            List<String> workerNames = WorkerValidator.validateAndReturn("준팍,도밥,고니,수아,루루,글로,솔로스타,우코,슬링키,참새,도리");
+            List<String> workerNames = WorkerValidator.validateAndReturn(InputView.readWeekdayWorkers());
             WorkerRepository.registerWeekdayWorker(workerNames);
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception.getMessage());
