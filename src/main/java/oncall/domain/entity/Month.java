@@ -24,4 +24,8 @@ public class Month {
     public static boolean isExist(Integer parsedMonth) {
         return lastDay.containsKey(parsedMonth);
     }
+
+    public static Integer lastDay(Integer month) {
+        return lastDay.get(month);
+    }
 }

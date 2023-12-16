@@ -3,12 +3,13 @@ package oncall.domain.validation;
 import java.util.Arrays;
 import java.util.List;
 import oncall.domain.entity.Month;
+import oncall.domain.entity.Weekday;
 import oncall.view.message.Error;
 
 public class DateValidator {
     private static final Integer SPLIT_LIMIT = -1;
     private static final String DELIMITER = ",";
-    private static final List<String> weekdays = List.of("월", "화", "수", "목", "금", "토", "일");
+
 
     public static List<String> splitToMonthAndWeekDay(String date) {
         return Arrays.asList(date.split(DELIMITER, SPLIT_LIMIT));
@@ -34,10 +35,7 @@ public class DateValidator {
         }
     }
 
-    public static String validateAndReturnWeekday(String weekday) {
-        if (weekdays.contains(weekday)) {
-            return weekday;
-        }
-        throw new IllegalArgumentException(Error.INVALID_DATE.getMessage());
+    public static Weekday validateAndReturnWeekday(String weekday) {
+        return new Weekday(weekday);
     }
 }
