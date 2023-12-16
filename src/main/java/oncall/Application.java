@@ -1,7 +1,9 @@
 package oncall;
 
+import oncall.controller.OnCallProgram;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        OnCallProgram.run();
     }
 }
