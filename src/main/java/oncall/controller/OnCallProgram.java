@@ -3,6 +3,7 @@ package oncall.controller;
 import java.util.List;
 import oncall.domain.entity.Calender;
 import oncall.domain.entity.Weekday;
+import oncall.domain.repository.WorkerRepository;
 import oncall.domain.validation.DateValidator;
 import oncall.domain.validation.WorkerValidator;
 import oncall.view.OutputView;
@@ -10,7 +11,7 @@ import oncall.view.OutputView;
 public class OnCallProgram {
     public static void run() {
         Calender calender = createCalender();
-        inputWeekdayWorker();
+        WorkerRepository.registerWeekdayWorker(inputWeekdayWorker());
     }
 
     private static List<String> inputWeekdayWorker() {
