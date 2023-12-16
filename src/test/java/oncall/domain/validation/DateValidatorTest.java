@@ -16,4 +16,14 @@ public class DateValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요.");
     }
+
+    @DisplayName("요일이 올바르지 않을 경우 예외처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"김", "금요일"})
+    public void 요일이_올바르지_않은_경우(String weekday) {
+        //when+then
+        assertThatThrownBy(() -> DateValidator.validateAndReturnMonth(weekday))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요.");
+    }
 }
