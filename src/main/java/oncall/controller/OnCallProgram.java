@@ -12,36 +12,26 @@ import oncall.view.OutputView;
 public class OnCallProgram {
     public static void run() {
         createCalender();
-        inputWeekdayWorker();
-        registerHolidayWorker();
+        registerWorker();
         WorkerRepository.createTimeTable();
         OutputView.printTimeTable();
     }
 
-    private static void registerHolidayWorker() {
+    private static void registerWorker() {
         try {
-            List<String> workerNames = WorkerValidator.validateAndReturn(InputView.readHolidayWorkers());
-            WorkerRepository.checkIsSameWithWeekdayWorker(workerNames);
-            WorkerRepository.registerHolidayWorker(workerNames);
+            List<String> weekdayWorkerNames = WorkerValidator.validateAndReturn(InputView.readWeekdayWorkers());
+            List<String> holidayWorkerNames = WorkerValidator.validateAndReturn(InputView.readHolidayWorkers());
+            WorkerRepository.checkIsSame(weekdayWorkerNames, holidayWorkerNames);
+            WorkerRepository.registerWorker(weekdayWorkerNames, holidayWorkerNames);
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception.getMessage());
-            registerHolidayWorker();
-        }
-    }
-
-    private static void inputWeekdayWorker() {
-        try {
-            List<String> workerNames = WorkerValidator.validateAndReturn(InputView.readWeekdayWorkers());
-            WorkerRepository.registerWeekdayWorker(workerNames);
-        } catch (IllegalArgumentException exception) {
-            OutputView.printErrorMessage(exception.getMessage());
-            inputWeekdayWorker();
+            registerWorker();
         }
     }
 
     private static void createCalender() {
         try {
-            List<String> monthAndWeekDay = DateValidator.splitToMonthAndWeekDay(InputView.readMonthAndWeekday());
+            List<String> monthAndWeekDay = DateValidator.validateAndReturn(InputView.readMonthAndWeekday());
             Integer month = DateValidator.validateAndReturnMonth(monthAndWeekDay.get(0));
             Weekday weekday = DateValidator.validateAndReturnWeekday(monthAndWeekDay.get(1));
             Calender.create(month, weekday);

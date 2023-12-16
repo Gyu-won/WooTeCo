@@ -10,8 +10,19 @@ public class DateValidator {
     private static final Integer SPLIT_LIMIT = -1;
     private static final String DELIMITER = ",";
 
+    public static List<String> validateAndReturn(String monthAndWeekday) {
+        List<String> monthAndWeekdays = splitToMonthAndWeekDay(monthAndWeekday);
+        checkSize(monthAndWeekdays);
+        return monthAndWeekdays;
+    }
 
-    public static List<String> splitToMonthAndWeekDay(String date) {
+    private static void checkSize(List<String> monthAndWeekdays) {
+        if (monthAndWeekdays.size() < 2) {
+            throw new IllegalArgumentException(Error.INVALID_DATE.getMessage());
+        }
+    }
+
+    private static List<String> splitToMonthAndWeekDay(String date) {
         return Arrays.asList(date.split(DELIMITER, SPLIT_LIMIT));
     }
 

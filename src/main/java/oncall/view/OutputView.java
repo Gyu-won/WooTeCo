@@ -15,7 +15,10 @@ public class OutputView {
         List<String> timeTable = TimeTable.timeTable();
         for (int day = 1; day <= Month.lastDay(month); day++) {
             String weekday = createWeekdayToString(month, day);
-            System.out.printf("%d월 %d일 %s %s\n", month, day, weekday, timeTable.get(day));
+            System.out.printf("%d월 %d일 %s %s", month, day, weekday, timeTable.get(day));
+            if (day != Month.lastDay(month)) {
+                System.out.println();
+            }
         }
     }
 

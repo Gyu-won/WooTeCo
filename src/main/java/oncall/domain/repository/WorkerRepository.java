@@ -11,32 +11,28 @@ public class WorkerRepository {
     private static final Deque<String> weekdayWorkers = new LinkedList<>();
     private static final Deque<String> holidayWorkers = new LinkedList<>();
 
-    public static void registerWeekdayWorker(List<String> workers) {
-        for (int i = 0; i < 7; i++) {
-            workers.forEach(weekdayWorkers::push);
-        }
+    public static void checkIsSame(List<String> weekdayWorkerNames, List<String> holidayWorkerNames) {
+        weekdayWorkerNames.forEach(
+                weekdayWorkerName -> checkIsContainHolidayWorker(weekdayWorkerName, holidayWorkerNames));
+        checkSameSize(weekdayWorkerNames, holidayWorkerNames);
     }
 
-    public static void checkIsSameWithWeekdayWorker(List<String> workerNames) {
-        workerNames.forEach(WorkerRepository::checkIsContainInWeekDayWorker);
-        checkSameSize(workerNames);
-    }
-
-    private static void checkSameSize(List<String> workerNames) {
-        if (workerNames.size() != weekdayWorkers.size() / 7) {
+    private static void checkIsContainHolidayWorker(String weekdayWorkerName, List<String> holidayWorkerNames) {
+        if (!holidayWorkerNames.contains(weekdayWorkerName)) {
             throw new IllegalArgumentException(Error.INVALID_WORKER.getMessage());
         }
     }
 
-    public static void checkIsContainInWeekDayWorker(String holidayWorker) {
-        if (!weekdayWorkers.contains(holidayWorker)) {
+    private static void checkSameSize(List<String> weekdayWorkerNames, List<String> holidayWorkerNames) {
+        if (weekdayWorkerNames.size() != holidayWorkerNames.size()) {
             throw new IllegalArgumentException(Error.INVALID_WORKER.getMessage());
         }
     }
 
-    public static void registerHolidayWorker(List<String> workers) {
+    public static void registerWorker(List<String> weekdayWorker, List<String> holidayWorker) {
         for (int i = 0; i < 7; i++) {
-            workers.forEach(holidayWorkers::addLast);
+            weekdayWorker.forEach(weekdayWorkers::addLast);
+            holidayWorker.forEach(holidayWorkers::addLast);
         }
     }
 
@@ -50,7 +46,7 @@ public class WorkerRepository {
 
     private static void addToTimeTable(Integer day, String worker) {
         while (TimeTable.isWorkBefore(worker)) {
-            addToTimeTable(day, findNextWorker(day, worker));
+            worker = findNextWorker(day, worker);
         }
         TimeTable.add(worker);
     }
