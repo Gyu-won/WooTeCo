@@ -32,4 +32,8 @@ public class Calender {
     public static int lastDay() {
         return Month.lastDay(month);
     }
+
+    public static boolean isHoliday(int day) {
+        return holidays.contains(day);
+    }
 }
